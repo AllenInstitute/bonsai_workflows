@@ -24,4 +24,5 @@ for index, indiv_str in enumerate(local_times):
 plt.plot(np.cumsum(local_delta), local_delta)
 plt.xlabel('Time since start(s)')
 plt.ylabel('Draw period (s)')
+plt.savefig('draw_time.png')
 plt.show()
