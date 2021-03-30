@@ -20,7 +20,7 @@ Dev0/ai2: Analog encoder Vsig
 
 ## Analog Input
 Dev0/AI2 is the vsig for the analog encoder
-Dev0/AI3 is the vref (5V) signal for teh analog encoder
+Dev0/AI3 is the vref (5V) signal for the analog encoder
 
 ### Sync Lines for interaction
 | 6321 Dev1         | Sync Line     | sync line label      |
