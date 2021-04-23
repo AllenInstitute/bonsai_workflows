@@ -482,7 +482,7 @@
                 <gl:WrapT>Repeat</gl:WrapT>
                 <gl:MinFilter>Linear</gl:MinFilter>
                 <gl:MagFilter>Linear</gl:MagFilter>
-                <gl:FileName>stimuli\images\28075.tiff</gl:FileName>
+                <gl:FileName>stimuli\images\8049.tiff</gl:FileName>
                 <gl:ColorType>Unchanged</gl:ColorType>
                 <gl:FlipMode>Vertical</gl:FlipMode>
               </Combinator>
@@ -577,7 +577,7 @@
             <mx:DigitalOutputChannelConfiguration>
               <mx:ChannelName>DigitalOut</mx:ChannelName>
               <mx:Grouping>OneChannelForEachLine</mx:Grouping>
-              <mx:Lines> Dev1/port0/line1</mx:Lines>
+              <mx:Lines> Dev1/port1/line5</mx:Lines>
             </mx:DigitalOutputChannelConfiguration>
           </mx:Channels>
         </Combinator>
@@ -598,7 +598,7 @@
             <mx:DigitalOutputChannelConfiguration>
               <mx:ChannelName>DigitalOut</mx:ChannelName>
               <mx:Grouping>OneChannelForEachLine</mx:Grouping>
-              <mx:Lines>Dev1/port0/line1</mx:Lines>
+              <mx:Lines>Dev1/port1/line5</mx:Lines>
             </mx:DigitalOutputChannelConfiguration>
           </mx:Channels>
         </Combinator>
@@ -653,7 +653,7 @@
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:Delay">
-          <rx:DueTime>PT0.02S</rx:DueTime>
+          <rx:DueTime>PT0.1S</rx:DueTime>
         </Combinator>
       </Expression>
       <Expression xsi:type="Combinator">
@@ -727,9 +727,9 @@
         <LocationY>27</LocationY>
         <Layer>0</Layer>
         <Angle>0</Angle>
-        <ColorR>1</ColorR>
-        <ColorG>1</ColorG>
-        <ColorB>1</ColorB>
+        <ColorR>0</ColorR>
+        <ColorG>0</ColorG>
+        <ColorB>0</ColorB>
         <ColorA>1</ColorA>
       </Expression>
       <Expression xsi:type="GreaterThan">
