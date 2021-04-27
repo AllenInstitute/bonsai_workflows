@@ -1,42 +1,44 @@
 # Bonsai: A Guide for Python Programmers
 
-Bonsai is a "visual reactive programming language," which, at its core, is a wrapper around the [ReactiveX](http://reactivex.io/) library with interfaces to many common I/O devices used for neuroscience experiments. ReactiveX is based on concepts from *functional programming*, which may be unfamiliar to those of us who spend the vast majority of our time writing *procedural* code in languages such as Python. This can make it difficult to follow the logic behind more complex Bonsai workflows, and can be a major impediment to constructing novel workflows. 
+Bonsai is a "visual reactive programming language," which, at its core, is a wrapper around the [ReactiveX](http://reactivex.io/) library with interfaces to many common I/O devices used for behavioral neuroscience experiments. ReactiveX is based on concepts from *functional programming*, which may be unfamiliar to those of us who spend the vast majority of our time writing *procedural* code in languages such as Python. This can make it difficult to follow the logic behind more complex Bonsai workflows, and can be a major impediment to constructing novel workflows. 
 
-When first learning Bonsai, it is natural to try to translate concepts from procedural languages into our workflows. As we will see, there are many cases where this is neither possible nor desirable. Bonsai (and functional languages in general), surrender certain abilities in order to make it possible to write more performant, maintainable code. [one other sentence]
+When first learning Bonsai, it is natural to try to translate concepts from procedural languages into our workflows. As we will see, there are many cases where this is neither possible nor desirable. Bonsai (and functional languages in general), surrender certain abilities in order to make it possible to write more performant, maintainable code. This guide is intended to explain the rationale behind some of these design decisions, in order to make working in Bonsai more intuitive and enjoyable.
+
+<br/>
 
 ## Procedural versus functional programming
 
-In their ideal form
-
-Procedural programming is:
+Procedural and functional programming represent two complementary approaches to designing software. In its ideal form, procedural programming is:
 
 * Synchronous
 * Linear
 * State-dependent
 
-Functional programming is:
+A purely functional program, on the other hand, will be:
 
 * Asynchronous
 * Non-linear
 * Stateless
 
-A procedural program often calls functions within objects that have their own internal states. The output of that function cannot be predicted based on the inputs alone. This is often consistent with our concept of how the world works, which is that our interactions with an object (or a person) depends on that object's internal state.
+Procedural programming is based on what we typically think of as *algorithms*: an explicit series of steps, executed in a particular order, that specify how a computer should behave. Functional programming, as its name implies, is based on *functions*: expressions that define how a particular input should be transformed into an output. A functional program (in principle) consists of a series of expressions that always operate on their input values in the same, predictable way. Expressions should have no *side effects*, which change their internal state in some way that cannot be observed by the rest of the program.
 
-A functional program (in its ideal form) consists of a series of expressions that always operate on their input values in the same, predictable way. Expressions should have no *side effects*, which change state in some way that cannot be observed by the rest of the program.
+With procedural programming, there are no restrictions on functions having their own private states that can change with time. This is actually quite intuitive, because it's consistent with our concept of how the world works: our interactions with a real-world object are strongly dependent on that thing's internal state. However, this approach can make code harder to debug, because the output of a function cannot be predicted from its inputs alone.
+
+Things become especially tricky when writing programs to handle many inputs and outputs in parallel. This is exactly the situation that arises in neuroscience experiments where stimuli and rewards are contingent on some behavioral readout. In this case, trying to keep track of state changes across multiple I/O sources can quickly lead to messy and uninterpretable code withot a lot of careful forethought. This is exactly the type of problem that Bonsai was designed to address.
+
+<br/>
 
 ## `for` loops, and why they don't exist in Bonsai
 
-Let's consider a simple Bonsai workflow that takes a series of camera frames, converts them to grayscale, and writes them to disk:
+Let's consider a simple Bonsai workflow that takes a series of camera frames and converts them to grayscale:
 
 ![video_workflow](Images/video_workflow.png)
 
-This workflow contains one "Source" and one "Transform," and has no branch points. It's quite easy to imagine how we would translate this into Python:
-<br/>
-<br/>
+This workflow contains one "Source" (green) and one "Transform" (blue), and has no branch points. It's quite easy to imagine how we would translate this into Python:
 
 ```python
 from camera_library import CameraCapture
-from vision_library import Grayscale
+from vision_library import Grayscale, WriteFrame
 
 camera = CameraCapture(CAMERA_ID)
 
@@ -46,43 +48,47 @@ for i in range(MAX_FRAMES):
 
     frame = camera.getNextFrame()
     grayscale_frames.append(Grayscale(frame))
-
 ```
-We end up with a list of frames, which we can analyze, visualize, write to disk, etc.
-
-Important thing to note here is that the `for` loop is driving the processing. Everything happens sequentially inside this loop.
-
-Alternate version, using list comprehension:
-
-```python
-grayscale_frames = [Grayscale(frame) for frame in camera.getFrames()]
-```
-
-Similar syntax, but more succinct. Also, we're now letting the camera drive the processing. It generates a list of frames, which are processed by the `Grayscale` function. When that list terminates, the processing terminates as well. The output is a list containing the grayscale frames, with the same length as the input.
+After the `for` loop runs, we end up with a list of frames, which we can analyze, visualize, write to disk, etc:
 
 ```python
 >> type(grayscale_frames)
 <class 'list'>
 ```
 
-Using the "map" function (most like functional programming). Map is a higher-order function that takes a function as input. Most like a Bonsai operator.
+The important thing to note here is that the `for` loop is driving the processing. The actions happen sequentially inside this loop, always in the same order.
 
-Instead of `for`, functional programming uses *higher-order functions* which operate on the functions we're interested in.
+How else could we implement this functionality? Python has a neat feature called "list comprehension" which allows us to express the same actions more succinctly:
 
-In Python, functions are objects that can be passed as inputs to other functions, so this is straightforward to implement.
+```python
+grayscale_frames = [Grayscale(frame) for frame in camera.getFrames()]
+```
+
+Although the syntax is similar, there are some subtle differences worth nothing. For one, it's implicit in this formulation that, at some point, `getFrames()` will stop returning frames. When the output of `getFrames()` terminates, the processing by the `Grayscale` function will terminate as well. Although we've ceded some control to the `camera` object, the output is a list that's the same as when we used the explicit `for` loop:
+
+```python
+>> type(grayscale_frames)
+<class 'list'>
+```
+
+There is yet another way that we can express the same actions: by using the `map` function. `map` is a built-in *higher-order function* that takes another function as input. This will allow us to do some functional programming within Python, by passing the `Grayscale` function into `map`:
 
 ```python
 grayscale_frames = map(Grayscale, camera.getFrames())
 ```
-Now, the output is no longer a list, but an instance of the `map` class, which is essentially connected this function to an input stream.
+This should give us the same overall result as the previous two formulations. However, the output is no longer a list, but an instance of the `map` class:
 
 ```python
 >> type(grayscale_frames)
 <class 'map'>
 ```
-It's not a list, but an iterable object. The output is not calculated until another function requests it.
+What we have done is *mapped* the `Grayscale` function to the output of `camera.getFrames()`, such that the result is not calculated until a frame becomes available. In this way, we can achieve the same outcome as when we used a `for` loop, but without needing to explicitly specify how many frames to process. Whenever a frame comes in, the `map` function ensures that it gets converted to grayscale.
 
-There are no `for` loops in Bonsai because every operator is essentially a `for` loop, either generating input sequences, or creating transformed versions of those sequences. It is implicit that each operator will apply to every input it receives (until it gets a signal to terminate).
+Similarly, we could map the `WriteFrame` function to our `grayscale_frames` object, so the converted frames get written to disk as they arrive.
+
+This last formulation is most similar to how operators work in Bonsai. There are no `for` loops in Bonsai because every operator is essentially its own *reactive* loop, either generating output sequences or creating transformed versions of its inputs. It is implicit that each operator will apply its internal function to every one of its inputs, until it receives a signal to terminate. In this way, Bonsai lets the incoming data drive the processing, without the need for the programmer to explicit determine the sequence of events.
+
+<br/>
 
 ## Flow control: `if` statements and Conditions
 
@@ -107,103 +113,101 @@ In Bonsai, we would set this up in a different, but equally approachable, way:
 
 ![random-number-generator](Images/random-number-generator.png)
 
-We start with a custom "GroupWorkflow" that generates normally distributed random numbers. This sends its output to two parallel "Condition" operators. The top one checks whether the value it receives is between 0 and 1, and the bottom one checks whether the value is between -1 and 0. If the appropriate conditions are met, the workflow will trigger sequences inside one of two "SelectMany" operators.
+We start with a custom *GroupWorkflow* called "Normal Random" that generates normally distributed random numbers. This sends its output to two parallel *Condition* operators, called "GreaterThanZero" and "LessThanZero." At the names imply, the first one checks whether the value it receives is between 0 and 1, and the second one checks whether the value is between -1 and 0. If the appropriate conditions are met, the workflow will trigger sequences inside one of two *SelectMany* operators, called "SequenceA" and "SequenceB," similar to `functionA` and `functionB` in the Python example.
 
-Logically, this program replicates what we wrote in Python, but with one important difference. The Condition operators in Bonsai are *non-blocking*, which means both branches of the workflow can be active simultaneously. If two values arrive in quick succession, the first one greater than 0 and the second one less than 0, SequenceB can be initiated before SequenceA finished. This contrasts with our Python implementation, where the next value cannot be checked until `functionA` or `functionB` returns.
+Logically, this program replicates what we wrote in Python, but with one important difference. The *Condition* operators in Bonsai are **non-blocking**, which means both branches of the workflow can be active simultaneously. If two values arrive in quick succession, the first one greater than 0 and the second one less than 0, "SequenceB" can be initiated before "SequenceA" has even finished. This contrasts with our Python implementation, where the next value cannot be checked until `functionA` or `functionB` returns.
 
-There are of course ways to allow functions to run concurrently in Python, most notably the `asyncio` library. However, these are not typically used in everyday coding. Python programs are inherently *linear*, while Bonsai programs are inherently *parallel*.
+There are of course ways to allow functions to run concurrently in Python, most notably the `asyncio` library. However, these are not typically used in everyday coding. As a result, Python programs are inherently *linear*, while Bonsai workflows are inherently *parallel*.
 
-Before we explore the implications of this fact in more detail, let's take a look at what's inside the "GreaterThanZero" Condition operator:
+Before we explore the implications of this fact in more detail, let's take a look at what's inside the "GreaterThanZero" operator:
 
 ![range-test](Images/range-test.png)
 
-This is quite a bit less succinct than the `0 < value < 1` we used to check in Python, but it has the same functionality. The incoming value is sent to two comparison expressions, one that checks if it's greater than 0, and one that checks if it's less than 1. The outputs of these are combined using the "Zip" operator, and the LogicalAnd operator outputs `True` if both of these conditions are met. Importantly, the output of this operator is not `True`, but the value that was passed into it. It acts as a gate for passing information, which is a bit different ahn what we have in Python. This condition could be checking for anything -- did a response occur in a reward window, and, if so, triggers the next state.
+This is quite a bit less succinct than the `0 < value < 1` we used to perform the operation in Python, but it has the same functionality. The incoming value is sent to two comparison expressions, one that checks if it's greater than 0, and one that checks if it's less than 1. The outputs of these are combined using the *Zip* operator, followed by the *LogicalAnd* operator that outputs `True` if both of these conditions are met. Importantly, the output of the complete *Condition* operator is not `True`, but is instead the value that was passed into it. It acts as a gate for passing information, which is a bit different than what we're used to Python. 
 
-## Parallel processing in Bonsai vs. Python
+In practice, we can use *Condition* operators to check for any relevant state changes. For example, we could set up a *Condition* to determine whether or not a response occurred in a reward window, whether a subject entered a certain part of the environment, or whether a neuron's firing rate went above a threshold. Unlike with an `if` statement, *Condition* operators will not block any other part of the workflow, including other *Conditions* that are being checked in parallel. So while adopting Bonsai may mean we have have given up the familiar `if` ... `else` syntax, in return we have gained a powerful new tool.
 
-Tweets cannot be predicted, and must be broadcast to all followers. 
+<br/>
 
-![key_press_example](Images/key_press_example.png)
+## Coordinating data I/O
 
-Python translation:
+Let's return to our camera capture example. Now, instead of streaming a video to a file, we're going to save an image every time the mouse is clicked. We also have an operator that's checking for keyboard inputs, and stops the workflow if the spacebar is pressed. 
 
-```python
-def process_frame(camera, keyboard, output_file):
+![key_press_example](Images/camera_capture.png)
 
-    img = camera.getNextFrame()
-    img = Grayscale(img)
+It should be easy to interpret what's happening here, as the flow of data is intuitively represented by the left-to-right organization of the operators.
 
-    if keyboard.wasKeyPressed('A'):
-        SaveImage(output_file, img)
-
-camera = DemoCameraObject(0)
-keyboard = KeyboardInputObject(0)
-output_file = '/path/to/output.csv'
-
-for i in range(1000):
-
-    process_frame(camera, keyboard, output_file)
-
-```
-
-Note that the function to check whether or not the key was pressed happens in the same loop as the camera capture. This is an example of synchronous programming, because each function call blocks the next one. While it is possible to do asynchronous programming in Python (typically with the `asyncio` library), this is not often used for our daily programming tasks.
-
-We are starting to see some important differences between the functional model and the procedural model.
-
-
-## Combinators and the representation of time
-
-Python has an notion of sequences, but not an explicit representation of time.
-
-Time can be programmed in (e.g., using `RxPython`), but it's not native.
-
-In Bonsai, the relative timing of events is easily processed using **Combinators**. These tell the program what to do each time a new event arrives, and how the relative timing affects what information propagates downstream.
-
-Inter-trial interval = Timer "due time"
+There are nearly limitless strategies to translate this into Python. Here, we'll use a design pattern that relies on "callbacks" that run whenever a new input event arrives. The program constantly checks the various input streams for incoming events, and then runs a specified function that responds to them. Global variables are used to keep track of states:
 
 ```python
 
+from camera_library import CameraCapture
+from vision_library import Grayscale, SaveImage
+from io_library import Mouse, Keyboard
+
+camera = CameraCapture(CAMERA_ID)
+mouse = Mouse()
+keyboard = Keyboard()
+output_directory = '/path/to/output'
+
+saveNextFrame = False
+acquire = True
+
+def camera_callback(frame):
+
+    global saveNextFrame
+
+    if saveNextFrame:
+        SaveImage(Grayscale(frame), output_directory)
+        saveNextFrame = False
+
+def mouse_callback(event):
+
+    global saveNextFrame
+
+    if event.mouseDown == True:
+        saveNextFrame = True
+
+def keyboard_callback(event):
+
+    global acquire
+
+    if event.key == 'space':
+        acquire = False
+        
+def check_inputs():
+
+    if mouse.event():
+        mouse_callback(mouse.getEvent())
+
+    if keyboard.event():
+        keyboard_callback(keyboard.getEvent())
+
+    if camera.frameAvailable():
+        camera_callback(camera.getNextFrame())
+
+while acquire:
+
+    check_inputs()
+
 ```
 
-Trial interval = Delay "due time"
+Note that the function to check whether or not the key was pressed happens in the same loop as the camera capture. This is an example of synchronous programming, because each function call blocks the next one.
 
-Number of trials = Repeat
+It's also important note that some of these Python callbacks have "side effects," such as changing the state of global variables, while others depend on the state of these variables. In Bonsai, side effects can only happen inside "Sink" operators, which pass their inputs out of the other end unchanged.
 
-SelectMany = creates a new state for every new input
-- branching structure
+Another big difference is that for a user to determine the relationships between the various inputs and outputs requires reading the code in detail, whereas with Bonsai it was much easier to parse how data was being transformed just by looking at the workflow. In general, Bonsai (and functional languages in general) have a more elegant way of representing data *flows.* In Python, we are stuck using an explicit sequence to coordinate operations that we would naturally think of occurring in parallel (such as camera capture, key presses, and mouse clicks).
 
-Condition - Filter 
+As stated previously, it's entirely possible to carry out arbitrarily complex asynchronous, parallel operations using Python. But parallelism is not an inherent part of the language, as it is with Bonsai. It's also true that true that Bonsai has plenty of its own complex (likely procedural) code under the hood for coordinating I/O operations. However, this can be ignored by the average user. 
 
-CreateRandom -> CreateDistribution -> Sample
-
-![random-grating](Images/random-grating-example.PNG)
-
-```python
-import numpy as np
-
-angles = np.random.rand(100) * 2 - 1 # distribution between -1 and 1
-
-```
-
-```python
-import random
-import glob
-
-def EnumerateFiles(Path, SearchPattern):
-
-    return glob.glob(os.path.join(Path, SearchPattern))
-
-def Variation(InputSequence, Count):
-
-    random.shuffle(InputSequence)
-
-    return InputSequence[:Count]
-
-```
-
-[file1, file2, file3, file4] <-- sequence
-
+<br/>
 
 ## Conclusion
 
-Hopefully you have a better understanding of why things are organized the way they are. To help aid your understanding, it helps to try and translate Bonsai into a more familiar language, with the caveat that an exact translation may not always be possible.
+This guide has provided the rationale for why some common concepts from procedural programming cannot be translated into Bonsai. Using Bonsai effectively requires abandoning the procedural mindset, which can be  difficult for those of us who use Python or other procedural languages on a daily basis. While it's certainly the case that some operations that would be simple in Python are frustratingly complex to implement in Bonsai, the opposite is also true. Bonsai makes it straightforward to program causal relationships between sequences that are evolving in parallel. It does this via:
+
+- *Operators* that transform their inputs automatically, without the need for `for` loops
+- *Conditions* that can run in parallel, without blocking subsequent inputs
+- *Combinators* that determine how sequences interact with one another
+
+The last topic will likely be covered in a future iteration of this guide, since it's central to the way that Bonsai works. For now, you can read up on Combinators in the [Bonsai documentation](https://bonsai-rx.org/docs/operators/#combining).
