@@ -25,7 +25,7 @@
           <gl:CursorVisible>true</gl:CursorVisible>
           <gl:Location xsi:nil="true" />
           <gl:WindowBorder>Resizable</gl:WindowBorder>
-          <gl:WindowState>Normal</gl:WindowState>
+          <gl:WindowState>Fullscreen</gl:WindowState>
           <gl:DisplayDevice>Primary</gl:DisplayDevice>
           <gl:TargetRenderFrequency>0</gl:TargetRenderFrequency>
           <gl:TargetUpdateFrequency xsi:nil="true" />
@@ -945,15 +945,15 @@
         </PropertyMappings>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="BonVision:Primitives.DrawQuad.bonsai">
-        <ExtentX>0.3</ExtentX>
-        <ExtentY>0.3</ExtentY>
-        <LocationX>1.6</LocationX>
-        <LocationY>0.9</LocationY>
+        <ExtentX>10</ExtentX>
+        <ExtentY>10</ExtentY>
+        <LocationX>45</LocationX>
+        <LocationY>27</LocationY>
         <Layer>0</Layer>
         <Angle>0</Angle>
-        <ColorR>1</ColorR>
-        <ColorG>1</ColorG>
-        <ColorB>1</ColorB>
+        <ColorR>0</ColorR>
+        <ColorG>0</ColorG>
+        <ColorB>0</ColorB>
         <ColorA>1</ColorA>
       </Expression>
       <Expression xsi:type="GreaterThan">
