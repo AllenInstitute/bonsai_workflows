@@ -107,23 +107,24 @@ JEROME
 
 ## Conclusion
 
+## References 
+
+1.	Lopes, G. et al. Bonsai: an event-based framework for processing and controlling data streams. Front. Neuroinform. 9, 7 (2015). 
+2.	Lopes, G. et al. BonVision – an open-source software to create and control visual environments. doi:10.1101/2020.03.09.983775. 
+
 ## Useful resources
 - Cajal courses: 
 https://neurogears.org/vrp-2021/
-![image](https://user-images.githubusercontent.com/2491343/117508799-03b5a080-af3e-11eb-8f52-b2065edc29b5.png)
 - BonVision live coding Session: 
 https://www.youtube.com/watch?v=3qyHzXBx0dE
-![image](https://user-images.githubusercontent.com/2491343/117508767-f8fb0b80-af3d-11eb-9528-d5df0e84c99a.png)
 - Bonsai workflow descriptions on confluence : 
 http://confluence.corp.alleninstitute.org/display/CP/Bonsai+Demos
 - Collection of Bonsai repositories (37 repos on January 25th 2021).  
 https://github.com/bonsai-rx 
 - Primary documentation site
 https://bonsai-rx.org/docs
-![image](https://user-images.githubusercontent.com/2491343/117508891-25af2300-af3e-11eb-9eaf-c23f290888ee.png)
 - BonVision documentation
 https://bonvision.github.io/
-![image](https://user-images.githubusercontent.com/2491343/117508855-17f99d80-af3e-11eb-930c-179b801ad6c6.png)
 - International Brain Laboratory (IBL) hardware lines interface with Bonsai repository 
 https://github.com/harp-tech/IBL_behavior_control 
 - Benchmark repository used in Bonvision preprint 
@@ -132,10 +133,5 @@ https://github.com/bonvision/benchmarks
 https://neurogears.org/vrp-2021/ 
 - Bonsai google forum
 https://groups.google.com/d/forum/bonsai-users
-![image](https://user-images.githubusercontent.com/2491343/117508636-c9e49a00-af3d-11eb-8b26-16a3ed5ba377.png)
 
 
-## References 
-
-1.	Lopes, G. et al. Bonsai: an event-based framework for processing and controlling data streams. Front. Neuroinform. 9, 7 (2015). 
-2.	Lopes, G. et al. BonVision – an open-source software to create and control visual environments. doi:10.1101/2020.03.09.983775. 
