@@ -120,6 +120,8 @@ The purpose and content of this report.
 
 ### Standardizing behavioral data storage
 
+Describe the use of sync lines and h5 sync file as standardized event recordings. Describe the advantage comparing to NWB event storage scheme.
+
 ### Timeline
 
 ### Bonsai state of documentation
