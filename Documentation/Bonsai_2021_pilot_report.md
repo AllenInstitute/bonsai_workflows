@@ -25,6 +25,20 @@ Bla bla
 
 ### Analysis of tests ran with Bonsai
 
+### Analysis of tests ran with Bonsai
+
 ## Discussion
+
+### Components to develop and integrate
+
+### Proposal strategy 
+
+### Timeline
+
+### Bonsai state of documentation
+
+### Available resources for Bonsai developments
+
+### Community engagement and Ecosystem support
 
 ## Conclusion
