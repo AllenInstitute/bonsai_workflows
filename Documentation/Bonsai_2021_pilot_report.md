@@ -1,7 +1,7 @@
 # Bonsai: A report toward integrating into our behavioral pipeline
 
 <img src="https://raw.githubusercontent.com/AllenInstitute/bonsai_workflows/master/Documentation/Images/bonsai-lettering.svg?token=AATAHT4TLCQWUH54YLGGACDAT3QKU" height="100" />
-<span style="font-size:4em;">+</span>
+<span style="font-size:20em;">+</span>
 <img src="https://raw.githubusercontent.com/AllenInstitute/bonsai_workflows/master/Documentation/Images/AllenInstitute_Logo_RGB.png?token=AATAHTYYP47RH4KTUQBIBEDAT3QBQ" height="100" />
 
 ## Introduction: 
