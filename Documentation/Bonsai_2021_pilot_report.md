@@ -9,7 +9,7 @@ Bonsai (https://bonsai-rx.org) is an open-source visual programming language for
 
 ### Goal of this effort
 
-This document details ongoing requirements and efforts to support the piloting and testing of Bonsai as part of the Allen Brain Observatory pipeline. We will assess whether and how Bonsai can replace Camstim for controlling both passive and active behavior experiments. Bonsai would update visual (or other) stimuli in response to lick and running wheel input, and would need to operate in conjunction with existing software packages, such as WSE, sync, and videomon. 
+This document details ongoing requirements and efforts to support the piloting and testing of Bonsai as part of the Allen Brain Observatory pipeline. We assess here whether and how Bonsai can replace Camstim for controlling both passive and active behavior experiments. Bonsai would update visual (or other) stimuli in response to lick and running wheel input, and would need to operate in conjunction with existing software packages, such as WSE, Sync, and Videomon. 
 
 #### Design principles 
 Behavioral task designs will be specified as Bonsai workflow files  (.bonsai). These files will be provided by each internal or external scientific team. Hardware components of the pipeline will be integrated with existing Bonsai modules and (if necessary) with custom Bonsai packages written in C#. Commonly used stimulus types can be saved as reusable workflow elements that can be shared by multiple scientific teams. Each package will have a deployed and testing mode, allowing individual packages to emulate normal functions on the experimental rig when the hardware is not available. 
@@ -17,7 +17,7 @@ Behavioral task designs will be specified as Bonsai workflow files  (.bonsai). T
 <br/>
 
 ####  Sub-parts of the evaluation 
-- Behavior capabilities  
+##### Behavior capabilities  
 We will check that Bonsai is sufficient to cover our desired range of behavior use cases with a simple/limited set of test cases: 
   - Passively viewing visual stimuli 
     - Ability to display static and drifting gratings 
@@ -32,20 +32,18 @@ We will check that Bonsai is sufficient to cover our desired range of behavior u
         - Run Sparse Noise
         - Run a go/No go exp 
 
-- Pipeline integration capabilities 
+##### Pipeline integration capabilities 
   - Bonsai should be compatible with our behavior hardware (lick spouts, running wheels, etc.) and our hardware control packages (such as daqmx)  
   - We should be able to make a portable hardware configuration using Bonsai. 
-  - Evaluate how hardware configuration parameters will be saved (port number and device address for instance).  
+  - We should evaluate how hardware configuration parameters will be saved (port number and device address for instance).  
   - Scripts should be able to reference input/output components by an informative name (for instance, lick_line_status or reward_siganl, not NI device 1, input 0.)  
-  - Insights on how to do this could be gathered by looking at the recent IBL integration with Bonsai (see github repository below).  
-
   - We need to start scripts from wse/mouse director 
   - We need to be able to poll for status (15 or 20 things) 
   - We need Bonsai to publish stats along the way (to accumulator) 
  
- - Performance evaluation 
+##### Performance evaluation 
   - Performance levels (in terms of temporal precision) should be compatible with behavior experiments, including visual stimulus presentation 
-  - BonVision’s stimulus warping functions properly as documented in BonVision’s documentation and warping does not impair display performance beyond our QC criteria. 
+  - We should check that BonVision’s stimulus warping functions properly as documented in BonVision’s documentation and warping does not impair display performance beyond our QC criteria. 
  
 ## Methods
 
