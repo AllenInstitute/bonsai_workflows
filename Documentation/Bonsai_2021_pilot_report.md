@@ -91,6 +91,23 @@ JEROME
 
 - Sync lines output stability
 
+#### Bonsai available capabilities to be used for integration
+
+- Describe here the capabilties that are already available 
+- MORE DETAILS HERE
+
+#### Bonsai missing capabilities to be used for integration
+
+- Describe here the capabilties that are needed for integration 
+- MORE DETAILS HERE
+
+#### Lessons learned on using Bonsai for behavioral experiments
+
+- Feedbacks on coding behavioral experiments in Bonsai
+- Migrating from Python to Bonsai...
+- Need for documentation
+- MORE DETAILS HERE
+
 ## Discussion
 
 ### Components to develop and integrate
@@ -124,11 +141,9 @@ Describe the use of sync lines and h5 sync file as standardized event recordings
 
 ### Timeline
 
-### Bonsai state of documentation
-
-### Available resources for Bonsai developments
-
 ### Community engagement and Ecosystem support
+
+### Potential synergies with AIX-2, IBL
 
 ## Conclusion
 
