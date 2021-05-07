@@ -105,3 +105,19 @@ JEROME
 ### Community engagement and Ecosystem support
 
 ## Conclusion
+
+## Useful resources
+
+- Collection of Bonsai repositories (37 repos on January 25th 2021).  
+https://github.com/bonsai-rx 
+- International Brain Laboratory (IBL) hardware lines interface with Bonsai repository 
+https://github.com/harp-tech/IBL_behavior_control 
+- Benchmark repository used in Bonvision preprint 
+https://github.com/bonvision/benchmarks 
+- Bonsai workshop with lots of introductory material for visual tasks 
+https://neurogears.org/vrp-2021/ 
+
+## References 
+
+1.	Lopes, G. et al. Bonsai: an event-based framework for processing and controlling data streams. Front. Neuroinform. 9, 7 (2015). 
+2.	Lopes, G. et al. BonVision – an open-source software to create and control visual environments. doi:10.1101/2020.03.09.983775. 
