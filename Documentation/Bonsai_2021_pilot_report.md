@@ -96,6 +96,27 @@ JEROME
 ### Components to develop and integrate
 
 ### Proposal strategy 
+Migrating Bonsai to be used in the Allen Brain Observatory pipelines will be a multi-component process that will be better tackled in distinct phases. This will allow to avoid accelerated integration timelines and an efficient development.
+
+#### Phase 0 : Bonsai pilot + Report + Build plan
+The purpose and content of this report. 
+
+#### Phase 1 : Single rig integration
+  - Work out the need of running Bonsai during one session. 
+  - Integration with WSE and hardware.
+  - Saving data.
+  - MORE DETAILS HERE
+
+#### Phase 2 : Cluster integration
+  - Interaction with BehaviorMon.
+  - mTrain integration.
+  - WaterLog test and integration.
+  - MORE DETAILS HERE
+
+#### Phase 3 : Testing integration
+  - Testing at scale with mice trained through the pipeline with a previously validated and known behavior. 
+  - Catch and fix integration issues
+  - MORE DETAILS HERE
 
 ### Standardizing behavioral data storage
 
