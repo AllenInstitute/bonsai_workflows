@@ -1,11 +1,13 @@
 # Bonsai: A report toward integrating into our behavioral pipeline
 
-## Description of Bonsai
+## Introduction: 
+
+### Description of Bonsai
 
 Bonsai is a "visual reactive programming language," which, at its core, is a wrapper around the [ReactiveX](http://reactivex.io/) library with interfaces to many common I/O devices used for behavioral neuroscience experiments. 
 <br/>
 
-## Goal of this effort
+### Goal of this effort
 
 Bla bla
 * List 1
@@ -13,8 +15,16 @@ Bla bla
 
 <br/>
 
-## Description of test ran with Bonsai
+## Methods
+
+### Description of tests ran with Bonsai
 
 <br/>
+
+## Results 
+
+### Analysis of tests ran with Bonsai
+
+## Discussion
 
 ## Conclusion
