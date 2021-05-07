@@ -101,14 +101,17 @@ JEROME
 - Describe here the capabilties that are needed for integration 
 - MORE DETAILS HERE
 
+## Discussion
+### General discussion on performance
+
+Describe the good and bads of performance. 
+
 #### Lessons learned on using Bonsai for behavioral experiments
 
 - Feedbacks on coding behavioral experiments in Bonsai
 - Migrating from Python to Bonsai...
 - Need for documentation
 - MORE DETAILS HERE
-
-## Discussion
 
 ### Components to develop and integrate
 
