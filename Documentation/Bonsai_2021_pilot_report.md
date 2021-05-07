@@ -26,12 +26,12 @@ We will check that Bonsai is sufficient to cover our desired range of behavior u
     - Ability to run a simple go/no go task with only one natural image associated with go and no go trials and fixed trial probabilities. 
     - Ability to run a simple detection of change behavior with fixed change probability and only one natural image associated with go and no go trials.  
     - We will assess the feasibility of concatenating scripts  
-      We should be able to run an experiment build from multiple scripts 
-      e.g. Experiment 1  
-      - load hardware configuration 
-      - load and run 50 natural images script 
-      - load and run movie script  
- 
+        We should be able to run an experiment build from multiple scripts. 
+        e.g. Experiment 1  
+        - Run static gratings
+        - Run Sparse Noise
+        - Run a go/No go exp 
+
 - Pipeline integration capabilities 
   - Bonsai should be compatible with our behavior hardware (lick spouts, running wheels, etc.) and our hardware control packages (such as daqmx)  
   - We should be able to make a portable hardware configuration using Bonsai. 
