@@ -64,10 +64,29 @@ JEROME
 
 ### Performance of tests ran with Bonsai
 
-#### Screen stimulation stability
+#### Passively viewing experiments
 
-#### Sync lines output stability
+- Screen stimulation stability
 
+- Sync lines output stability
+
+#### Go/No task
+
+- Screen stimulation stability
+
+- Sync lines output stability
+
+#### Detection of change task
+
+- Screen stimulation stability
+
+- Sync lines output stability
+
+#### Tasks concatenation
+
+- Screen stimulation stability
+
+- Sync lines output stability
 
 ## Discussion
 
