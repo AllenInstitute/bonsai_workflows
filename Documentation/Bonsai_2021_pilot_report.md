@@ -63,7 +63,7 @@ JEROME
 
 ## Results:
 
-### Qualitative decription of tests ran with Bonsai
+### Qualitative description of tests ran with Bonsai
 
 ### Performance of tests ran with Bonsai
 
