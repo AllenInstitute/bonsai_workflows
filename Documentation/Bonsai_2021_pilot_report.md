@@ -44,7 +44,7 @@ We will check that Bonsai is sufficient to cover our desired range of behavior u
   - Performance levels (in terms of temporal precision) should be compatible with behavior experiments, including visual stimulus presentation 
   - We should check that BonVision’s stimulus warping functions properly as documented in BonVision’s documentation and warping does not impair display performance beyond our QC criteria. 
  
-## Methods
+## Methods:
 
 ### Description of test rig developed for Bonsai
 
@@ -61,7 +61,7 @@ JEROME
 
 <br/>
 
-## Results 
+## Results:
 
 ### Qualitative decription of tests ran with Bonsai
 
@@ -101,7 +101,7 @@ JEROME
 - Describe here the capabilties that are needed for integration 
 - MORE DETAILS HERE
 
-## Discussion
+## Discussion:
 
 ### General discussion on hardware integration
 
@@ -153,14 +153,14 @@ Describe the use of sync lines and h5 sync file as standardized event recordings
 
 ### Potential synergies with AIX-2, IBL
 
-## Conclusion
+## Conclusion:
 
-## References 
+## References:
 
 1.	Lopes, G. et al. Bonsai: an event-based framework for processing and controlling data streams. Front. Neuroinform. 9, 7 (2015). 
 2.	Lopes, G. et al. BonVision – an open-source software to create and control visual environments. doi:10.1101/2020.03.09.983775. 
 
-## Useful resources
+## Useful resources:
 - Cajal courses: 
 https://neurogears.org/vrp-2021/
 - BonVision live coding Session: 
