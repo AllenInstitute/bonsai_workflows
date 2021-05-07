@@ -102,16 +102,21 @@ JEROME
 - MORE DETAILS HERE
 
 ## Discussion
-### General discussion on performance
 
-Describe the good and bads of performance. 
+### General discussion on hardware integration
 
-#### Lessons learned on using Bonsai for behavioral experiments
+Describe the good and bads.
+
+### Lessons learned on using Bonsai for coding behavioral experiments
 
 - Feedbacks on coding behavioral experiments in Bonsai
 - Migrating from Python to Bonsai...
 - Need for documentation
 - MORE DETAILS HERE
+
+### General discussion on performance
+
+Describe the good and bads of performance. 
 
 ### Components to develop and integrate
 
