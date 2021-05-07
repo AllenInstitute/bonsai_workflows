@@ -13,8 +13,6 @@ This document details ongoing requirements and efforts to support the piloting a
 #### Design principles 
 Behavioral task designs will be specified as Bonsai workflow files  (.bonsai). These files will be provided by each internal or external scientific team. Hardware components of the pipeline will be integrated with existing Bonsai modules and (if necessary) with custom Bonsai packages written in C#. Commonly used stimulus types can be saved as reusable workflow elements that can be shared by multiple scientific teams. Each package will have a deployed and testing mode, allowing individual packages to emulate normal functions on the experimental rig when the hardware is not available. 
 
-<br/>
-
 ####  Sub-parts of the evaluation 
 ##### Behavior capabilities  
 We will check that Bonsai is sufficient to cover our desired range of behavior use cases with a simple/limited set of test cases: 
