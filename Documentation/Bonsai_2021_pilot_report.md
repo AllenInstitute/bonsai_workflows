@@ -35,7 +35,7 @@ We will check that Bonsai is sufficient to cover our desired range of behavior u
   - Bonsai should be compatible with our behavior hardware (lick spouts, running wheels, etc.) and our hardware control packages (such as daqmx)  
   - We should be able to make a portable hardware configuration using Bonsai. 
   - We should evaluate how hardware configuration parameters will be saved (port number and device address for instance).  
-  - Scripts should be able to reference input/output components by an informative name (for instance, lick_line_status or reward_siganl, not NI device 1, input 0.)  
+  - Scripts should be able to reference input/output components by an informative name (for instance, lick_line_status or reward_signal, not NI device 1, input 0.)  
   - We need to start scripts from wse/mouse director 
   - We need to be able to poll for status (15 or 20 things) 
   - We need Bonsai to publish stats along the way (to accumulator) 
