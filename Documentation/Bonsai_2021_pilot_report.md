@@ -52,6 +52,8 @@ For this effort,  we built a testing rig at the Institute allowing scientific te
 
 
 QUINN
+- Sync lines installed and used in this study
+![image](https://user-images.githubusercontent.com/2491343/117510054-36f92f00-af40-11eb-80b3-26ce6f71b309.png)
 
 ### Description of tests ran with Bonsai
 
