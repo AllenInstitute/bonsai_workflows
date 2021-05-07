@@ -95,7 +95,7 @@ JEROME
 
 ### Components to develop and integrate
 
-### Proposal strategy 
+### Proposed strategy 
 Migrating Bonsai to be used in the Allen Brain Observatory pipelines will be a multi-component process that will be better tackled in distinct phases. This will allow to avoid accelerated integration timelines and an efficient development.
 
 #### Phase 0 : Bonsai pilot + Report + Build plan
