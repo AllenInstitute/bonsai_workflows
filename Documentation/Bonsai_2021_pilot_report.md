@@ -6,6 +6,8 @@
 
 ![Bonsai Logo](Images/bonsai-lettering.svg)![Allen Logo](Images/AllenInstitute_Logo_RGB.png =100x20)
 
+<img src="https://raw.githubusercontent.com/AllenInstitute/bonsai_workflows/master/Documentation/Images/bonsai-lettering.svg?token=AATAHT4TLCQWUH54YLGGACDAT3QKU" height="100" />
++
 <img src="https://raw.githubusercontent.com/AllenInstitute/bonsai_workflows/master/Documentation/Images/AllenInstitute_Logo_RGB.png?token=AATAHTYYP47RH4KTUQBIBEDAT3QBQ" height="100" />
 
 Bonsai (https://bonsai-rx.org) is an open-source visual programming language for controlling systems neuroscience experiments. The logic of each experiment is specified by a Bonsai “workflow” file, which defines how diverse input and output signals are coordinated in time. The BonVision package includes workflow nodes for generating visual stimuli and presenting them with high temporal fidelity. Additional packages provide interfaces to NI hardware, Arduinos, and other DAQ hardware. This makes it possible to replicate the majority of Camstim functionality using existing Bonsai packages.
