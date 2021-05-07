@@ -23,7 +23,7 @@ We will check that Bonsai is sufficient to cover our desired range of behavior u
     - Ability to display natural images and movies 
   - Active behavior 
     - Ability to run a simple go/no go task with only one natural image associated with go and no go trials and fixed trial probabilities. 
-    - Ability to run a simple detection of change behavior with fixed change probability and only one natural image associated with go and no go trials.  
+    - Ability to run a simple detection of change behavior with fixed change probability.  
     - We will assess the feasibility of concatenating scripts  
         We should be able to run an experiment build from multiple scripts. 
         e.g. Experiment 1  
