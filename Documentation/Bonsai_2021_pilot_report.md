@@ -17,21 +17,34 @@ Bla bla
 
 ## Methods
 
+### Description of test rig developed for Bonsai
+
+QUINN
+
 ### Description of tests ran with Bonsai
+
+JEROME
 
 <br/>
 
 ## Results 
 
-### Analysis of tests ran with Bonsai
+### Qualitative decription of tests ran with Bonsai
 
-### Analysis of tests ran with Bonsai
+### Performance of tests ran with Bonsai
+
+#### Screen stimulation stability
+
+#### Sync lines output stability
+
 
 ## Discussion
 
 ### Components to develop and integrate
 
 ### Proposal strategy 
+
+### Standardizing behavioral data storage
 
 ### Timeline
 
