@@ -29,7 +29,7 @@ We will check that Bonsai is sufficient to cover our desired range of behavior u
         e.g. Experiment 1  
         - Run static gratings
         - Run Sparse Noise
-        - Run a go/No go exp 
+        - Run a Go/No Go exp 
 
 ##### Pipeline integration capabilities 
   - Bonsai should be compatible with our behavior hardware (lick spouts, running wheels, etc.) and our hardware control packages (such as daqmx)  
