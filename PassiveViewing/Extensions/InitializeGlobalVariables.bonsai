@@ -10,7 +10,7 @@
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="StringProperty">
-          <Value>E:\bonsai_data\</Value>
+          <Value>C:\ProgramData\bonsai_workflows\Analysis\passive_viewing_data</Value>
         </Combinator>
       </Expression>
       <Expression xsi:type="BehaviorSubject">

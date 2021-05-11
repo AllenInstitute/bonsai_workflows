@@ -16,21 +16,28 @@
         <Bottom>-90</Bottom>
         <Top>90</Top>
       </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="BonVision:Environment.SphereMapping.bonsai">
+        <FaceSize xsi:nil="true" />
+        <ClearColor>Gray</ClearColor>
+        <Width xsi:nil="true" />
+        <Height xsi:nil="true" />
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="BonVision:Environment.ViewWindow.bonsai">
+        <Width>20</Width>
+        <Height>15</Height>
+        <Rotation>
+          <X>0</X>
+          <Y>0</Y>
+          <Z>0</Z>
+        </Rotation>
+        <Translation>
+          <X>0</X>
+          <Y>0</Y>
+          <Z>-10</Z>
+        </Translation>
+      </Expression>
       <Expression xsi:type="PublishSubject">
         <Name>DrawStimuli</Name>
-      </Expression>
-      <Expression xsi:type="IncludeWorkflow" Path="BonVision:Primitives.DrawImage.bonsai">
-        <Angle>0</Angle>
-        <TextureName>DynamicVideo</TextureName>
-        <ExtentX>360</ExtentX>
-        <ExtentY>180</ExtentY>
-        <LocationX>0</LocationX>
-        <LocationY>0</LocationY>
-        <Layer>0</Layer>
-        <ScaleX>1</ScaleX>
-        <ScaleY>1</ScaleY>
-        <ShiftX>0</ShiftX>
-        <ShiftY>0</ShiftY>
       </Expression>
       <Expression xsi:type="BehaviorSubject">
         <Name>Draw</Name>
@@ -39,6 +46,21 @@
         <Combinator xsi:type="rx:Zip" />
       </Expression>
       <Expression xsi:type="WorkflowOutput" />
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="IncludeWorkflow" Path="BonVision:Primitives.DrawImage.bonsai">
+          <Angle>0</Angle>
+          <TextureName>DynamicVideo</TextureName>
+          <ExtentX>90</ExtentX>
+          <ExtentY>90</ExtentY>
+          <LocationX>0</LocationX>
+          <LocationY>0</LocationY>
+          <Layer>0</Layer>
+          <ScaleX>1</ScaleX>
+          <ScaleY>1</ScaleY>
+          <ShiftX>0</ShiftX>
+          <ShiftY>0</ShiftY>
+        </Builder>
+      </Expression>
       <Expression xsi:type="ExternalizedMapping">
         <Property Name="DisplayDevice" />
         <Property Name="WindowState" />
@@ -82,38 +104,39 @@
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="BonVision:Primitives.BonVisionResources.bonsai" />
       <Expression xsi:type="Combinator">
-        <Combinator xsi:type="gl:TextureResources">
-          <gl:Textures>
-            <gl:TextureConfiguration xsi:type="gl:Texture2D">
-              <gl:Name>DynamicVideo</gl:Name>
-              <gl:Width xsi:nil="true" />
-              <gl:Height xsi:nil="true" />
-              <gl:InternalFormat>Rgba</gl:InternalFormat>
-              <gl:WrapS>Repeat</gl:WrapS>
-              <gl:WrapT>Repeat</gl:WrapT>
-              <gl:MinFilter>Nearest</gl:MinFilter>
-              <gl:MagFilter>Nearest</gl:MagFilter>
-            </gl:TextureConfiguration>
-          </gl:Textures>
-        </Combinator>
-      </Expression>
-      <Expression xsi:type="Combinator">
         <Combinator xsi:type="res:LoadResources" />
+      </Expression>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="Combinator">
+          <Combinator xsi:type="gl:TextureResources">
+            <gl:Textures>
+              <gl:TextureConfiguration xsi:type="gl:Texture2D">
+                <gl:Name>DynamicVideo</gl:Name>
+                <gl:Width xsi:nil="true" />
+                <gl:Height xsi:nil="true" />
+                <gl:InternalFormat>Rgba</gl:InternalFormat>
+                <gl:WrapS>Repeat</gl:WrapS>
+                <gl:WrapT>Repeat</gl:WrapT>
+                <gl:MinFilter>Nearest</gl:MinFilter>
+                <gl:MagFilter>Nearest</gl:MagFilter>
+              </gl:TextureConfiguration>
+            </gl:Textures>
+          </Combinator>
+        </Builder>
       </Expression>
     </Nodes>
     <Edges>
       <Edge From="0" To="1" Label="Source1" />
       <Edge From="1" To="2" Label="Source1" />
-      <Edge From="1" To="3" Label="Source1" />
-      <Edge From="1" To="4" Label="Source1" />
-      <Edge From="2" To="5" Label="Source1" />
-      <Edge From="3" To="5" Label="Source3" />
-      <Edge From="4" To="5" Label="Source2" />
-      <Edge From="5" To="6" Label="Source1" />
-      <Edge From="7" To="8" Label="Source1" />
-      <Edge From="8" To="9" Label="Source1" />
+      <Edge From="2" To="3" Label="Source1" />
+      <Edge From="3" To="4" Label="Source1" />
+      <Edge From="3" To="5" Label="Source1" />
+      <Edge From="4" To="6" Label="Source1" />
+      <Edge From="5" To="6" Label="Source2" />
+      <Edge From="6" To="7" Label="Source1" />
       <Edge From="9" To="10" Label="Source1" />
       <Edge From="10" To="11" Label="Source1" />
+      <Edge From="11" To="12" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
