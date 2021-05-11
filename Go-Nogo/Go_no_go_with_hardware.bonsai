@@ -88,11 +88,9 @@
           <Z>-10</Z>
         </Translation>
       </Expression>
-      <Expression xsi:type="Disable">
-        <Builder xsi:type="IncludeWorkflow" Path="BonVision:Environment.GammaCorrection.bonsai">
-          <ClearColor>Gray</ClearColor>
-          <GammaLut xsi:nil="true" />
-        </Builder>
+      <Expression xsi:type="IncludeWorkflow" Path="BonVision:Environment.GammaCorrection.bonsai">
+        <ClearColor>Gray</ClearColor>
+        <GammaLut xsi:nil="true" />
       </Expression>
       <Expression xsi:type="ExternalizedMapping">
         <Property Name="Path" />
