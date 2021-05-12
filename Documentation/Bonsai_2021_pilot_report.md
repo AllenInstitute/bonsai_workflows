@@ -84,8 +84,9 @@ Our replicated figure below is faithful to the original published publication, i
 
 - Screen stimulation stability
 
-- Sync lines output stability
+![Quantification of photodiode stability during passively viewing of gratings and locallyl sparse noise](https://raw.githubusercontent.com/AllenInstitute/bonsai_workflows/master/Analysis/PassiveViewing_run1/2021-05-12-passively_viewing_run1.png?token=AATAHT6BHRUH5BZ4KQGZCILAUWEAU).
 
+*Quantification of photodiode stability during passively viewing of gratings and locallyl sparse noise*
 
 #### Go/No task
 
