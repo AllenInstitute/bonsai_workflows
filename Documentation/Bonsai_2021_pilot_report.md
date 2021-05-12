@@ -99,7 +99,7 @@ Our replicated figure below is faithful to the original published publication, i
 
 - Sync lines output stability
 
-#### Close-loop experiment: Ability to concurrently load and save camera data while running detection of change on the same computer.
+#### Toward closed-loop experiment: Ability to concurrently load and save camera data while running detection of change on the same computer.
 
 A key promise of Bonsai is its ability to quickly integrate multiple data modalities in a single data workflow. For example, measuring key behavioral parameters from a continuous stream of frames from a behavior camera would allow closed-loop experiments. While we do not anticipate this immediate use-case for the OpenScope project, this is a key property of Bonsai as [DeepLabCut modules](https://github.com/bonsai-rx/deeplabcut) have been fully integrated into Bonsai. To evaluate this capability, we measured the impact of continuously acquiring and saving an additional webcam, while running the detection of change task. The workflow for this experiment is [available here](https://github.com/AllenInstitute/bonsai_workflows/blob/master/DetectionOfChange/DetectionOfChange_with_hardware_and_camera.bonsai).  
 
