@@ -105,11 +105,11 @@ A key promise of Bonsai is its ability to quickly integrate multiple data modali
 
 The results for this comparison are plotted below. The associated code is available here. 
 
-![Detection of change performance with camera on](https://raw.githubusercontent.com/AllenInstitute/bonsai_workflows/master/Analysis/detection_of_change_with_camera/det_change_with_camera_sync_lines.png?token=AATAHT6D55IGLFIBCRZBRQDAUWBHM).
+![Detection of change performance with camera on](https://raw.githubusercontent.com/AllenInstitute/bonsai_workflows/master/Analysis/detection_of_change_with_camera/det_change_with_camera_sync_lines.png?token=AATAHT6CRDIBJSHND4N44UDAUWB2K).
 
 *Quantification of frame update period in detection of change while acquiring and saving a video from a webcam at 30Hz.* 
 
-![Detection of change performance with camera off](https://raw.githubusercontent.com/AllenInstitute/bonsai_workflows/master/Analysis/detection_of_change_without_camera/det_change_without_camera_sync_lines.png?token=AATAHTZYX7252CGRUGKLZJLAUWBQW).
+![Detection of change performance with camera off](https://raw.githubusercontent.com/AllenInstitute/bonsai_workflows/master/Analysis/detection_of_change_without_camera/det_change_without_camera_sync_lines.png?token=AATAHT7BQ25K6NYR6CFGKVTAUWB36).
 
 *Quantification of frame update period in detection of change without acquiring and saving a video.* 
 
