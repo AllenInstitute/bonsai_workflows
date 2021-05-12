@@ -69,10 +69,6 @@ JEROME
 
 #### Passively viewing experiments
 
-- Screen stimulation stability
-
-- Sync lines output stability
-
 - To validate our measure of performance and push Bonsai over its limit, we reproduced a performance quantification published along the BonVision paper (Lopes 2020). For that end, we [modified a workflow](https://github.com/AllenInstitute/bonsai_workflows/blob/master/GridGratingDrawing/gabor.bonsai) displaying an increasingly large number of elements. A reference figure was published in the original BonVision publication and is shared below for ease of comparision
 
 ![Goncalo_2020_figure](https://user-images.githubusercontent.com/2491343/118040614-9da69000-b326-11eb-8c9e-2cfac2789695.png)
@@ -85,6 +81,10 @@ Our replicated figure below is faithful to the original published publication, i
 ![Reproduction of performance](https://github.com/AllenInstitute/bonsai_workflows/raw/5c2ca01a6aa2fc1ed2cd8f2b163699910efb6328/Analysis/GridGratingDrawing/2021-05-12-BonVision_grating_replication.png).
 
 *Quantification of frame update period to display an array of drifting gratings using the same workflow from (Lopes 2020) but on an Allen Institute stimulus test rig.* 
+
+- Screen stimulation stability
+
+- Sync lines output stability
 
 
 #### Go/No task
@@ -103,16 +103,17 @@ Our replicated figure below is faithful to the original published publication, i
 
 A key promise of Bonsai is its ability to quickly integrate multiple data modalities in a single data workflow. For example, measuring key behavioral parameters from a continuous stream of frames from a behavior camera would allow closed-loop experiments. While we do not anticipate this immediate use-case for the OpenScope project, this is a key property of Bonsai as [DeepLabCut modules](https://github.com/bonsai-rx/deeplabcut) have been fully integrated into Bonsai. To evaluate this capability, we measured the impact of continuously acquiring and saving an additional webcam, while running the detection of change task. The workflow for this experiment is [available here](https://github.com/AllenInstitute/bonsai_workflows/blob/master/DetectionOfChange/DetectionOfChange_with_hardware_and_camera.bonsai).  
 
-The results for this comparison are plotted below. The associated code is available here. 
+The results for this comparison are plotted below. The associated code is [available here](https://github.com/AllenInstitute/bonsai_workflows/blob/master/DetectionOfChange/DetectionOfChange_with_hardware_and_camera.bonsai). 
 
-![Detection of change performance with camera on](https://raw.githubusercontent.com/AllenInstitute/bonsai_workflows/master/Analysis/detection_of_change_with_camera/det_change_with_camera_sync_lines.png?token=AATAHT6D55IGLFIBCRZBRQDAUWBHM).
+![Detection of change performance with camera on](https://raw.githubusercontent.com/AllenInstitute/bonsai_workflows/master/Analysis/detection_of_change_with_camera/det_change_with_camera_sync_lines.png?token=AATAHT6CRDIBJSHND4N44UDAUWB2K).
 
 *Quantification of frame update period in detection of change while acquiring and saving a video from a webcam at 30Hz.* 
 
-![Detection of change performance with camera off](https://raw.githubusercontent.com/AllenInstitute/bonsai_workflows/master/Analysis/detection_of_change_without_camera/det_change_without_camera_sync_lines.png?token=AATAHTZYX7252CGRUGKLZJLAUWBQW).
+![Detection of change performance with camera off](https://raw.githubusercontent.com/AllenInstitute/bonsai_workflows/master/Analysis/detection_of_change_without_camera/det_change_without_camera_sync_lines.png?token=AATAHT7BQ25K6NYR6CFGKVTAUWB36).
 
 *Quantification of frame update period in detection of change without acquiring and saving a video.* 
 
+The recorded video can be visualized [here](https://github.com/AllenInstitute/bonsai_workflows/blob/master/Analysis/detection_of_change_with_camera/camera_data.avi).
 
 
 #### Tasks concatenation
