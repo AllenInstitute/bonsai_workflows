@@ -77,7 +77,7 @@ JEROME
 ![Goncalo_2020_figure](https://user-images.githubusercontent.com/2491343/118038517-0fc9a580-b324-11eb-9ae6-daae4560ebb8.png).
 In this test, Bonvision is tasked to display a very large number of drifting gratings in an array pattern. We replicated the code, utilizing our photodiode circuit to measure the rising time of requested stimuli updates. The associated analysis is [available on this notebook](https://github.com/AllenInstitute/bonsai_workflows/blob/master/Analysis/GridGratingDrawing/2021-05-12-GridGratingDrawing.ipynb). 
 Our replicated figure below is faithful to the original published publication, ie. approximately 1000 grating elements are necessary to start impacting performances of Bonsai. 
-![Reproduction of performance](https://github.com/AllenInstitute/bonsai_workflows/edit/master/Analysis/GridGratingDrawing/2021-05-12-BonVision_grating_replication.png).
+![Reproduction of performance](https://github.com/AllenInstitute/bonsai_workflows/raw/5c2ca01a6aa2fc1ed2cd8f2b163699910efb6328/Analysis/GridGratingDrawing/2021-05-12-BonVision_grating_replication.png).
 
 - 
 
