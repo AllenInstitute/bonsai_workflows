@@ -111,6 +111,7 @@ The results for this comparison are plotted below. The associated code is [avail
 
 ![Detection of change performance with camera off](https://raw.githubusercontent.com/AllenInstitute/bonsai_workflows/master/Analysis/detection_of_change_without_camera/det_change_without_camera_sync_lines.png?token=AATAHT7BQ25K6NYR6CFGKVTAUWB36).
 
+The recorded video can be visualized [here](https://github.com/AllenInstitute/bonsai_workflows/blob/master/Analysis/detection_of_change_with_camera/camera_data.avi).
 *Quantification of frame update period in detection of change without acquiring and saving a video.* 
 
 
