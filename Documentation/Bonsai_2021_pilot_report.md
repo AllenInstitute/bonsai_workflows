@@ -103,9 +103,16 @@ Our replicated figure below is faithful to the original published publication, i
 
 A key promise of Bonsai is its ability to quickly integrate multiple data modalities in a single data workflow. For example, measuring key behavioral parameters from a continuous stream of frames from a behavior camera would allow closed-loop experiments. While we do not anticipate this immediate use-case for the OpenScope project, this is a key property of Bonsai as [DeepLabCut modules](https://github.com/bonsai-rx/deeplabcut) have been fully integrated into Bonsai. To evaluate this capability, we measured the impact of continuously acquiring and saving an additional webcam, while running the detection of change task. The workflow for this experiment is [available here](https://github.com/AllenInstitute/bonsai_workflows/blob/master/DetectionOfChange/DetectionOfChange_with_hardware_and_camera.bonsai).  
 
-- Screen stimulation stability
+The results for this comparison are plotted below. The associated code is available here. 
 
-- Sync lines output stability
+![Detection of change performance with camera on](https://raw.githubusercontent.com/AllenInstitute/bonsai_workflows/master/Analysis/detection_of_change_with_camera/det_change_with_camera_sync_lines.png?token=AATAHT6D55IGLFIBCRZBRQDAUWBHM).
+
+*Quantification of frame update period in detection of change while acquiring and saving a video from a webcam at 30Hz.* 
+
+![Detection of change performance with camera off](https://raw.githubusercontent.com/AllenInstitute/bonsai_workflows/master/Analysis/detection_of_change_without_camera/det_change_without_camera_sync_lines.png?token=AATAHTZYX7252CGRUGKLZJLAUWBQW).
+
+*Quantification of frame update period in detection of change without acquiring and saving a video.* 
+
 
 
 #### Tasks concatenation
