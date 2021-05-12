@@ -73,6 +73,20 @@ JEROME
 
 - Sync lines output stability
 
+- To validate our measure of performance and push Bonsai over its limit, we reproduced a performance quantification published along the BonVision paper (Lopes 2020). For that end, we [modified a workflow](https://github.com/AllenInstitute/bonsai_workflows/blob/master/GridGratingDrawing/gabor.bonsai) displaying an increasingly large number of elements. A reference figure was published in the original BonVision publication and is shared below for ease of comparision
+
+![Goncalo_2020_figure](https://user-images.githubusercontent.com/2491343/118040614-9da69000-b326-11eb-8c9e-2cfac2789695.png)
+
+*Quantification of frame update period (Bottom) to display an array of drifting gratings (Top). Reproduced from (Lopes 2020)*
+
+In this test, Bonvision is tasked to display a very large number of drifting gratings in an array pattern. We replicated the code, utilizing our photodiode circuit to measure the rising time of requested stimuli updates. The associated analysis is [available on this notebook](https://github.com/AllenInstitute/bonsai_workflows/blob/master/Analysis/GridGratingDrawing/2021-05-12-GridGratingDrawing.ipynb). 
+Our replicated figure below is faithful to the original published publication, ie. approximately 1000 grating elements are necessary to start impacting performances of Bonsai. 
+
+![Reproduction of performance](https://github.com/AllenInstitute/bonsai_workflows/raw/5c2ca01a6aa2fc1ed2cd8f2b163699910efb6328/Analysis/GridGratingDrawing/2021-05-12-BonVision_grating_replication.png).
+
+*Quantification of frame update period to display an array of drifting gratings using the same workflow from (Lopes 2020) but on an Allen Institute stimulus test rig.* 
+
+
 #### Go/No task
 
 - Screen stimulation stability
@@ -85,11 +99,21 @@ JEROME
 
 - Sync lines output stability
 
+#### Toward closed-loop experiment: Ability to concurrently load and save camera data while running detection of change on the same computer.
+
+A key promise of Bonsai is its ability to quickly integrate multiple data modalities in a single data workflow. For example, measuring key behavioral parameters from a continuous stream of frames from a behavior camera would allow closed-loop experiments. While we do not anticipate this immediate use-case for the OpenScope project, this is a key property of Bonsai as [DeepLabCut modules](https://github.com/bonsai-rx/deeplabcut) have been fully integrated into Bonsai. To evaluate this capability, we measured the impact of continuously acquiring and saving an additional webcam, while running the detection of change task. The workflow for this experiment is [available here](https://github.com/AllenInstitute/bonsai_workflows/blob/master/DetectionOfChange/DetectionOfChange_with_hardware_and_camera.bonsai).  
+
+- Screen stimulation stability
+
+- Sync lines output stability
+
+
 #### Tasks concatenation
 
 - Screen stimulation stability
 
 - Sync lines output stability
+
 
 #### Bonsai available capabilities to be used for integration
 
