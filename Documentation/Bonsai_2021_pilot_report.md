@@ -52,8 +52,12 @@ For this effort,  we built a testing rig at the Institute allowing scientific te
 
 
 QUINN
-- Sync lines installed and used in this study
+- Sync lines installed and used in this study are shown in the table below with labels
 ![image](https://user-images.githubusercontent.com/2491343/117510054-36f92f00-af40-11eb-80b3-26ce6f71b309.png)
+- The 6321 DAQ is installed in the stimulus computer running Bonsai via PCIe connection. Digital output lines are configured using this daq to output signals from Bonsai workflows which are captured on a seperate machine via a PCIe-6612 DAQ to be analyzed. 
+- Due to the DAQmx library not having a digital input function at the present time, digital inputs to the bonsai stimulus are implemented via an arduino micro that is attached to the stimulus computer via USB. 
+- Lick detection is implemented with a piezo contact microphone but can be bypassed with a signal generator which was used to provide a 0.1Hz signal for testing
+- The stimulus computer running Bonsai has an Nvidia Quadro K4000 graphics card and 32Gb of RAM.  
 
 ### Description of tests ran with Bonsai
 
