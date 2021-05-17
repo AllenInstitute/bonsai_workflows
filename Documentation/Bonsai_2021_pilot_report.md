@@ -1,79 +1,81 @@
 # Bonsai + Allen : A report toward integrating Bonsai into our behavioral pipeline
 
-<img src="https://raw.githubusercontent.com/AllenInstitute/bonsai_workflows/master/Documentation/Images/bonsai-lettering.svg?token=AATAHT4TLCQWUH54YLGGACDAT3QKU" height="100" /><img src="https://raw.githubusercontent.com/AllenInstitute/bonsai_workflows/master/Documentation/Images/AllenInstitute_Logo_RGB.png?token=AATAHTYYP47RH4KTUQBIBEDAT3QBQ" height="100" />
+<img src="Images/bonsai-lettering.svg?token=AATAHT4TLCQWUH54YLGGACDAT3QKU" height="100" />
+<img src="Images/AllenInstitute_Logo_RGB.png?token=AATAHTYYP47RH4KTUQBIBEDAT3QBQ" height="100" />
 
-## Introduction: 
+## Introduction 
 
 ### Description of Bonsai
 
-Bonsai (https://bonsai-rx.org) is an open-source visual programming language for controlling systems neuroscience experiments. The logic of each experiment is specified by a Bonsai “workflow” file, which defines how diverse input and output signals are coordinated in time. The BonVision package includes workflow nodes for generating visual stimuli and presenting them with high temporal fidelity. Additional packages provide interfaces to NI hardware, Arduinos, and other DAQ hardware. This makes it possible to replicate the majority of Camstim functionality using existing Bonsai packages.
+[Bonsai](https://bonsai-rx.org) is an open-source visual programming language for controlling systems neuroscience experiments. The logic of each experiment is specified by a Bonsai “workflow” file, which defines how diverse input and output signals are coordinated in time. The [BonVision](https://bonvision.github.io/) package includes workflow nodes for generating visual stimuli and presenting them with high temporal fidelity. Additional packages provide interfaces to NI hardware, Arduinos, and other DAQ hardware. This makes it possible to replicate the majority of Camstim functionality using existing Bonsai packages.
 
 ### Goal of this effort
 
-This document details ongoing requirements and efforts to support the piloting and testing of Bonsai as part of the Allen Brain Observatory pipeline. We assess here whether and how Bonsai can replace Camstim for controlling both passive and active behavior experiments. Bonsai would update visual (or other) stimuli in response to lick and running wheel input, and would need to operate in conjunction with existing software packages, such as WSE, Sync, and Videomon. 
+This document details ongoing requirements and efforts to support the piloting and testing of Bonsai as part of the Allen Brain Observatory pipeline. We assess here whether and how Bonsai can replace Camstim for controlling both passive viewing and active behavior experiments. Bonsai would update visual (or other) stimuli in response to lick and running wheel input, and would need to operate in conjunction with existing software packages, such as WSE, Sync, and Videomon. 
 
-#### Design principles 
+### Design principles 
 Behavioral task designs will be specified as Bonsai workflow files  (.bonsai). These files will be provided by each internal or external scientific team. Hardware components of the pipeline will be integrated with existing Bonsai modules and (if necessary) with custom Bonsai packages written in C#. Commonly used stimulus types can be saved as reusable workflow elements that can be shared by multiple scientific teams. Each package will have a deployed and testing mode, allowing individual packages to emulate normal functions on the experimental rig when the hardware is not available. 
 
-####  Sub-parts of the evaluation 
-##### Behavior capabilities  
-We will check that Bonsai is sufficient to cover our desired range of behavior use cases with a simple/limited set of test cases: 
+### Areas for evaluation
+
+#### Stimulus and task definition
+We ensure that Bonsai can cover our desired range of use cases with a simple/limited set of test cases: 
   - Passively viewing visual stimuli 
-    - Ability to display static and drifting gratings 
-    - Ability to display natural images and movies 
+    - Static and drifting gratings 
+    - Natural images and movies 
   - Active behavior 
-    - Ability to run a simple go/no go task with only one natural image associated with go and no go trials and fixed trial probabilities. 
-    - Ability to run a simple detection of change behavior with fixed change probability.  
-    - We will assess the feasibility of concatenating scripts  
-        We should be able to run an experiment build from multiple scripts. 
-        e.g. Experiment 1  
+    - Run a simple go/no go task with only one natural image associated with go and no go trials, with fixed trial probabilities. 
+    - Run a simple detection of change behavior with fixed change probability.  
+  - Concatenating scripts  
+    - Run an experiment built from multiple scripts, e.g.: 
         - Run static gratings stimuli.
         - Run Sparse Noise stimuli.
         - Run a Go/No Go experiment.
 
-##### Pipeline integration capabilities 
-  - Bonsai should be compatible with our behavior hardware (lick spouts, running wheels, etc.) and our hardware control packages (such as daqmx)  
+#### Pipeline integration 
+  - Bonsai should be compatible with our behavior hardware (lick spouts, running wheels, etc.) and our hardware control packages (such as `daqmx`)  
   - We should be able to make a portable hardware configuration using Bonsai. 
   - We should evaluate how hardware configuration parameters will be saved (port number and device address for instance).  
-  - Scripts should be able to reference input/output components by an informative name (for instance, lick_line_status or reward_signal, not NI device 1, input 0.)  
-  - We need to start scripts from wse/mouse director 
+  - Scripts should be able to reference input/output components by an informative name (for instance, `lick_line_status` or `reward_signal`, rather than `NI device 1, input 0`).  
+  - We need to start scripts from WSE/Mouse Director 
   - We need to be able to poll for status (15 or 20 things) 
   - We need Bonsai to publish stats along the way (to accumulator) 
  
-##### Performance evaluation 
+#### Benchmarking
   - Performance levels (in terms of temporal precision) should be compatible with behavior experiments, including visual stimulus presentation 
   - We should check that BonVision’s stimulus warping functions properly as documented in BonVision’s documentation and warping does not impair display performance beyond our QC criteria. 
  
-## Methods:
+## Methods
 
-### Description of test rig developed for Bonsai
+### Description of Bonsai test rig
 
-For this effort,  we built a testing rig at the Institute allowing scientific teams to submit integration tests of their Bonsai workflow with a reasonable duplicate of the pipeline hardware.  
-
-
-QUINN
+For this effort, we built a testing rig at the Institute allowing scientific teams to submit integration tests of their Bonsai workflow with a reasonable duplicate of the pipeline hardware:
 - Sync lines installed and used in this study are shown in the table below with labels
 ![image](https://user-images.githubusercontent.com/2491343/117510054-36f92f00-af40-11eb-80b3-26ce6f71b309.png)
 - The 6321 DAQ is installed in the stimulus computer running Bonsai via PCIe connection. Digital output lines are configured using this daq to output signals from Bonsai workflows which are captured on a seperate machine via a PCIe-6612 DAQ to be analyzed. 
-- Due to the DAQmx library not having a digital input function at the present time, digital inputs to the bonsai stimulus are implemented via an arduino micro that is attached to the stimulus computer via USB. 
-- Lick detection is implemented with a piezo contact microphone but can be bypassed with a signal generator which was used to provide a 0.1Hz signal for testing
+- Due to the DAQmx library not having a digital input function at the present time, digital inputs to the Bonsai stimulus are implemented via an arduino micro that is attached to the stimulus computer via USB. 
+- Lick detection is implemented with a piezo contact microphone but can be bypassed with a signal generator which was used to provide a 0.1 Hz signal for testing
 - The stimulus computer running Bonsai has an Nvidia Quadro K4000 graphics card and 32Gb of RAM.  
 
-### Description of tests ran with Bonsai
+### Description of tests
 
 JEROME
 
 <br/>
 
-## Results:
+## Results
 
-### Qualitative description of tests ran with Bonsai
+### Qualitative assessment
+
+[Insert text here]
 
 ### Performance of tests ran with Bonsai
 
-#### Passively viewing experiments
+[Insert intro here]
 
-- To validate our measure of performance and push Bonsai over its limit, we reproduced a performance quantification published along the BonVision paper (Lopes 2020). For that end, we [modified a workflow](https://github.com/AllenInstitute/bonsai_workflows/blob/master/GridGratingDrawing/gabor.bonsai) displaying an increasingly large number of elements. A reference figure was published in the original BonVision publication and is shared below for ease of comparision
+#### Passive viewing experiments
+
+To validate our measure of performance and push Bonsai over its limit, we reproduced a performance quantification published along the BonVision paper [(Lopes et al. 2020)](https://www.biorxiv.org/content/10.1101/2020.03.09.983775v3). To that end, we [modified a workflow](https://github.com/AllenInstitute/bonsai_workflows/blob/master/GridGratingDrawing/gabor.bonsai) displaying an increasingly large number of elements. A reference figure was published in the original BonVision publication and is shared below for ease of comparision
 
 ![Goncalo_2020_figure](https://user-images.githubusercontent.com/2491343/118040614-9da69000-b326-11eb-8c9e-2cfac2789695.png)
 
@@ -82,7 +84,7 @@ JEROME
 In this test, Bonvision is tasked to display a very large number of drifting gratings in an array pattern. We replicated the code, utilizing our photodiode circuit to measure the rising time of requested stimuli updates. The associated analysis is [available on this notebook](https://github.com/AllenInstitute/bonsai_workflows/blob/master/Analysis/GridGratingDrawing/2021-05-12-GridGratingDrawing.ipynb). 
 Our replicated figure below is faithful to the original published publication, ie. approximately 1000 grating elements are necessary to start impacting performances of Bonsai. 
 
-![Reproduction of performance](https://github.com/AllenInstitute/bonsai_workflows/raw/5c2ca01a6aa2fc1ed2cd8f2b163699910efb6328/Analysis/GridGratingDrawing/2021-05-12-BonVision_grating_replication.png).
+![Reproduction of performance](../Analysis/GridGratingDrawing/2021-05-12-BonVision_grating_replication.png).
 
 *Quantification of frame update period to display an array of drifting gratings using the same workflow from (Lopes 2020) but on an Allen Institute stimulus test rig.* 
 
