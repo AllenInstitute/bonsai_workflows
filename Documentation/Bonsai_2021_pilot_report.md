@@ -65,48 +65,48 @@ JEROME
 
 ## Results
 
-### Qualitative assessment
+[Insert qualitative assessment here here]
 
-[Insert text here]
 
-### Performance of tests ran with Bonsai
+### Passive viewing experiments
 
-[Insert intro here]
-
-#### Passive viewing experiments
-
-To validate our measure of performance and push Bonsai over its limit, we reproduced a performance quantification published along the BonVision paper [(Lopes et al. 2020)](https://www.biorxiv.org/content/10.1101/2020.03.09.983775v3). To that end, we [modified a workflow](https://github.com/AllenInstitute/bonsai_workflows/blob/master/GridGratingDrawing/gabor.bonsai) displaying an increasingly large number of elements. A reference figure was published in the original BonVision publication and is shared below for ease of comparision
-
-![Goncalo_2020_figure](https://user-images.githubusercontent.com/2491343/118040614-9da69000-b326-11eb-8c9e-2cfac2789695.png)
-
-*Quantification of frame update period (Bottom) to display an array of drifting gratings (Top). Reproduced from (Lopes 2020)*
-
-In this test, Bonvision is tasked to display a very large number of drifting gratings in an array pattern. We replicated the code, utilizing our photodiode circuit to measure the rising time of requested stimuli updates. The associated analysis is [available on this notebook](https://github.com/AllenInstitute/bonsai_workflows/blob/master/Analysis/GridGratingDrawing/2021-05-12-GridGratingDrawing.ipynb). 
-Our replicated figure below is faithful to the original published publication, ie. approximately 1000 grating elements are necessary to start impacting performances of Bonsai. 
-
-![Reproduction of performance](../Analysis/GridGratingDrawing/2021-05-12-BonVision_grating_replication.png).
-
-*Quantification of frame update period to display an array of drifting gratings using the same workflow from (Lopes 2020) but on an Allen Institute stimulus test rig.* 
-
-- Screen stimulation stability
+#### Stimulus update intervals
 
 ![Quantification of photodiode stability during passively viewing of gratings and locallyl sparse noise](https://raw.githubusercontent.com/AllenInstitute/bonsai_workflows/master/Analysis/PassiveViewing_run1/2021-05-12-passively_viewing_run1.png?token=AATAHT6BHRUH5BZ4KQGZCILAUWEAU).
 
-*Quantification of photodiode stability during passively viewing of gratings and locallyl sparse noise*
+*Quantification of photodiode stability during passively viewing of gratings and locally sparse noise*
 
-#### Go/No task
+#### Stress test
+
+To validate our measure of performance and push Bonsai over its limit, we reproduced a performance quantification published along the BonVision paper [(Lopes et al. 2020)](https://www.biorxiv.org/content/10.1101/2020.03.09.983775v3). To that end, we [modified a workflow](https://github.com/AllenInstitute/bonsai_workflows/blob/master/GridGratingDrawing/gabor.bonsai) displaying an increasingly large number of non-overlapping grating elements. A reference figure was published in the original BonVision publication and is shared here for ease of comparision:
+
+![Goncalo_2020_figure](https://user-images.githubusercontent.com/2491343/118040614-9da69000-b326-11eb-8c9e-2cfac2789695.png)
+
+*Quantification of frame update period (Bottom) to display an array of drifting gratings (Top). Reproduced from (Lopes et al., 2020)*
+
+In this test, Bonvision is tasked to display a very large number of drifting gratings in an array pattern. We replicated the code, utilizing our photodiode circuit to measure the rising time of requested stimuli updates. The associated analysis is [available in this notebook](https://github.com/AllenInstitute/bonsai_workflows/blob/master/Analysis/GridGratingDrawing/2021-05-12-GridGratingDrawing.ipynb). 
+
+Our  figure below is faithful to the original published publication, i.e., approximately 1000 grating elements are necessary before performance (measured in frames per second) start to deteriorate:
+
+![Reproduction of performance](Images/2021-05-12-BonVision_grating_replication.png)
+
+*Quantification of frame update period to display an array of drifting gratings using the same workflow from (Lopes 2020) but on an Allen Institute stimulus test rig.* 
+
+
+
+### Go/No task
 
 - Screen stimulation stability
 
 - Sync lines output stability
 
-#### Detection of change task
+### Detection of change task
 
 - Screen stimulation stability
 
 - Sync lines output stability
 
-#### Toward closed-loop experiment: Ability to concurrently load and save camera data while running detection of change on the same computer.
+### Concurrent acquisition of video
 
 A key promise of Bonsai is its ability to quickly integrate multiple data modalities in a single data workflow. For example, measuring key behavioral parameters from a continuous stream of frames from a behavior camera would allow closed-loop experiments. While we do not anticipate this immediate use-case for the OpenScope project, this is a key property of Bonsai as [DeepLabCut modules](https://github.com/bonsai-rx/deeplabcut) have been fully integrated into Bonsai. To evaluate this capability, we measured the impact of continuously acquiring and saving an additional webcam, while running the detection of change task. The workflow for this experiment is [available here](https://github.com/AllenInstitute/bonsai_workflows/blob/master/DetectionOfChange/DetectionOfChange_with_hardware_and_camera.bonsai).  
 
@@ -123,19 +123,19 @@ The results for this comparison are plotted below. The associated code is [avail
 The recorded video can be visualized [here](https://github.com/AllenInstitute/bonsai_workflows/blob/master/Analysis/detection_of_change_with_camera/camera_data.avi).
 
 
-#### Tasks concatenation
+### Concatenating stimuli / tasks
 
 - Screen stimulation stability
 
 - Sync lines output stability
 
 
-#### Bonsai available capabilities to be used for integration
+### Capabilities available for integration tests
 
 - Describe here the capabilties that are already available 
 - MORE DETAILS HERE
 
-#### Bonsai missing capabilities to be used for integration
+### Capabilities missing for integration tests
 
 - Describe here the capabilties that are needed for integration 
 - MORE DETAILS HERE
@@ -158,6 +158,8 @@ Describe the good and bads.
 Describe the good and bads of performance. 
 
 ### Components to develop and integrate
+
+Describe the missing pieces.
 
 ### Proposed strategy 
 Migrating Bonsai to be used in the Allen Brain Observatory pipelines will be a multi-component process that will be better tackled in distinct phases. This will allow to avoid accelerated integration timelines and an efficient development.
@@ -182,19 +184,27 @@ The purpose and content of this report.
   - Catch and fix integration issues
   - MORE DETAILS HERE
 
-### Standardizing behavioral data storage
+### Data format
 
 Describe the use of sync lines and h5 sync file as standardized event recordings. Describe the advantage comparing to NWB event storage scheme.
 
 ### Timeline
 
-### Community engagement and Ecosystem support
+Text goes here.
 
-### Potential synergies with AIX-2, IBL
+### Community engagement and ecosystem support
 
-## Conclusion:
+Text goes here.
 
-## References:
+### Potential synergies with AIx2, IBL
+
+Text goes here.
+
+## Conclusion
+
+Text goes here.
+
+## References
 
 1.	Lopes, G. et al. Bonsai: an event-based framework for processing and controlling data streams. Front. Neuroinform. 9, 7 (2015). 
 2.	Lopes, G. et al. BonVision – an open-source software to create and control visual environments. doi:10.1101/2020.03.09.983775. 
