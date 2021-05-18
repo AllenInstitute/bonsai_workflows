@@ -140,53 +140,86 @@ The recorded video can be visualized [here](https://github.com/AllenInstitute/bo
 - Describe here the capabilties that are needed for integration 
 - MORE DETAILS HERE
 
-## Discussion:
+## Discussion
 
-### General discussion on hardware integration
+### Hardware integration
 
-Describe the good and bads.
+Hardware integration is one area where Bonsai clearly shines. With existing support for NI devices, Arduinos, and a wide range of cameras, it should be able to cover all of our hardware interfacing needs. It's also helpful that events from standard input devices (e.g., keyboard and computer mouse) can serve as a stand-in for digital input lines.
 
-### Lessons learned on using Bonsai for coding behavioral experiments
+One limitation we encountered was that there is currently no "digital input" node for NI devices. The workaround was to use an Arduino for digital input.
 
-- Feedbacks on coding behavioral experiments in Bonsai
-- Migrating from Python to Bonsai...
-- Need for documentation
-- MORE DETAILS HERE
+It is straightforward to update the monitor configuration for a given rig by copy-pasting the relevant BonVision nodes into the workflow. These contain information about the monitor size, warping, and gamma calibration.
 
-### General discussion on performance
+### Using Bonsai for coding behavioral experiments
 
-Describe the good and bads of performance. 
+It is clear that there is a steep learning curve to becoming proficient in Bonsai. There are many concepts from procedural programming languages that cannot be translated directly into Bonsai, which is closer to a functional programming language (see [this page](Bonsai_for_Python_Programmers.md) for an overview of the differences between Bonsai and Python). The behavior of particular Combinators (which are an essential for using Bonsai well) can be difficult to understand, and lack thorough documentation. While Bonsai makes it simple to do certain things that would be complicated in Python (e.g., coordinating responses to multiple asynchronous data streams), there are many things that are more complicated in Bonsai. This is bound to lead to frustrations for scientists that don't want to learn a new programming language to set up their experiment.
+
+After carrying out our pilot experiments, a few things are clear:
+
+- **There is almost nothing that can't be done in Bonsai.** Bonsai is a fully featured programming language, so it can be set up to produce any desired behavior. However, this can require the inputs of Bonsai a expert (e.g., Gonçalo).
+
+- **Some implementations are better than others.** As an example of this, the GO/NOGO task we implemented was taking longer to display frames whenever the image changed. After Gonçalo inspected it, he found that the use of the `TimedGate` combinator was causing these delays; replacing it with an equivalent set of operators improved performance dramatically. For a naive user, there would be no obvious difference between these implementations.
+
+- **Working examples are extremely important.** It's a lot easier to modify an existing Bonsai workflow than to build one from scratch. The available "prototype" workflows are currently lacking, so it would be extremely beneficial to develop more annotated examples.
+
+- **Debugging is easier in some ways, and harder in others.** One amazing feature of Bonsai is its ability to do introspection on the state of any operator while the workflow is running. However, when opening visualizers for many nodes in parallel, it can be difficult to keep track of all of them (i.e., having a centralized debug console would be helpful).
+
+There are three ways that task development in Bonsai can be improved:
+
+1. **Establishing local expertise.** It is not sustainable to rely on Gonçalo for troubleshooting (even though he is always more than happy to help). We need at least one in-house Bonsai expert who can help develop workflows and train others.
+
+2. **Improving documentation and tutorials.** If we decide to adopt Bonsai, the developer time that would have been spent implementing a novel behavioral control system should be spent documenting Bonsai. This will have tremendous benefits for both our own work, and for the wider community. The importance of this cannot be overemphasized -- the ROI on this effort would be huge.
+
+3. **Creating re-usable workflow elements.** If developing tasks in Bonsai can be as simple as copying and pasting standard building blocks, then it becomes much more practical for anyone to get up and running. This is aided by the fact that Bonsai workflows are defined by XML strings, which can be copied from anywhere (see [this page](https://open-ephys.github.io/onix-docs/Software%20Guide/Bonsai.ONIX%20Reference/index.html) for an example).
+
+### Overall performance
+
+By all measures, Bonsai performed extremely well for displaying visual stimuli. Stimulus rendering intervals were consistently within 2 ms of the median, and measured photodiode flips occurred within 50 microseconds of the expected interval. There was no evidence of dropped frames, except when the rendering loop was pushed to the limit, e.g. with >1000 simultaneous drifting gratings. Performance did not deteriorate when camera frames were acquired and saved in parallel (although no online video processing was attempted).
+
+It's safe to say that Bonsai's performance is better than camstim, which often shows dropped frames and irregular stimulus intervals.
+
+### Data format
+
+If we adopt Bonsai, it is critical that its data outputs can interface with our existing analysis pipelines. At the same time, there are a lot of drawbacks to our current system (saving all behavior data + metadata in a pickle file), and switching to Bonsai presents an opportunity to rethink our approach.
+
+In Bonsai, it is incredibly easy to do two things: 
+
+1. Trigger a digital output on a software event
+2. Write timestamped data to a CSV file
+
+This suggests a different way forward, in which any events relevant to the task or stimulus are associated with both a digital on/off transition recorded by the sync computer, as well as metadata stored in a CSV file. At the end of the experiment, it is simple to package all of this into a single file (pickle or otherwise), assuming a minimal amount of bookkeeping to keep track of which sync lines are associated with which type of events.
+
+This approach is more "lightweight" and language-agnostic that what is used by camstim, although it will take some work to define consistent conventions that can be used across experiments.
+
+TODO: Describe the advantage comparing to NWB event storage scheme.
 
 ### Components to develop and integrate
 
 Describe the missing pieces.
 
 ### Proposed strategy 
-Migrating Bonsai to be used in the Allen Brain Observatory pipelines will be a multi-component process that will be better tackled in distinct phases. This will allow to avoid accelerated integration timelines and an efficient development.
 
-#### Phase 0 : Bonsai pilot + Report + Build plan
+Migrating Bonsai to be used in the Allen Brain Observatory pipelines will be a multi-component process that should be tackled in distinct phases. This will allow us to avoid accelerated integration timelines and an efficient development.
+
+#### **Phase 0 :** Bonsai pilot + Report + Build plan
 The purpose and content of this report. 
 
-#### Phase 1 : Single rig integration
+#### **Phase 1 :** Single rig integration
   - Work out the need of running Bonsai during one session. 
   - Integration with WSE and hardware.
   - Saving data.
   - MORE DETAILS HERE
 
-#### Phase 2 : Cluster integration
+#### **Phase 2 :** Cluster integration
   - Interaction with BehaviorMon.
   - mTrain integration.
   - WaterLog test and integration.
   - MORE DETAILS HERE
 
-#### Phase 3 : Testing integration
+#### **Phase 3 :** Testing integration
   - Testing at scale with mice trained through the pipeline with a previously validated and known behavior. 
   - Catch and fix integration issues
   - MORE DETAILS HERE
-
-### Data format
-
-Describe the use of sync lines and h5 sync file as standardized event recordings. Describe the advantage comparing to NWB event storage scheme.
 
 ### Timeline
 
@@ -194,11 +227,11 @@ Text goes here.
 
 ### Community engagement and ecosystem support
 
-Text goes here.
+Bonsai already has a broad userbase and a fair number of extensions written by the community. It is critical that we don't operate in a vacuum, and that we engage with existing users at every step of the way. Once our development plan is more concrete, we should share it with the community (e.g., through the [bonsai-users](https://groups.google.com/g/bonsai-users) forum), to make sure we are not doing anything that's redundant with others.
 
-### Potential synergies with AIx2, IBL
+### Potential synergies with AIx2, IBL, SWC
 
-Text goes here.
+In addition to the hundreds of labs that use Bonsai, there are several larger research groups that have already adopted it or are considering adoption. The International Brain Laboratory uses Bonsai to control its behavioral tasks, and they have been extremely helpful in pointing out the issues they've encountered. The Sainsbury Wellcome Centre at UCL is now working with NeuroGEARS (Gonçalo's company) to develop task infrastructure around Bonsai. And AIx2, launching in 2022, is planning to use Bonsai for behavior control. We should do our best to communicate with these other projects, and hopefully divide up the work required to document and extend Bonsai. Eventually, it may be worthwhile to orchestrate a collaborative grant (or some consortium-style funding agreement) to help sustain Bonsai over the long run.
 
 ## Conclusion
 
@@ -206,8 +239,8 @@ Text goes here.
 
 ## References
 
-1.	Lopes, G. et al. Bonsai: an event-based framework for processing and controlling data streams. Front. Neuroinform. 9, 7 (2015). 
-2.	Lopes, G. et al. BonVision – an open-source software to create and control visual environments. doi:10.1101/2020.03.09.983775. 
+1.	Lopes, G. et al. (2015) Bonsai: an event-based framework for processing and controlling data streams. *Front Neuroinform* **9**: 7. 
+2.	Lopes, G. et al. (2020) BonVision – an open-source software to create and control visual environments. *bioRxiv.* doi:10.1101/2020.03.09.983775. 
 
 ## Useful resources:
 - Cajal courses: 
