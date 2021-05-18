@@ -11,10 +11,10 @@
 
 ### Goal of this effort
 
-This document details ongoing requirements and efforts to support the piloting and testing of Bonsai as part of the Allen Brain Observatory pipeline. We assess here whether and how Bonsai can replace Camstim for controlling both passive viewing and active behavior experiments. Bonsai would update visual (or other) stimuli in response to lick and running wheel input, and would need to operate in conjunction with existing software packages, such as WSE, Sync, and Videomon. 
+This document details ongoing requirements and efforts related to the piloting and testing of Bonsai as part of the Allen Brain Observatory pipeline. We assess here whether and how Bonsai can replace Camstim for controlling both passive viewing and active behavior experiments. Bonsai would update visual (or other) stimuli in response to lick and running wheel input, and would need to operate in conjunction with existing software packages, such as WSE, Sync, and Videomon. 
 
 ### Design principles 
-Behavioral task designs will be specified as Bonsai workflow files  (.bonsai). These files will be provided by each internal or external scientific team. Hardware components of the pipeline will be integrated with existing Bonsai modules and (if necessary) with custom Bonsai packages written in C#. Commonly used stimulus types can be saved as reusable workflow elements that can be shared by multiple scientific teams. Each package will have a deployed and testing mode, allowing individual packages to emulate normal functions on the experimental rig when the hardware is not available. 
+Behavioral task designs are specified as Bonsai workflow files  (.bonsai). These files will be provided by each internal or external scientific team. Hardware components of the pipeline will be integrated with existing Bonsai modules and (if necessary) with custom Bonsai packages written in C#. Commonly used stimulus types can be saved as reusable workflow elements that can be shared by multiple scientific teams. Each package will have a deployed and testing mode, allowing individual packages to emulate normal functions on the experimental rig when the hardware is not available. 
 
 ### Areas for evaluation
 
@@ -53,7 +53,7 @@ For this effort, we built a testing rig at the Institute allowing scientific tea
 - Sync lines installed and used in this study are shown in the table below with labels
 ![image](https://user-images.githubusercontent.com/2491343/117510054-36f92f00-af40-11eb-80b3-26ce6f71b309.png)
 - The 6321 DAQ is installed in the stimulus computer running Bonsai via PCIe connection. Digital output lines are configured using this daq to output signals from Bonsai workflows which are captured on a seperate machine via a PCIe-6612 DAQ to be analyzed. 
-- Due to the DAQmx library not having a digital input function at the present time, digital inputs to the Bonsai stimulus are implemented via an arduino micro that is attached to the stimulus computer via USB. 
+- Due to the DAQmx library not having a digital input function at the present time (see [Discussion](#Discussion)), digital inputs to the Bonsai stimulus are implemented via an arduino micro that is attached to the stimulus computer via USB. 
 - Lick detection is implemented with a piezo contact microphone but can be bypassed with a signal generator which was used to provide a 0.1 Hz signal for testing
 - The stimulus computer running Bonsai has an Nvidia Quadro K4000 graphics card and 32Gb of RAM.  
 
