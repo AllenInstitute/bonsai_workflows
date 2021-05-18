@@ -58,7 +58,7 @@ For this effort, we built a testing rig at the Institute allowing scientific tea
 - Sync lines installed and used in this study are shown in the table below with labels
 ![image](https://user-images.githubusercontent.com/2491343/117510054-36f92f00-af40-11eb-80b3-26ce6f71b309.png)
 - As on all physiological rigs, a photodiode was installed in the top-right corner of the stimulus monitor and connected by a photodiode circuit connected to a dedicated sync line. 
-- A subset of sync lines were turn on and off by various experimental worklows (see [Below](### Description of workflows)). 
+- A subset of sync lines were turn on and off by various experimental worklows (see [Below](### Description of workflows) ). 
 
 ### Description of workflows
 
