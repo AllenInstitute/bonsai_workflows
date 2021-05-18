@@ -50,17 +50,27 @@ We ensure that Bonsai can cover our desired range of use cases with a simple/lim
 ### Description of Bonsai test rig
 
 For this effort, we built a testing rig at the Institute allowing scientific teams to submit integration tests of their Bonsai workflow with a reasonable duplicate of the pipeline hardware:
-- Sync lines installed and used in this study are shown in the table below with labels
-![image](https://user-images.githubusercontent.com/2491343/117510054-36f92f00-af40-11eb-80b3-26ce6f71b309.png)
+- This rig had a replicated Stimulus computer, Sync computer, Camera monitor computer with teh same specifications as the pipeline rigs. 
+- The stimulus computer running Bonsai had an Nvidia Quadro K4000 graphics card and 32Gb of RAM.  
 - The 6321 DAQ is installed in the stimulus computer running Bonsai via PCIe connection. Digital output lines are configured using this daq to output signals from Bonsai workflows which are captured on a seperate machine via a PCIe-6612 DAQ to be analyzed. 
 - Due to the DAQmx library not having a digital input function at the present time (see [Discussion](#Discussion)), digital inputs to the Bonsai stimulus are implemented via an arduino micro that is attached to the stimulus computer via USB. 
-- Lick detection is implemented with a piezo contact microphone but can be bypassed with a signal generator which was used to provide a 0.1 Hz signal for testing
-- The stimulus computer running Bonsai has an Nvidia Quadro K4000 graphics card and 32Gb of RAM.  
+- Lick detection was implemented with a piezo contact microphone but could be bypassed with a signal generator which was used to provide a 0.1 Hz signal for testing
+- Sync lines installed and used in this study are shown in the table below with labels
+![image](https://user-images.githubusercontent.com/2491343/117510054-36f92f00-af40-11eb-80b3-26ce6f71b309.png)
+- As on all physiological rigs, a photodiode was installed in the top-right corner of the stimulus monitor and connected by a photodiode circuit connected to a dedicated sync line. 
+- A subset of sync lines were turn on and off by various experimental worklows (see [Below](### Description of workflows)). 
+
+### Description of workflows
+
+  - All workflows triggered the photo-diode sync line via BonVision, similarly to how CamStim creates an oscillating stimulus black and white square under the photodiode. 
+  - All workflows alternated a dedicated sync line upon frame calculation. 
+  - The "detection of change" workflow leveraged the largest number of sync lines to measure: 
+    - The turn-around time to read a lick TTL into an external TTL on another sync line. 
+    - The reward calculation time to convert a lick TTL into a trigger reward via a TTL pulse when an image changed happened concurrently to a lick. 
 
 ### Description of tests
 
-JEROME
-
+Using the above described platform and workflows, we ran a series of tests and quantifications. Those tests were meant to evaluate the stability  
 <br/>
 
 ## Results
