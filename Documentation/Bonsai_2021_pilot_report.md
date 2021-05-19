@@ -65,23 +65,23 @@ For this effort, we built a testing rig at the Institute allowing scientific tea
 Based on requirements to tests multiple test cases. 
 - We designed and created multiple complementaries workflows. Each workflow was led by a different scientist so as to gain feedbacks and experience from multiple personal expertise. 
 
-1 - Passively viewing worflow
+1 - **Passively viewing worflow**.
 This worflow presented windowed drifting gratings of various contrasts as well as a replicated version of the locally sparse noise stimulus. 
 All stimuli were wrapped onto a spherical projection as is currently being implemented in CamStim. 
 This workflow is available [here](https://github.com/AllenInstitute/bonsai_workflows/tree/master/PassiveViewing).
 
-2 - Go/No Go behavior workflow
+2 - **Go/No Go behavior workflow**.
 This worflow presented 2 natural images, one associated to a GO stimulus and the other to a NO GO stimulus. The GO stimulus triggered an external reward line.
 Image presentation was randomly selected from a uniform distribution at run-time. 
 All stimuli were wrapped onto a spherical projection as is currently being implemented in CamStim. 
 This workflow is available [here](https://github.com/AllenInstitute/bonsai_workflows/tree/master/Go-Nogo).
 
-3 - Detection of change workflow
+3 - **Detection of change workflow**.
 This worflow presented 8 natural images, following the logic of the visual behavior workflow. Image change was triggered by pulling from a uniform distribution, deciding how many times each image was repeated. Pre-change lick would delay subsequent change by 2 presentations. 
 All stimuli were wrapped onto a spherical projection as is currently being implemented in CamStim. 
 This workflow is available [here](https://github.com/AllenInstitute/bonsai_workflows/tree/master/DetectionOfChange).
 
-- We also re-used a performance measurement workflow developed by Goncalo Lopes, the original bonsai developer. Our intent here was to compare performance metrics of our test rig with published values. This worfklow displayed an increasing large number of drifting gratings in an array pattern to assess performance of Bonsai and BonVision under stress. 
+4 -  **Performance measurement workflow developed by Goncalo Lopes**. Our intent here was to compare performance metrics of our test rig with published values. This worfklow displayed an increasing large number of drifting gratings in an array pattern to assess performance of Bonsai and BonVision under stress. 
 This workflow is available [here](https://github.com/AllenInstitute/bonsai_workflows/tree/master/GridGratingDrawing).
 
   - All workflows triggered the photo-diode sync line via BonVision, similarly to how CamStim creates an oscillating stimulus black and white square under the photodiode. 
