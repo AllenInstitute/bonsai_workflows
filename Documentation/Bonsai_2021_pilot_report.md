@@ -68,21 +68,21 @@ Based on requirements to tests multiple test cases.
 1 - Passively viewing worflow
 This worflow presented windowed drifting gratings of various contrasts as well as a replicated version of the locally sparse noise stimulus. 
 All stimuli were wrapped onto a spherical projection as is currently being implemented in CamStim. 
-This workflow is available here.
+This workflow is available [here](https://github.com/AllenInstitute/bonsai_workflows/tree/master/PassiveViewing).
 
 2 - Go/No Go behavior workflow
 This worflow presented 2 natural images, one associated to a GO stimulus and the other to a NO GO stimulus. The GO stimulus triggered an external reward line.
 Image presentation was randomly selected from a uniform distribution at run-time. 
 All stimuli were wrapped onto a spherical projection as is currently being implemented in CamStim. 
-This workflow is available here.
+This workflow is available [here](https://github.com/AllenInstitute/bonsai_workflows/tree/master/Go-Nogo).
 
 3 - Detection of change workflow
 This worflow presented 8 natural images, following the logic of the visual behavior workflow. Image change was triggered by pulling from a uniform distribution, deciding how many times each image was repeated. Pre-change lick would delay subsequent change by 2 presentations. 
 All stimuli were wrapped onto a spherical projection as is currently being implemented in CamStim. 
-This workflow is available here.
+This workflow is available [here](https://github.com/AllenInstitute/bonsai_workflows/tree/master/DetectionOfChange).
 
-- We also re-used a performance measurement workflow developed by Goncalo Lopes, the original bonsai developer. Our intent here was to compare performance metrics of our test rig with published values. 
-This workflow is available here.
+- We also re-used a performance measurement workflow developed by Goncalo Lopes, the original bonsai developer. Our intent here was to compare performance metrics of our test rig with published values. This worfklow displayed an increasing large number of drifting gratings in an array pattern to assess performance of Bonsai and BonVision under stress. 
+This workflow is available [here](https://github.com/AllenInstitute/bonsai_workflows/tree/master/GridGratingDrawing).
 
   - All workflows triggered the photo-diode sync line via BonVision, similarly to how CamStim creates an oscillating stimulus black and white square under the photodiode. 
   - All workflows alternated a dedicated sync line upon frame calculation. 
@@ -92,7 +92,38 @@ This workflow is available here.
 
 ### Description of tests
 
-Using the above described platform and workflows, we ran a series of tests and quantifications. Those tests were meant to evaluate the stability  
+Using the above described platform and workflows, we ran a series of tests and quantifications. Those tests were meant to evaluate the stability and performance. 
+We ran each worflow separately. The associated datasets are available [here](https://github.com/AllenInstitute/bonsai_workflows/tree/master/Analysis). 
+Briefly: 
+
+- Test on Bonsai performance script: Workflow that display increasingly large number of gratings, ran and analyzed. 
+  - https://github.com/AllenInstitute/bonsai_workflows/tree/master/Analysis/GridGratingDrawing
+
+- Test on passively viewing stimuli: Workflow that display driftings gratings and locally sparse noise, ran and analyzed
+  - https://github.com/AllenInstitute/bonsai_workflows/tree/master/Analysis/PassiveViewing_run1
+  
+- Test on Go/No:
+  - https://github.com/AllenInstitute/bonsai_workflows/tree/master/Analysis/long_stim_test_1
+  Ran for an hour long with no interactions. 
+  - https://github.com/AllenInstitute/bonsai_workflows/tree/master/Analysis/keyboard_test_1
+  Ran for approximately 5 min with manual keyboard interactions
+
+- Tests on Detection of change
+  - https://github.com/AllenInstitute/bonsai_workflows/tree/master/Analysis/det_change_short_manual
+  Ran for approximately 5 min with manual keyboard interactions. All hardware was connected and functional (lick sensor, water valves)
+
+  - https://github.com/AllenInstitute/bonsai_workflows/tree/master/Analysis/det_change_long_no_licks
+  Ran for an hour with no incoming licks. All hardware was connected and functional
+
+  - https://github.com/AllenInstitute/bonsai_workflows/tree/master/Analysis/det_change_long_fake_lick_generator
+  Ran for an hour with a 0.1 Hz TTL generator as lick input incoming licks. All hardware was connected and functional. Reward valve was triggered
+
+  - https://github.com/AllenInstitute/bonsai_workflows/tree/master/Analysis/detection_of_change_with_camera
+  Ran for approximately 5 min with a workflow that performs detection of change while also acquiring and saving a camera feed at 30Hz
+
+  - https://github.com/AllenInstitute/bonsai_workflows/tree/master/Analysis/detection_of_change_without_camera
+  Same as above but camera feed was disabled. 
+
 <br/>
 
 ## Results
