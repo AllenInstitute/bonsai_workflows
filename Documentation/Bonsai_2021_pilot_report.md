@@ -62,8 +62,7 @@ For this effort, we built a testing rig at the Institute allowing scientific tea
 
 ### Description of workflows
 
-Based on requirements to tests multiple test cases. 
-- We designed and created multiple complementaries workflows. Each workflow was led by a different scientist so as to gain feedbacks and experience from multiple personal expertise. 
+Based on requirements to tests multiple test cases, we designed and created multiple complementaries workflows. Each workflow was led by a different scientist so as to gain feedbacks and experience from multiple personal expertise. 
 
 1 - **Passively viewing worflow**.
 This worflow presented windowed drifting gratings of various contrasts as well as a replicated version of the locally sparse noise stimulus. 
