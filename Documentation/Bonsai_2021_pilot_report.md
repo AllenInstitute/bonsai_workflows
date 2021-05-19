@@ -271,12 +271,15 @@ The purpose and content of this report.
   - Integration with WSE and hardware.
   - Saving data.
   - MORE DETAILS HERE
+  - Generate template workflows for a variety of stimuli. 
+  - System to manage binary depencies of stimuli. 
 
 #### **Phase 2 :** Cluster integration
   - Interaction with BehaviorMon.
   - mTrain integration.
   - WaterLog test and integration.
   - MORE DETAILS HERE
+  - Hardware backward compatible 
 
 #### **Phase 3 :** Testing integration
   - Testing at scale with mice trained through the pipeline with a previously validated and known behavior. 
@@ -286,6 +289,15 @@ The purpose and content of this report.
 ### Timeline
 
 Text goes here.
+
+### Discussion on Bonsai conceptual layers.
+
+TBD (Jerome)
+
+### Discusson on template
+
+TBD
+
 
 ### Community engagement and ecosystem support
 
