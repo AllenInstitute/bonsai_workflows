@@ -88,6 +88,7 @@ This workflow is available [here](https://github.com/AllenInstitute/bonsai_workf
   - The "detection of change" workflow leveraged the largest number of sync lines to measure: 
     - The turn-around time to read a lick TTL into an external TTL on another sync line. 
     - The reward calculation time to convert a lick TTL into a trigger reward via a TTL pulse when an image changed happened concurrently to a lick. 
+  - The detection of change workflow was fully functional, displaying warped natural images full screen and dispensing water rewards with a set valve opening duration while touching the water spout upon the image change. 
 
 ### Description of tests
 
