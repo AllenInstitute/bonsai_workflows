@@ -50,7 +50,7 @@ We ensure that Bonsai can cover our desired range of use cases with a simple/lim
 ### Description of Bonsai test rig
 
 For this effort, we built a testing rig at the Institute allowing scientific teams to submit integration tests of their Bonsai workflow with a reasonable duplicate of the pipeline hardware:
-- This rig had a replicated Stimulus computer, Sync computer, Camera monitor computer with teh same specifications as the pipeline rigs. 
+- This rig had a replicated Stimulus computer, Sync computer, Camera monitor computer with the same specifications as the pipeline rigs. 
 - The stimulus computer running Bonsai had an Nvidia Quadro K4000 graphics card and 32Gb of RAM.  
 - The 6321 DAQ is installed in the stimulus computer running Bonsai via PCIe connection. Digital output lines are configured using this daq to output signals from Bonsai workflows which are captured on a seperate machine via a PCIe-6612 DAQ to be analyzed. 
 - Due to the DAQmx library not having a digital input function at the present time (see [Discussion](#Discussion)), digital inputs to the Bonsai stimulus are implemented via an arduino micro that is attached to the stimulus computer via USB. 
