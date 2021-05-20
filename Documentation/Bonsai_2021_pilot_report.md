@@ -1,4 +1,3 @@
-![Slide1](https://user-images.githubusercontent.com/2491343/119024582-137aaf00-b958-11eb-8e77-4699b7c5c3c4.png)
 # Bonsai + Allen : A report toward integrating Bonsai into our behavioral pipeline
 
 <img src="Images/bonsai-lettering.svg?token=AATAHT4TLCQWUH54YLGGACDAT3QKU" height="100" />
