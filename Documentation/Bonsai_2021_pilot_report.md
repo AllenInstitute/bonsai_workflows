@@ -284,7 +284,7 @@ To faciliate the development of new behavioral workflow, we propose to first dev
 Based on our experience with Bonsai, we assembled a first draft of this workflow, as shown in the figure below. This example highlights how easy and accessible are all of the components of the template.
 
 ![Slide1](https://user-images.githubusercontent.com/2491343/119024600-1aa1bd00-b958-11eb-9cc7-5eff63b69e56.png)
-*A proposed workflow template to develop new workflow. The modularity of Bonsai allowing to easily add new components is very apparent in this workflow. Each connected directed graph is associated with a description of its role*
+*A proposed workflow template to develop new workflows. The modularity of Bonsai allowing to easily add new components is very apparent here. Each connected directed graph is associated with a description of its role*
 
 Once this template is finalized, we recommend to build exemplar sub-workflows that display drifting gratings, natural images and movies, and run the detection of change task. The modularity of Bonsai will allow to copy/paste those worflows into the template while developing a new task. 
 
