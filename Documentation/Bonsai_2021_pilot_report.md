@@ -313,7 +313,7 @@ When first learning Bonsai, it is natural to try to translate concepts from proc
 
 Further documentation of Bonsai key aspects would be instrumental and is likely going to be necessary in the coming years. 
 
-### Discusson on workflow template
+### Workflow templates
 
 To faciliate the development of new behavioral workflow, we recommend to first develop an **empty workflow template** which will contain the connected nodes associated with :
 
