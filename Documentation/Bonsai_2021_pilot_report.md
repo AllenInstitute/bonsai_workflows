@@ -1,3 +1,4 @@
+![Slide1](https://user-images.githubusercontent.com/2491343/119024582-137aaf00-b958-11eb-8e77-4699b7c5c3c4.png)
 # Bonsai + Allen : A report toward integrating Bonsai into our behavioral pipeline
 
 <img src="Images/bonsai-lettering.svg?token=AATAHT4TLCQWUH54YLGGACDAT3QKU" height="100" />
@@ -271,7 +272,7 @@ Further documentation of Bonsai key aspects would be instrumental and is likely 
 
 ### Workflow templates
 
-To faciliate the development of new behavioral workflow, we recommend to first develop an **empty workflow template** which will contain the connected nodes associated with :
+To faciliate the development of new behavioral workflow, we propose to first develop an **empty workflow template** which will contain the connected nodes associated with :
 
 1. Declaring the visual stimulation hardware
 2. Creating the geometry associated with our rigs. 
@@ -281,9 +282,12 @@ To faciliate the development of new behavioral workflow, we recommend to first d
 6. Starting and aborting a workflow remotely
 7. Saving the wheel speed.
 
-The modularity of Bonsai will allow to easily create this template. We have already implemented 1,2,3, and 4 during our pilot. 
+Based on our experience with Bonsai, we assembled a first draft of this workflow, as shown in the figure below. This example highlights how easy and accessible are all of the components of the template.
 
-Once this template is built, we recommend to build exemplar sub-workflows that display drifting gratings, natural images and movies, and run the detection of change task. The modularity of Bonsai will allow to copy/paste those worflows into the template while developing a new task. 
+![Slide1](https://user-images.githubusercontent.com/2491343/119024600-1aa1bd00-b958-11eb-9cc7-5eff63b69e56.png)
+*A proposed workflow template to develop new workflow. The modularity of Bonsai allowing to easily add new components is very apparent in this workflow. Each connected directed graph is associated with a description of its role*
+
+Once this template is finalized, we recommend to build exemplar sub-workflows that display drifting gratings, natural images and movies, and run the detection of change task. The modularity of Bonsai will allow to copy/paste those worflows into the template while developing a new task. 
 
 ### Components to develop and integrate
 
