@@ -123,8 +123,6 @@ Briefly:
   - https://github.com/AllenInstitute/bonsai_workflows/tree/master/Analysis/detection_of_change_without_camera
   Same as above but camera feed was disabled. 
 
-<br/>
-
 ## Results
 
 [Insert qualitative assessment here here]
@@ -218,11 +216,11 @@ It is clear that there is a steep learning curve to becoming proficient in Bonsa
 
 After carrying out our pilot experiments, a few things are clear:
 
-- **There is almost nothing that can't be done in Bonsai.** Bonsai is a fully featured programming language, so it can be set up to produce any desired behavior. However, this can require the inputs of Bonsai a expert (e.g., Gonçalo).
+- **There is almost nothing that can't be done in Bonsai.** Bonsai is a fully featured programming language, so it can be set up to produce any desired behavior. However, this can require the inputs of Bonsai experts (e.g., Gonçalo), in particular given the current state of the documentation.
 
 - **Some implementations are better than others.** As an example of this, the GO/NOGO task we implemented was taking longer to display frames whenever the image changed. After Gonçalo inspected it, he found that the use of the `TimedGate` combinator was causing these delays; replacing it with an equivalent set of operators improved performance dramatically. For a naive user, there would be no obvious difference between these implementations.
 
-- **Working examples are extremely important.** It's a lot easier to modify an existing Bonsai workflow than to build one from scratch. The available "prototype" workflows are currently lacking, so it would be extremely beneficial to develop more annotated examples.
+- **Working examples are extremely important.** It's a lot easier to modify an existing Bonsai workflow than to build one from scratch. The available "prototype" workflows are currently lacking, so it would be extremely beneficial to develop more annotated examples. Similarly, a standardized pre-built workflow with all our hardware components included would greatly facilitate the development of new tasks.  
 
 - **Debugging is easier in some ways, and harder in others.** One amazing feature of Bonsai is its ability to do introspection on the state of any operator while the workflow is running. However, when opening visualizers for many nodes in parallel, it can be difficult to keep track of all of them (i.e., having a centralized debug console would be helpful).
 
@@ -232,7 +230,7 @@ There are three ways that task development in Bonsai can be improved:
 
 2. **Improving documentation and tutorials.** If we decide to adopt Bonsai, the developer time that would have been spent implementing a novel behavioral control system should be spent documenting Bonsai. This will have tremendous benefits for both our own work, and for the wider community. The importance of this cannot be overemphasized -- the ROI on this effort would be huge.
 
-3. **Creating re-usable workflow elements.** If developing tasks in Bonsai can be as simple as copying and pasting standard building blocks, then it becomes much more practical for anyone to get up and running. This is aided by the fact that Bonsai workflows are defined by XML strings, which can be copied from anywhere (see [this page](https://open-ephys.github.io/onix-docs/Software%20Guide/Bonsai.ONIX%20Reference/index.html) for an example).
+3. **Creating re-usable workflow elements and an empty canvas workflow with all pre-requisites.** If developing tasks in Bonsai can be as simple as copying and pasting standard building blocks, then it becomes much more practical for anyone to get up and running. This is aided by the fact that Bonsai workflows are defined by XML strings, which can be copied from anywhere (see [this page](https://open-ephys.github.io/onix-docs/Software%20Guide/Bonsai.ONIX%20Reference/index.html) for an example). An empty canvas workflow would provide key elements like rig geometry, photodiode square stimuli, wrapping, screen calibration and basic sync lines already pre-configured. During our tests, we already converged to a shared basic structure between all workflows.
 
 ### Overall performance
 
@@ -246,22 +244,29 @@ If we adopt Bonsai, it is critical that its data outputs can interface with our 
 
 In Bonsai, it is incredibly easy to do two things: 
 
-1. Trigger a digital output on a software event
+1. Trigger a digital output on a software event and sending that event to a dedicated sync line.
 2. Write timestamped data to a CSV file
 
 This suggests a different way forward, in which any events relevant to the task or stimulus are associated with both a digital on/off transition recorded by the sync computer, as well as metadata stored in a CSV file. At the end of the experiment, it is simple to package all of this into a single file (pickle or otherwise), assuming a minimal amount of bookkeeping to keep track of which sync lines are associated with which type of events.
 
 This approach is more "lightweight" and language-agnostic that what is used by camstim, although it will take some work to define consistent conventions that can be used across experiments.
+This proposal is practical as our pipeline sync hardware and wiring boxes already have **XXX** unused and available sync line that we could essentially turn on in software via Bonsai. 
 
-TODO: Describe the advantage comparing to NWB event storage scheme.
+Storing behavioral critical information as sync lines comes with several benefits: 
+  - The sync system is fundamentally our reference temporal system and has the highest temporal precision and reliability. 
+  - sync files are efficient and lightweights: They only store state transitions in an hdf5 file thereby minimizing data storage required. 
+  - We already are experienced handling and using those files throughout the whole data collection and analysis pipeline. 
+  - NWB files stores stimulus information in a stimulus **trial** table which uses the same storage scheme: Individual events have a name, a start and end timestamps associated to it. The start and end timestamps are essentially the rising and falling edges of a sync line. 
+See here for more details : https://pynwb.readthedocs.io/en/stable/tutorials/general/file.html#trials
+  - This simple storage scheme provides a great deal of flexibility on how behavioral events are recorded. Each scientific team can leverage available sync lines within Bonsai in a way that fits their scientific requirements. 
 
 ### Components to develop and integrate
 
-Describe the missing pieces.
+COLIN/QUINN : Describe the missing pieces.
 
 ### Proposed strategy 
 
-Migrating Bonsai to be used in the Allen Brain Observatory pipelines will be a multi-component process that should be tackled in distinct phases. This will allow us to avoid accelerated integration timelines and an efficient development.
+COLIN/QUINN : Migrating Bonsai to be used in the Allen Brain Observatory pipelines will be a multi-component process that should be tackled in distinct phases. This will allow us to avoid accelerated integration timelines and an efficient development.
 
 #### **Phase 0 :** Bonsai pilot + Report + Build plan
 The purpose and content of this report. 
@@ -288,8 +293,17 @@ The purpose and content of this report.
 
 ### Timeline
 
-Text goes here.
+COLIN/QUINN : What is practical for each phase? Maybe propose different scenarii depending on resources and priority? 
 
+#### **Phase 1 :** Single rig integration
+  - Proposed timeline
+
+#### **Phase 2 :** Cluster integration
+  - Proposed timeline
+
+#### **Phase 3 :** Testing integration
+  - Proposed timeline
+  
 ### Discussion on Bonsai conceptual layers.
 
 TBD (Jerome)
