@@ -8,6 +8,7 @@
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
                  xmlns:p1="clr-namespace:;assembly=Extensions"
                  xmlns:scr="clr-namespace:Bonsai.Scripting;assembly=Bonsai.Scripting"
+                 xmlns:mx="clr-namespace:Bonsai.DAQmx;assembly=Bonsai.DAQmx"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
     <Nodes>
@@ -194,8 +195,8 @@ Value as Viewport)</scr:Expression>
                   <Expression xsi:type="IncludeWorkflow" Path="BonVision:Primitives.DrawQuad.bonsai">
                     <ExtentX>0.2</ExtentX>
                     <ExtentY>0.2</ExtentY>
-                    <LocationX>-0.9</LocationX>
-                    <LocationY>-0.9</LocationY>
+                    <LocationX>0.9</LocationX>
+                    <LocationY>0.9</LocationY>
                     <Layer>1</Layer>
                     <Angle>0</Angle>
                     <ColorR>1</ColorR>
@@ -238,6 +239,62 @@ Value as Viewport)</scr:Expression>
         <Combinator xsi:type="rx:Concat" />
       </Expression>
       <Expression xsi:type="WorkflowOutput" />
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="gl:RenderFrame" />
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:ElementIndex" />
+      </Expression>
+      <Expression xsi:type="MemberSelector">
+        <Selector>Index</Selector>
+      </Expression>
+      <Expression xsi:type="Mod">
+        <Operand xsi:type="IntProperty">
+          <Value>60</Value>
+        </Operand>
+      </Expression>
+      <Expression xsi:type="Divide">
+        <Operand xsi:type="IntProperty">
+          <Value>30</Value>
+        </Operand>
+      </Expression>
+      <Expression xsi:type="GreaterThan">
+        <Operand xsi:type="IntProperty">
+          <Value>0</Value>
+        </Operand>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="mx:DigitalOutput">
+          <mx:Channels>
+            <mx:DigitalOutputChannelConfiguration>
+              <mx:ChannelName>DigitalOut</mx:ChannelName>
+              <mx:Grouping>OneChannelForEachLine</mx:Grouping>
+              <mx:Lines>Dev1/port1/line7</mx:Lines>
+            </mx:DigitalOutputChannelConfiguration>
+          </mx:Channels>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Mod">
+        <Operand xsi:type="IntProperty">
+          <Value>2</Value>
+        </Operand>
+      </Expression>
+      <Expression xsi:type="GreaterThan">
+        <Operand xsi:type="IntProperty">
+          <Value>0</Value>
+        </Operand>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="mx:DigitalOutput">
+          <mx:Channels>
+            <mx:DigitalOutputChannelConfiguration>
+              <mx:ChannelName>DigitalOut</mx:ChannelName>
+              <mx:Grouping>OneChannelForEachLine</mx:Grouping>
+              <mx:Lines>Dev1/port1/line4</mx:Lines>
+            </mx:DigitalOutputChannelConfiguration>
+          </mx:Channels>
+        </Combinator>
+      </Expression>
     </Nodes>
     <Edges>
       <Edge From="0" To="1" Label="Source1" />
@@ -249,6 +306,15 @@ Value as Viewport)</scr:Expression>
       <Edge From="8" To="9" Label="Source1" />
       <Edge From="9" To="10" Label="Source1" />
       <Edge From="10" To="11" Label="Source1" />
+      <Edge From="12" To="13" Label="Source1" />
+      <Edge From="13" To="14" Label="Source1" />
+      <Edge From="14" To="15" Label="Source1" />
+      <Edge From="14" To="19" Label="Source1" />
+      <Edge From="15" To="16" Label="Source1" />
+      <Edge From="16" To="17" Label="Source1" />
+      <Edge From="17" To="18" Label="Source1" />
+      <Edge From="19" To="20" Label="Source1" />
+      <Edge From="20" To="21" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>

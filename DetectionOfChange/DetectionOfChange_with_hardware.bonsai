@@ -11,6 +11,7 @@
                  xmlns:wie="clr-namespace:Bonsai.Windows.Input;assembly=Bonsai.Windows.Input"
                  xmlns:ard="clr-namespace:Bonsai.Arduino;assembly=Bonsai.Arduino"
                  xmlns:mx="clr-namespace:Bonsai.DAQmx;assembly=Bonsai.DAQmx"
+                 xmlns:cv="clr-namespace:Bonsai.Vision;assembly=Bonsai.Vision"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
     <Nodes>
@@ -797,6 +798,27 @@
         <io:IncludeHeader>false</io:IncludeHeader>
         <io:Selector>Data,ElementType</io:Selector>
       </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="cv:CameraCapture">
+          <cv:Index>0</cv:Index>
+          <cv:CaptureProperties />
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="cv:VideoWriter">
+          <cv:FileName>C:\ProgramData\bonsai_workflows\Analysis\Detection_of_change_with_camera\camera_data.avi</cv:FileName>
+          <cv:Suffix>None</cv:Suffix>
+          <cv:Buffered>true</cv:Buffered>
+          <cv:Overwrite>true</cv:Overwrite>
+          <cv:FourCC>FMP4</cv:FourCC>
+          <cv:FrameRate>30</cv:FrameRate>
+          <cv:FrameSize>
+            <cv:Width>0</cv:Width>
+            <cv:Height>0</cv:Height>
+          </cv:FrameSize>
+          <cv:ResizeInterpolation>NearestNeighbor</cv:ResizeInterpolation>
+        </Combinator>
+      </Expression>
     </Nodes>
     <Edges>
       <Edge From="0" To="1" Label="Source1" />
@@ -857,6 +879,7 @@
       <Edge From="61" To="62" Label="Source1" />
       <Edge From="62" To="63" Label="Source1" />
       <Edge From="64" To="65" Label="Source1" />
+      <Edge From="66" To="67" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
