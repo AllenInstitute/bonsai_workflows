@@ -250,8 +250,8 @@ In Bonsai, it is incredibly easy to do two things:
 
 This suggests a different way forward, in which any events relevant to the task or stimulus are associated with both a digital on/off transition recorded by the sync computer, as well as metadata stored in a CSV file. At the end of the experiment, it is simple to package all of this into a single file (pickle or otherwise), assuming a minimal amount of bookkeeping to keep track of which sync lines are associated with which type of events.
 
-This approach is more "lightweight" and language-agnostic that what is used by camstim, although it will take some work to define consistent conventions that can be used across experiments.
-This proposal is practical as our pipeline sync hardware and wiring boxes already have **XXX** unused and available sync line that we could essentially turn on in software via Bonsai. 
+This approach is more "lightweight" and language-agnostic than what is used by camstim, although it will take some work to define consistent conventions that can be used across experiments.
+This proposal is practical as our pipeline sync hardware and wiring boxes already have **XXX** unused and available sync lines that we could essentially turn on in software via Bonsai, as we did during our pilots.
 
 Storing behavioral critical information as sync lines comes with several benefits: 
   - The sync system is fundamentally our reference temporal system and has the highest temporal precision and reliability. 
