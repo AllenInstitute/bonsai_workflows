@@ -317,13 +317,13 @@ Further documentation of Bonsai key aspects would be instrumental and is likely 
 
 To faciliate the development of new behavioral workflow, we recommend to first develop an **empty workflow template** which will contain the connected nodes associated with :
 
-1- Declaring the visual stimulation hardware
-2- Creating the geometry associated with our rigs. 
-3- Drawing and controlling the photodiode square pulse in the right position
-4- Reading a lick line and sending it directly to the water reward line
-5- Controlling one sync line for the start and end of the sessions and one sync line for following the stimulus rendering. 
-6- Starting and aborting a workflow remotely
-7- Saving the wheel speed.
+1. Declaring the visual stimulation hardware
+2. Creating the geometry associated with our rigs. 
+3. Drawing and controlling the photodiode square pulse in the right position
+4. Reading a lick line and sending it directly to the water reward line
+5. Controlling one sync line for the start and end of the sessions and one sync line for following the stimulus rendering. 
+6. Starting and aborting a workflow remotely
+7. Saving the wheel speed.
 
 The modularity of Bonsai will allow to easily create this template. We have already implemented 1,2,3, and 4 during our pilot. 
 
