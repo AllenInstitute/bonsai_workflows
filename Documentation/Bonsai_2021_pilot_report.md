@@ -260,6 +260,30 @@ Storing behavioral critical information as sync lines comes with several benefit
   - NWB files stores stimulus information in a stimulus **trial** table which uses the same storage scheme: Individual events have a name, a start and end timestamps associated to it. The start and end timestamps are essentially the rising and falling edges of a sync line. 
 See here for more details : https://pynwb.readthedocs.io/en/stable/tutorials/general/file.html#trials
   - This simple storage scheme provides a great deal of flexibility on how behavioral events are recorded. Each scientific team can leverage available sync lines within Bonsai in a way that fits their scientific requirements. 
+  
+### Discussion on Bonsai programming concepts.
+
+Bonsai is a "visual reactive programming language" which, at its core, is a wrapper around the [ReactiveX](http://reactivex.io/) library with interfaces to many common I/O devices used for behavioral neuroscience experiments. ReactiveX is based on concepts from *functional programming*, which may be unfamiliar to those of us who spend the vast majority of our time writing *procedural* code in languages such as Python. In particular, Labview and python programmers could be misled to under-appreciate the importance of laying the foundation of these concepts prior to jumping into coding. This can make it difficult to follow the logic behind more complex Bonsai workflows, and can be a major impediment to constructing novel workflows. 
+
+When first learning Bonsai, it is natural to try to translate concepts from procedural languages into our workflows.  Indeed, there are many cases where this is neither possible nor desirable. Bonsai (and functional languages in general), surrender certain abilities in order to make it possible to write more performant, maintainable code. [We wrote a guide to highlight those differences](https://github.com/AllenInstitute/bonsai_workflows/blob/master/Documentation/Bonsai_for_Python_Programmers.md). 
+
+Further documentation of Bonsai key aspects would be instrumental and is likely going to be necessary in the coming years. 
+
+### Workflow templates
+
+To faciliate the development of new behavioral workflow, we recommend to first develop an **empty workflow template** which will contain the connected nodes associated with :
+
+1. Declaring the visual stimulation hardware
+2. Creating the geometry associated with our rigs. 
+3. Drawing and controlling the photodiode square pulse in the right position
+4. Reading a lick line and sending it directly to the water reward line
+5. Controlling one sync line for the start and end of the sessions and one sync line for following the stimulus rendering. 
+6. Starting and aborting a workflow remotely
+7. Saving the wheel speed.
+
+The modularity of Bonsai will allow to easily create this template. We have already implemented 1,2,3, and 4 during our pilot. 
+
+Once this template is built, we recommend to build exemplar sub-workflows that display drifting gratings, natural images and movies, and run the detection of change task. The modularity of Bonsai will allow to copy/paste those worflows into the template while developing a new task. 
 
 ### Components to develop and integrate
 
@@ -305,30 +329,6 @@ COLIN/QUINN : What is practical for each phase? Maybe propose different scenarii
 #### **Phase 3 :** Testing integration
   - Proposed timeline
   
-### Discussion on Bonsai programming concepts.
-
-Bonsai is a "visual reactive programming language" which, at its core, is a wrapper around the [ReactiveX](http://reactivex.io/) library with interfaces to many common I/O devices used for behavioral neuroscience experiments. ReactiveX is based on concepts from *functional programming*, which may be unfamiliar to those of us who spend the vast majority of our time writing *procedural* code in languages such as Python. In particular, Labview and python programmers could be misled to under-appreciate the importance of laying the foundation of these concepts prior to jumping into coding. This can make it difficult to follow the logic behind more complex Bonsai workflows, and can be a major impediment to constructing novel workflows. 
-
-When first learning Bonsai, it is natural to try to translate concepts from procedural languages into our workflows.  Indeed, there are many cases where this is neither possible nor desirable. Bonsai (and functional languages in general), surrender certain abilities in order to make it possible to write more performant, maintainable code. [We wrote a guide to highlight those differences](https://github.com/AllenInstitute/bonsai_workflows/blob/master/Documentation/Bonsai_for_Python_Programmers.md). 
-
-Further documentation of Bonsai key aspects would be instrumental and is likely going to be necessary in the coming years. 
-
-### Workflow templates
-
-To faciliate the development of new behavioral workflow, we recommend to first develop an **empty workflow template** which will contain the connected nodes associated with :
-
-1. Declaring the visual stimulation hardware
-2. Creating the geometry associated with our rigs. 
-3. Drawing and controlling the photodiode square pulse in the right position
-4. Reading a lick line and sending it directly to the water reward line
-5. Controlling one sync line for the start and end of the sessions and one sync line for following the stimulus rendering. 
-6. Starting and aborting a workflow remotely
-7. Saving the wheel speed.
-
-The modularity of Bonsai will allow to easily create this template. We have already implemented 1,2,3, and 4 during our pilot. 
-
-Once this template is built, we recommend to build exemplar sub-workflows that display drifting gratings, natural images and movies, and run the detection of change task. The modularity of Bonsai will allow to copy/paste those worflows into the template while developing a new task. 
-
 ### Community engagement and ecosystem support
 
 Bonsai already has a broad userbase and a fair number of extensions written by the community. It is critical that we don't operate in a vacuum, and that we engage with existing users at every step of the way. Once our development plan is more concrete, we should share it with the community (e.g., through the [bonsai-users](https://groups.google.com/g/bonsai-users) forum), to make sure we are not doing anything that's redundant with others.
