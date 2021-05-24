@@ -189,11 +189,13 @@ This calculation time recorded during a whole one-hour session is plotted below.
 
 From this analysis and measurement, we concluded that bonsai, in real working conditions, takes between 0.8 and 1.7 ms to convert a lick into a reward. 0.3 ms of this time is due to convert a lick to a reward while the rest is due to communication delays with the hardware. 
 
-Overall a delay between 1 and 2 ms, below the response time of many fast screen, to trigger a reward is compatible with Neuroscience experiments (ANYBODY KNOWS A GOOD REFERNCE FOR DELAY PERCEPTION IN RODENTS). In addition we found that this delay was stable throughout the session as shown in the curve below. 
+In addition we found that this delay was stable throughout the session as shown in the curve below. 
 
 ![Quantification of delays throughout a session](../Analysis/det_change_long_fake_lick_generator/2021-05-24-reward_calculation_time_over_session.png).
 
 *Lick to water time during a hour-long session with lick generator with a TTL pulse generator at regular intervals.*
+
+Overall a delay between 1 and 2 ms to trigger a reward, well below the response time of many fast computer screens (5-30ms), is compatible with Neuroscience experiments (ANYBODY KNOWS A GOOD REFERENCE FOR DELAY PERCEPTION IN RODENTS).
 
 ### Concurrent acquisition of video
 
