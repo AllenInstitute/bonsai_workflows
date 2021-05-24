@@ -167,6 +167,12 @@ Our  figure below is faithful to the original published publication, i.e., appro
 
 - Sync lines output stability
 
+- Delays associated with trial logic
+
+A key component in the detection of change tasks (as well as in any active behavioral tasks) is the ability to timely react to behavioral responses. For instance, variable delays between a detected lick and a delivered reward would cause unwanted neuronal signals. To quantify this effect, we leveraged the availability of sync lines as those provided the highest temporal resolution (100 kHz). Bonsai reactive programming abilities allowed to easily trigger sync lines changes at different moments of the tasks. 
+1. We first immediately converted an incoming detected lick to a separate sync line. This allowed us to measure the *turn-around time* or the time required for Bonsai to (1) read a TTL line, (2) store the value and (3) write this state to an output line via the DAQmx libraries. 
+2. The workflow used its internal logic to convert a lick to a reward and we simultaneously switched an additional sync line. In combination with the previous line, this allowed us to calculate an estimate for the *reward-calculation time* or the time to convert an incoming lick into a reward, exclusing all delays due to reading and writing through the DAQmx libraries. 
+
 ### Concurrent acquisition of video
 
 A key promise of Bonsai is its ability to quickly integrate multiple data modalities in a single data workflow. For example, measuring key behavioral parameters from a continuous stream of frames from a behavior camera would allow closed-loop experiments. While we do not anticipate this immediate use-case for the OpenScope project, this is a key property of Bonsai as [DeepLabCut modules](https://github.com/bonsai-rx/deeplabcut) have been fully integrated into Bonsai. To evaluate this capability, we measured the impact of continuously acquiring and saving an additional webcam, while running the detection of change task. The workflow for this experiment is [available here](https://github.com/AllenInstitute/bonsai_workflows/blob/master/DetectionOfChange/DetectionOfChange_with_hardware_and_camera.bonsai).  
