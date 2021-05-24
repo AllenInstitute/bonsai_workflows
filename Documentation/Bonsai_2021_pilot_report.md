@@ -171,7 +171,29 @@ Our  figure below is faithful to the original published publication, i.e., appro
 
 A key component in the detection of change tasks (as well as in any active behavioral tasks) is the ability to timely react to behavioral responses. For instance, variable delays between a detected lick and a delivered reward would cause unwanted neuronal signals. To quantify this effect, we leveraged the availability of sync lines as those provided the highest temporal resolution (100 kHz). Bonsai reactive programming abilities allowed to easily trigger sync lines changes at different moments of the tasks. 
 1. We first immediately converted an incoming detected lick to a separate sync line. This allowed us to measure the *turn-around time* or the time required for Bonsai to (1) read a TTL line, (2) store the value and (3) write this state to an output line via the DAQmx libraries. 
+This turn-around time recorded during a whole one-hour session is plotted below. 
+
+![Quantification of lick turn-around time](../Analysis/det_change_long_fake_lick_generator/2021-05-24-lick_turnaround.png).
+
+*Quantification of lick turn-around time during a hour-long session with lick generator with a TTL pulse generator at regular intervals*
+
+From this analysis and measurement, we concluded that bonsai, in real working conditions, takes between 0.4 and 1.5 ms to read and write a digital line. 
+
 2. The workflow used its internal logic to convert a lick to a reward and we simultaneously switched an additional sync line. In combination with the previous line, this allowed us to calculate an estimate for the *reward-calculation time* or the time to convert an incoming lick into a reward, exclusing all delays due to reading and writing through the DAQmx libraries. 
+
+This calculation time recorded during a whole one-hour session is plotted below. 
+
+![Quantification of lick to reward calculation time](../Analysis/det_change_long_fake_lick_generator/2021-05-24-reward_calculation_time.png).
+
+*Quantification of lick calcuation time during a hour-long session with lick generator with a TTL pulse generator at regular intervals. Top panel is the time from an incoming lick to an outcoming reward. Bottom panel is the estimated reward calculation delay by substracting the corresponding lick turn-around time*
+
+From this analysis and measurement, we concluded that bonsai, in real working conditions, takes between 0.8 and 1.7 ms to convert a lick into a reward. 0.3 ms of this time is due to convert a lick to a reward while the rest is due to communication delays with the hardware. 
+
+Overall a delay between 1 and 2 ms, below the response time of many fast screen, to trigger a reward is compatible with Neuroscience experiments (ANYBODY KNOWS A GOOD REFERNCE FOR DELAY PERCEPTION IN RODENTS). In addition we found that this delay was stable throughout the session as shown in the curve below. 
+
+![Quantification of delays throughout a session](../Analysis/det_change_long_fake_lick_generator/2021-05-24-reward_calculation_time_over_session.png).
+
+*Lick to water time during a hour-long session with lick generator with a TTL pulse generator at regular intervals.*
 
 ### Concurrent acquisition of video
 
