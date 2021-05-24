@@ -133,7 +133,7 @@ Briefly:
 
 #### Stimulus update intervals
 
-![Quantification of photodiode stability during passively viewing of gratings and locallyl sparse noise](Analysis/PassiveViewing_run1/2021-05-12-passively_viewing_run1.png).
+![Quantification of photodiode stability during passively viewing of gratings and locallyl sparse noise](../Analysis/PassiveViewing_run1/2021-05-12-passively_viewing_run1.png).
 
 *Quantification of photodiode stability during passively viewing of gratings and locally sparse noise*
 
