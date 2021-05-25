@@ -152,6 +152,16 @@ Having reproduced published measurements, we sought to evaluate Bonsai performan
 
 *Quantification of photodiode stability during passively viewing of gratings and locally sparse noise*
 
+The bottom part of the above plot shows this photo-diode sync line. Remarkably this signal was very stable, oscillating around the expected 1s period with a 5 to 10 microseconds variation. This supports that Bonsai had ample time to draw all of the graphical elements in the graphical card back-buffer. This result is expected is expected given that we showed above that Bonsai starts to break at approximately 1000 objects drawn. Indeed this worklow would only draw one grating and between 1 and 10 locally sparse noise blocks. We expect those small fluctuations not to be due to Bonsai calculation time but rather result from the capabilities of the graphic card, the screen and the photodiode cirtcuit. 
+
+During each frame generation cycle, we also wrote 2 additional sync lines: 
+  - One sync line every 2 frames as a proxy for stimulus rendering (top plot)
+  - One sync line every time the photodiode square is asked to switch state (middle plot). 
+
+Those line showed occasional spikes in duration from the average period. Both measures oscillated up to 2-3 ms from their mean. These spikes are likely resulting from occasional bursts in backgorund processes running on the CPU during this passive recording session. They do not necessarily impact the final timing as eventually what matters is that Bonsai could keep up with the screen refresh rate. 
+
+The fact that none of these spikes caused dropped frames, as shown on the corresponding photodiode signal supports that Bonsai was not operating close to its capacity, as also indicated by our stress test above.   
+
 ### Go/No task
 
 - Screen stimulation stability
