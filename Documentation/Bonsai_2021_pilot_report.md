@@ -131,12 +131,6 @@ Briefly:
 
 ### Passive viewing experiments
 
-#### Stimulus update intervals
-
-![Quantification of photodiode stability during passively viewing of gratings and locallyl sparse noise](../Analysis/PassiveViewing_run1/2021-05-12-passively_viewing_run1.png).
-
-*Quantification of photodiode stability during passively viewing of gratings and locally sparse noise*
-
 #### Stress test
 
 To validate our measure of performance and push Bonsai over its limit, we reproduced a performance quantification published along the BonVision paper [(Lopes et al. 2020)](https://www.biorxiv.org/content/10.1101/2020.03.09.983775v3). To that end, we [modified a workflow](https://github.com/AllenInstitute/bonsai_workflows/blob/master/GridGratingDrawing/gabor.bonsai) displaying an increasingly large number of non-overlapping grating elements. A reference figure was published in the original BonVision publication and is shared here for ease of comparision:
@@ -153,7 +147,13 @@ Our  figure below is faithful to the original published publication, i.e., appro
 
 *Quantification of frame update period to display an array of drifting gratings using the same workflow from (Lopes 2020) but on an Allen Institute stimulus test rig.* 
 
+#### Stimulus update intervals
 
+Having reproduced published measurements, we sought to evaluate Bonsai performance with stimuli used in passively viewing experiments at the Allen Institute. We designed a workflow to display drifting gratings of various contrasts, as well as a duplicate of our Locally Sparse Noise stimulus (LSN). We measured the stability of the photodiode square pulse during this workflow via its corresponding sync line. 
+
+![Quantification of photodiode stability during passively viewing of gratings and locallyl sparse noise](../Analysis/PassiveViewing_run1/2021-05-12-passively_viewing_run1.png).
+
+*Quantification of photodiode stability during passively viewing of gratings and locally sparse noise*
 
 ### Go/No task
 
