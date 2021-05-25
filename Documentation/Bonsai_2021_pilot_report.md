@@ -126,9 +126,6 @@ Briefly:
 
 ## Results
 
-[Insert qualitative assessment here here]
-
-
 ### Passive viewing experiments
 
 #### Stress test
