@@ -360,27 +360,42 @@ Once this template is finalized, we recommend to build exemplar sub-workflows th
 ### Components to develop and integrate
 
 COLIN/QUINN : Describe the missing pieces.
+  - External interfacing
+    - Integration with WSE and hardware.
+  - Messaging to and from Bonsai to enable interaction with BehaviorMon, WSE and MouseDirector.
+  - Additional Hardware Interfaces
+    - Implement DAQ digital input
+    - Enhanced encoder
+  - Determine output file formats
+  - Bonsai must produce an experimental record (similar to the current pkl file) 
+
 
 ### Proposed strategy 
 
 COLIN/QUINN : Migrating Bonsai to be used in the Allen Brain Observatory pipelines will be a multi-component process that should be tackled in distinct phases. This will allow us to avoid accelerated integration timelines and an efficient development.
 
 #### **Phase 0 :** Bonsai pilot + Report + Build plan
-The purpose and content of this report. 
+The purpose and content of this report.
 
 #### **Phase 1 :** Single rig integration
   - Work out the need of running Bonsai during one session. 
   - Integration with WSE and hardware.
   - Saving data.
-  - MORE DETAILS HERE
-  - Generate template workflows for a variety of stimuli. 
-  - System to manage binary depencies of stimuli. 
+  - Add the ability to start a Bonsai stimulus session from the WSE
+  - Add messaging from Bonsai so it can return status to the WSE
+    - Ready, displaying stimulus, stimulus completed (with completion codes)
+  - Add capability to Bonsai so it can push stimulus status messages to the BehaviorMon service
+    - Session started, encoder count, rewards issued, passes, fails etc.  
+  - Generate template workflows for a variety of stimuli.
+  - System to manage binary dependencies of stimuli.
 
 #### **Phase 2 :** Cluster integration
   - Interaction with BehaviorMon.
+    - We should probably make this happen in Phase 1
   - mTrain integration.
+    - WSE interacts with mTrain to determine which stimulus should be delivered to each mouse.  Bonsai ‘integration’ with mTrain is required only if automatic determination of script advancement is needed.  In this instance mTrain (or a replacement) must be updated to read and interpret the experiment record produced by Bonsai (Bonsai would not directly interact with mTrain).
   - WaterLog test and integration.
-  - MORE DETAILS HERE
+    - No integration required for WaterLog.  Water delivery should be implemented through a Bonsai plugin that interacts with the hardware (this will happen in phase 1)
   - Hardware backward compatible 
 
 #### **Phase 3 :** Testing integration
