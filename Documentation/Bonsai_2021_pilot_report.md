@@ -179,13 +179,30 @@ Timing remained unaffected during those key-press, supporting that Bonsai had su
 
 ### Detection of change task
 
-- Screen stimulation stability
+We dedicated more efforts in testing the detection of change tasks performance. We replicated the previous analysis in 3 different conditions : 
+- Without any incoming licks.
 
-- Sync lines output stability
+![det_change_no_lick](https://user-images.githubusercontent.com/2491343/119719073-2e986380-be1d-11eb-9681-9b01d1a45098.png)
+
+*Quantification of photodiode stability while running a detection of change task for an hour with no interactions*
+
+- With licks coming from a TTL generator on a regular interval for the full duration of a typical session (approximately 1h).
+
+![det_change_simulated_licks](https://user-images.githubusercontent.com/2491343/119719257-6acbc400-be1d-11eb-9465-03c1ccff5767.png)
+
+*Quantification of photodiode stability while running a detection of change task for an hour with regular simulated licks at 0.1Hz*
+
+- With licks triggered manually by touching the actual lick spout by hand. 
+
+![det_change_simulated_manual_licks](https://user-images.githubusercontent.com/2491343/119719612-d746c300-be1d-11eb-9249-a591ee33130e.png)
+
+*Quantification of photodiode stability while running a detection of change task for an hour with manual incoming licks*
+
+We obtained a similar results as for all previous workflows, ie. no measured impacts on photodiode timings, despite occasional stimulus rendering fluctuations due to background processes. 
 
 - Delays associated with trial logic
 
-A key component in the detection of change tasks (as well as in any active behavioral tasks) is the ability to timely react to behavioral responses. For instance, variable delays between a detected lick and a delivered reward would cause unwanted neuronal signals. To quantify this effect, we leveraged the availability of sync lines as those provided the highest temporal resolution (100 kHz). Bonsai reactive programming abilities allowed to easily trigger sync lines changes at different moments of the tasks. 
+A key component in the detection of change task (as well as in any active behavioral tasks) is the ability to timely react to behavioral responses. For instance, variable delays between a detected lick and a delivered reward would cause unwanted neuronal signals. To quantify this effect, we leveraged the availability of sync lines as those provided the highest temporal resolution (100 kHz). Bonsai reactive programming abilities allowed to easily trigger sync lines changes at different moments of the tasks. 
 1. We first immediately converted an incoming detected lick to a separate sync line. This allowed us to measure the *turn-around time* or the time required for Bonsai to (1) read a TTL line, (2) store the value and (3) write this state to an output line via the DAQmx libraries. 
 This turn-around time recorded during a whole one-hour session is plotted below. 
 
