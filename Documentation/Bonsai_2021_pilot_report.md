@@ -256,6 +256,10 @@ To test this capability, we used the detection of change and passively viewing w
 
 The associated concatenated workflow is [available here](https://github.com/AllenInstitute/bonsai_workflows/blob/master/ConcatenationWorkflow/DetectionOfChange_and_passive.bonsai).  
 
+### Bonsai to visual stimulus delay or photodiode delay
+
+Jerome to ADD here quantification of screen delay using more measurements on site. 
+
 ### Capabilities available for integration tests
 
 - Describe here the capabilties that are already available 
