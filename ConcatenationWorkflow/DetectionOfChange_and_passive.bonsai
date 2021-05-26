@@ -9,6 +9,7 @@
                  xmlns:bv="clr-namespace:BonVision;assembly=BonVision"
                  xmlns:io="clr-namespace:Bonsai.IO;assembly=Bonsai.System"
                  xmlns:wie="clr-namespace:Bonsai.Windows.Input;assembly=Bonsai.Windows.Input"
+                 xmlns:p2="clr-namespace:BonVision.Collections;assembly=BonVision"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
     <Nodes>
@@ -439,7 +440,9 @@
         <Name>Change Flash</Name>
       </Expression>
       <Expression xsi:type="Combinator">
-        <Combinator xsi:type="rx:Repeat" />
+        <Combinator xsi:type="rx:RepeatCount">
+          <rx:Count>1</rx:Count>
+        </Combinator>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
         <Name>Random</Name>
@@ -449,7 +452,7 @@
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="io:EnumerateFiles">
-          <io:Path>stimuli\images</io:Path>
+          <io:Path>C:\Users\jeromel\Documents\Projects\Bonsai-transition\code\bonsai_workflows\DetectionOfChange\stimuli\images</io:Path>
           <io:SearchPattern>*.tiff</io:SearchPattern>
           <io:SearchOption>TopDirectoryOnly</io:SearchOption>
         </Combinator>
@@ -480,7 +483,7 @@
                 <gl:WrapT>Repeat</gl:WrapT>
                 <gl:MinFilter>Linear</gl:MinFilter>
                 <gl:MagFilter>Linear</gl:MagFilter>
-                <gl:FileName>stimuli\images\imk01057.tiff</gl:FileName>
+                <gl:FileName>C:\Users\jeromel\Documents\Projects\Bonsai-transition\code\bonsai_workflows\DetectionOfChange\stimuli\images\16052.tiff</gl:FileName>
                 <gl:ColorType>Unchanged</gl:ColorType>
                 <gl:FlipMode>Vertical</gl:FlipMode>
               </Combinator>
@@ -553,6 +556,135 @@
       <Expression xsi:type="BehaviorSubject">
         <Name>Random</Name>
       </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="gl:RenderFrame" />
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:ElementIndex" />
+      </Expression>
+      <Expression xsi:type="MemberSelector">
+        <Selector>Value.TimeStep.ElapsedRealTime</Selector>
+      </Expression>
+      <Expression xsi:type="rx:Accumulate" />
+      <Expression xsi:type="PublishSubject">
+        <Name>CurrentTime</Name>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="p2:GratingsSpecification">
+          <p2:Trials>
+            <p2:GratingParameters>
+              <p2:Delay>1</p2:Delay>
+              <p2:Duration>2</p2:Duration>
+              <p2:Diameter>30</p2:Diameter>
+              <p2:X>0</p2:X>
+              <p2:Y>0</p2:Y>
+              <p2:Contrast>0.2</p2:Contrast>
+              <p2:SpatialFrequency>0.08</p2:SpatialFrequency>
+              <p2:TemporalFrequency>2</p2:TemporalFrequency>
+              <p2:Orientation>0</p2:Orientation>
+            </p2:GratingParameters>
+            <p2:GratingParameters>
+              <p2:Delay>1</p2:Delay>
+              <p2:Duration>2</p2:Duration>
+              <p2:Diameter>30</p2:Diameter>
+              <p2:X>0</p2:X>
+              <p2:Y>0</p2:Y>
+              <p2:Contrast>0.2</p2:Contrast>
+              <p2:SpatialFrequency>0.08</p2:SpatialFrequency>
+              <p2:TemporalFrequency>2</p2:TemporalFrequency>
+              <p2:Orientation>45</p2:Orientation>
+            </p2:GratingParameters>
+            <p2:GratingParameters>
+              <p2:Delay>1</p2:Delay>
+              <p2:Duration>2</p2:Duration>
+              <p2:Diameter>30</p2:Diameter>
+              <p2:X>0</p2:X>
+              <p2:Y>0</p2:Y>
+              <p2:Contrast>0.2</p2:Contrast>
+              <p2:SpatialFrequency>0.08</p2:SpatialFrequency>
+              <p2:TemporalFrequency>2</p2:TemporalFrequency>
+              <p2:Orientation>90</p2:Orientation>
+            </p2:GratingParameters>
+            <p2:GratingParameters>
+              <p2:Delay>1</p2:Delay>
+              <p2:Duration>2</p2:Duration>
+              <p2:Diameter>30</p2:Diameter>
+              <p2:X>0</p2:X>
+              <p2:Y>0</p2:Y>
+              <p2:Contrast>0.2</p2:Contrast>
+              <p2:SpatialFrequency>0.08</p2:SpatialFrequency>
+              <p2:TemporalFrequency>2</p2:TemporalFrequency>
+              <p2:Orientation>135</p2:Orientation>
+            </p2:GratingParameters>
+            <p2:GratingParameters>
+              <p2:Delay>1</p2:Delay>
+              <p2:Duration>2</p2:Duration>
+              <p2:Diameter>30</p2:Diameter>
+              <p2:X>0</p2:X>
+              <p2:Y>0</p2:Y>
+              <p2:Contrast>0.2</p2:Contrast>
+              <p2:SpatialFrequency>0.08</p2:SpatialFrequency>
+              <p2:TemporalFrequency>2</p2:TemporalFrequency>
+              <p2:Orientation>180</p2:Orientation>
+            </p2:GratingParameters>
+            <p2:GratingParameters>
+              <p2:Delay>1</p2:Delay>
+              <p2:Duration>2</p2:Duration>
+              <p2:Diameter>30</p2:Diameter>
+              <p2:X>0</p2:X>
+              <p2:Y>0</p2:Y>
+              <p2:Contrast>0.2</p2:Contrast>
+              <p2:SpatialFrequency>0.08</p2:SpatialFrequency>
+              <p2:TemporalFrequency>2</p2:TemporalFrequency>
+              <p2:Orientation>215</p2:Orientation>
+            </p2:GratingParameters>
+            <p2:GratingParameters>
+              <p2:Delay>1</p2:Delay>
+              <p2:Duration>2</p2:Duration>
+              <p2:Diameter>30</p2:Diameter>
+              <p2:X>0</p2:X>
+              <p2:Y>0</p2:Y>
+              <p2:Contrast>0.2</p2:Contrast>
+              <p2:SpatialFrequency>0.08</p2:SpatialFrequency>
+              <p2:TemporalFrequency>2</p2:TemporalFrequency>
+              <p2:Orientation>270</p2:Orientation>
+            </p2:GratingParameters>
+            <p2:GratingParameters>
+              <p2:Delay>1</p2:Delay>
+              <p2:Duration>2</p2:Duration>
+              <p2:Diameter>30</p2:Diameter>
+              <p2:X>0</p2:X>
+              <p2:Y>0</p2:Y>
+              <p2:Contrast>0.2</p2:Contrast>
+              <p2:SpatialFrequency>0.08</p2:SpatialFrequency>
+              <p2:TemporalFrequency>2</p2:TemporalFrequency>
+              <p2:Orientation>315</p2:Orientation>
+            </p2:GratingParameters>
+            <p2:GratingParameters>
+              <p2:Delay>1</p2:Delay>
+              <p2:Duration>2</p2:Duration>
+              <p2:Diameter>30</p2:Diameter>
+              <p2:X>0</p2:X>
+              <p2:Y>0</p2:Y>
+              <p2:Contrast>0</p2:Contrast>
+              <p2:SpatialFrequency>2</p2:SpatialFrequency>
+              <p2:TemporalFrequency>2</p2:TemporalFrequency>
+              <p2:Orientation>0</p2:Orientation>
+            </p2:GratingParameters>
+          </p2:Trials>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:Delay">
+          <rx:DueTime>PT45S</rx:DueTime>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="IntProperty">
+          <Value>1</Value>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="extensions\DriftingGratingsBlock.bonsai" />
     </Nodes>
     <Edges>
       <Edge From="0" To="1" Label="Source1" />
@@ -581,6 +713,13 @@
       <Edge From="27" To="28" Label="Source1" />
       <Edge From="28" To="29" Label="Source1" />
       <Edge From="30" To="31" Label="Source1" />
+      <Edge From="32" To="33" Label="Source1" />
+      <Edge From="33" To="34" Label="Source1" />
+      <Edge From="34" To="35" Label="Source1" />
+      <Edge From="35" To="36" Label="Source1" />
+      <Edge From="37" To="38" Label="Source1" />
+      <Edge From="38" To="40" Label="Source2" />
+      <Edge From="39" To="40" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
