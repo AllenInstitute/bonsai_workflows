@@ -163,15 +163,19 @@ Indeed none of these occasional spikes caused dropped frames, as shown on the co
 
 ### Go/No task
 
-The go/no tasks display a very similar set of performance as the passively viewing workflow. We first tested the tasks in non-interacting condition. Running it for an entire hour with the task logic activated. 
+The go/no tasks displayed a very similar set of performance as the passively viewing workflow. We first tested the tasks in non-interacting condition. Running it for an entire hour with the task logic activated. 
 
 Similarly as for the passively viewing task, no dropped frames occurred and the photo-diode output signal was stable in a micro-seconds range. 
 ![go_no_go_hardware_2021T12950_calculation_time](https://user-images.githubusercontent.com/2491343/119708387-f559f680-be10-11eb-8b08-42d74c3d2208.png)
 
+*Quantification of photodiode stability while running a go/no go task for an hour with no interactions*
+
 We then tested whether interacting with the worflow would have any impact on performance. In this case, we used key-presses as a proxy for lick detection. 
 ![go_no_go_hardware_2021T155621_sync_lines](https://user-images.githubusercontent.com/2491343/119708613-30f4c080-be11-11eb-8137-c87620108684.png)
 
-Timing remained unaffected during those key-press, supporting that Bonsai had ample CPU bandwidth to process for those actions. 
+*Quantification of photodiode stability while running a go/no go task with manual key-press interactions*
+
+Timing remained unaffected during those key-press, supporting that Bonsai had sufficient CPU bandwidth to process those actions. 
 
 ### Detection of change task
 
@@ -224,7 +228,6 @@ The results for this comparison are plotted below. The associated code is [avail
 *Quantification of frame update period in detection of change without acquiring and saving a video.* 
 
 The recorded video can be visualized [here](https://github.com/AllenInstitute/bonsai_workflows/blob/master/Analysis/detection_of_change_with_camera/camera_data.avi).
-
 
 ### Concatenating stimuli / tasks
 
