@@ -126,16 +126,7 @@ Briefly:
 
 ## Results
 
-[Insert qualitative assessment here here]
-
-
 ### Passive viewing experiments
-
-#### Stimulus update intervals
-
-![Quantification of photodiode stability during passively viewing of gratings and locallyl sparse noise](https://raw.githubusercontent.com/AllenInstitute/bonsai_workflows/master/Analysis/PassiveViewing_run1/2021-05-12-passively_viewing_run1.png?token=AATAHT6BHRUH5BZ4KQGZCILAUWEAU).
-
-*Quantification of photodiode stability during passively viewing of gratings and locally sparse noise*
 
 #### Stress test
 
@@ -153,7 +144,23 @@ Our  figure below is faithful to the original published publication, i.e., appro
 
 *Quantification of frame update period to display an array of drifting gratings using the same workflow from (Lopes 2020) but on an Allen Institute stimulus test rig.* 
 
+#### Stimulus update intervals
 
+Having reproduced published measurements, we sought to evaluate Bonsai performance with stimuli used in passively viewing experiments at the Allen Institute. We designed a workflow to display drifting gratings of various contrasts, as well as a duplicate of our Locally Sparse Noise stimulus (LSN). We measured the stability of the photodiode square pulse during this workflow via its corresponding sync line. 
+
+![Quantification of photodiode stability during passively viewing of gratings and locallyl sparse noise](../Analysis/PassiveViewing_run1/2021-05-12-passively_viewing_run1.png).
+
+*Quantification of photodiode stability during passively viewing of gratings and locally sparse noise*
+
+The bottom part of the above plot shows this photo-diode sync line. Remarkably this signal was very stable, oscillating around the expected 1s period with a 5 to 10 microseconds variation. This supports that Bonsai had ample time to draw all of the graphical elements in the graphical card back-buffer. This worklow would only draw one grating and between 1 and 10 locally sparse noise blocks.  This result is therefore expected given that we showed above that Bonsai starts to break when approximately 1000 objects are drawn. We expect those small fluctuations in photodiode times not to be due to Bonsai calculation times but rather result from the combined performance of the graphic card, the screen and the photodiode circuit. 
+
+During each frame generation cycle, we also wrote 2 additional sync lines: 
+  - One sync line every 2 frames as a proxy for stimulus rendering (top plot)
+  - One sync line every time the photodiode square is asked to switch state (middle plot). 
+
+Those line showed occasional spikes in duration from the average period. Both measures oscillated up to 2-3 ms from their mean. These spikes are likely resulting from occasional bursts in background processes running on the CPU during this passive recording session. They did not impact the final timing as eventually what matters is that Bonsai could keep up with the screen refresh rate. 
+
+Indeed none of these occasional spikes caused dropped frames, as shown on the corresponding photodiode signal. This result supports our previous stress test confirming that Bonsai is not operating close to its capacity with visual stimuli typically used. 
 
 ### Go/No task
 
@@ -167,17 +174,47 @@ Our  figure below is faithful to the original published publication, i.e., appro
 
 - Sync lines output stability
 
+- Delays associated with trial logic
+
+A key component in the detection of change tasks (as well as in any active behavioral tasks) is the ability to timely react to behavioral responses. For instance, variable delays between a detected lick and a delivered reward would cause unwanted neuronal signals. To quantify this effect, we leveraged the availability of sync lines as those provided the highest temporal resolution (100 kHz). Bonsai reactive programming abilities allowed to easily trigger sync lines changes at different moments of the tasks. 
+1. We first immediately converted an incoming detected lick to a separate sync line. This allowed us to measure the *turn-around time* or the time required for Bonsai to (1) read a TTL line, (2) store the value and (3) write this state to an output line via the DAQmx libraries. 
+This turn-around time recorded during a whole one-hour session is plotted below. 
+
+![Quantification of lick turn-around time](../Analysis/det_change_long_fake_lick_generator/2021-05-24-lick_turnaround.png).
+
+*Quantification of lick turn-around time during a hour-long session with lick generator with a TTL pulse generator at regular intervals*
+
+From this analysis and measurement, we concluded that bonsai, in real working conditions, takes between 0.4 and 1.5 ms to read and write a digital line. 
+
+2. The workflow used its internal logic to convert a lick to a reward and we simultaneously switched an additional sync line. In combination with the previous line, this allowed us to calculate an estimate for the *reward-calculation time* or the time to convert an incoming lick into a reward, exclusing all delays due to reading and writing through the DAQmx libraries. 
+
+This calculation time recorded during a whole one-hour session is plotted below. 
+
+![Quantification of lick to reward calculation time](../Analysis/det_change_long_fake_lick_generator/2021-05-24-reward_calculation_time.png).
+
+*Quantification of lick calcuation time during a hour-long session with lick generator with a TTL pulse generator at regular intervals. Top panel is the time from an incoming lick to an outcoming reward. Bottom panel is the estimated reward calculation delay by substracting the corresponding lick turn-around time*
+
+From this analysis and measurement, we concluded that bonsai, in real working conditions, takes between 0.8 and 1.7 ms to convert a lick into a reward. 0.3 ms of this time is due to convert a lick to a reward while the rest is due to communication delays with the hardware. 
+
+In addition we found that this delay was stable throughout the session as shown in the curve below. 
+
+![Quantification of delays throughout a session](../Analysis/det_change_long_fake_lick_generator/2021-05-24-reward_calculation_time_over_session.png).
+
+*Lick to water time during a hour-long session with lick generator with a TTL pulse generator at regular intervals.*
+
+Overall a delay between 1 and 2 ms to trigger a reward, well below the response time of many fast computer screens (5-30ms), is compatible with Neuroscience experiments (ANYBODY KNOWS A GOOD REFERENCE FOR DELAY PERCEPTION IN RODENTS).
+
 ### Concurrent acquisition of video
 
 A key promise of Bonsai is its ability to quickly integrate multiple data modalities in a single data workflow. For example, measuring key behavioral parameters from a continuous stream of frames from a behavior camera would allow closed-loop experiments. While we do not anticipate this immediate use-case for the OpenScope project, this is a key property of Bonsai as [DeepLabCut modules](https://github.com/bonsai-rx/deeplabcut) have been fully integrated into Bonsai. To evaluate this capability, we measured the impact of continuously acquiring and saving an additional webcam, while running the detection of change task. The workflow for this experiment is [available here](https://github.com/AllenInstitute/bonsai_workflows/blob/master/DetectionOfChange/DetectionOfChange_with_hardware_and_camera.bonsai).  
 
 The results for this comparison are plotted below. The associated code is [available here](https://github.com/AllenInstitute/bonsai_workflows/blob/master/DetectionOfChange/DetectionOfChange_with_hardware_and_camera.bonsai). 
 
-![Detection of change performance with camera on](https://raw.githubusercontent.com/AllenInstitute/bonsai_workflows/master/Analysis/detection_of_change_with_camera/det_change_with_camera_sync_lines.png?token=AATAHT6CRDIBJSHND4N44UDAUWB2K).
+![Detection of change performance with camera on](../Analysis/detection_of_change_with_camera/det_change_with_camera_sync_lines.png).
 
 *Quantification of frame update period in detection of change while acquiring and saving a video from a webcam at 30Hz.* 
 
-![Detection of change performance with camera off](https://raw.githubusercontent.com/AllenInstitute/bonsai_workflows/master/Analysis/detection_of_change_without_camera/det_change_without_camera_sync_lines.png?token=AATAHT7BQ25K6NYR6CFGKVTAUWB36).
+![Detection of change performance with camera off](../Analysis/detection_of_change_without_camera/det_change_without_camera_sync_lines.png).
 
 *Quantification of frame update period in detection of change without acquiring and saving a video.* 
 
@@ -271,7 +308,7 @@ Further documentation of Bonsai key aspects would be instrumental and is likely 
 
 ### Workflow templates
 
-To faciliate the development of new behavioral workflow, we recommend to first develop an **empty workflow template** which will contain the connected nodes associated with :
+To faciliate the development of new behavioral workflow, we propose to first develop an **empty workflow template** which will contain the connected nodes associated with :
 
 1. Declaring the visual stimulation hardware
 2. Creating the geometry associated with our rigs. 
@@ -281,9 +318,12 @@ To faciliate the development of new behavioral workflow, we recommend to first d
 6. Starting and aborting a workflow remotely
 7. Saving the wheel speed.
 
-The modularity of Bonsai will allow to easily create this template. We have already implemented 1,2,3, and 4 during our pilot. 
+Based on our experience with Bonsai, we assembled a first draft of this workflow, as shown in the figure below. This example highlights how easy and accessible are all of the components of the template.
 
-Once this template is built, we recommend to build exemplar sub-workflows that display drifting gratings, natural images and movies, and run the detection of change task. The modularity of Bonsai will allow to copy/paste those worflows into the template while developing a new task. 
+![Slide1](https://user-images.githubusercontent.com/2491343/119024600-1aa1bd00-b958-11eb-9cc7-5eff63b69e56.png)
+*A proposed workflow template to develop new workflows. The modularity of Bonsai allowing to easily add new components is very apparent here. Each connected directed graph is associated with a description of its role*
+
+Once this template is finalized, we recommend to build exemplar sub-workflows that display drifting gratings, natural images and movies, and run the detection of change task. The modularity of Bonsai will allow to copy/paste those worflows into the template while developing a new task. 
 
 ### Components to develop and integrate
 
