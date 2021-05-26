@@ -29,8 +29,7 @@ We ensure that Bonsai can cover our desired range of use cases with a simple/lim
   - Concatenating scripts  
     - Run an experiment built from multiple scripts, e.g.: 
         - Run static gratings stimuli.
-        - Run Sparse Noise stimuli.
-        - Run a Go/No Go experiment.
+        - Run a behaviuoral experiment.
 
 #### Pipeline integration 
   - Bonsai should be compatible with our behavior hardware (lick spouts, running wheels, etc.) and our hardware control packages (such as `daqmx`)  
