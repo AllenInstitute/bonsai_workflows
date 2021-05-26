@@ -223,7 +223,7 @@ The recorded video can be visualized [here](https://github.com/AllenInstitute/bo
 
 ### Concatenating stimuli / tasks
 
-To test this capability, we used the detection of change and passively viewing workflows. Bonsai has the ability to delay the "subscription" to a functioning block. In addition, the passively viewing workflow was structured with sub-script modules associated with drifting gratings and locally sparse noise stimuli. This allowed us to sequentially display first the detection of change tasks then a series of gratings. The only thing required was to delay the start of the gratings by using the right delay, as shown on the image below. 
+To test this capability, we used the detection of change and passively viewing workflows. Bonsai has the ability to delay the "subscription" to a functioning block. In addition, the passively viewing workflow was structured with sub-script modules associated with drifting gratings and locally sparse noise stimuli. This allowed us to sequentially display first the detection of change tasks followed by a series of gratings. The only thing required was to delay the start of the gratings by using the right delay time, as shown on the image below. 
 
 ![delay_block](https://user-images.githubusercontent.com/2491343/119704248-44e9f380-be0c-11eb-80b3-a0eccca1d6de.png)
 
