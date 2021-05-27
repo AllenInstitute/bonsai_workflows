@@ -11,7 +11,7 @@
 
 ### Goal of this effort
 
-This document details ongoing efforts to assess whether Bonsai can replace Camstim for controlling both passive viewing and active behavior experiments as part of the Allen Brain Observatory pipeline. These efforts include: 1) identifying requirements for stimulus generation, related data collection (e.g., running), and outputs needed by downstream processing modules, 2) producing test scripts that represent the range of needed functionality, and 3) testing and quantifying the performance (e.g., temporal fidelity) of Bonsai. For successful integration into the pipeline, Bonsai would need to operate in conjunction with existing software packages, such as WSE, Sync, and Videomon, and in closed-loop scenarios, Bonsai would also need to update stimuli in response to lick and running wheel input in real time. These efforts will also help us understand the flexibility (or limitations) of Bonsai to meet potential future needs as well as the requirements to maintain Bonsai as a part of our pipeline into the future.
+This document details ongoing efforts to assess whether Bonsai can replace Camstim for controlling both passive viewing and active behavior experiments as part of the Allen Brain Observatory pipeline. These efforts include: 1) identifying requirements for stimulus generation, related data collection (e.g., running), and outputs needed by downstream processing modules, 2) producing test scripts that represent the range of needed functionality, and 3) testing and quantifying the performance (e.g., temporal fidelity) of Bonsai. For successful integration into the pipeline, Bonsai would need to operate in conjunction with existing software packages, such as WSE, Sync, and Multi Video Recorder (MVR), with existing services, such as BehaviorMon and mTrain, and in closed-loop scenarios, Bonsai would also need to update stimuli in response to lick and running wheel input in real time. These efforts will also help us understand the flexibility (or limitations) of Bonsai to meet potential future needs as well as the requirements to maintain Bonsai as a part of our pipeline into the future.
 
 ### Key Takeaways
 
@@ -342,7 +342,7 @@ In Bonsai, it is incredibly easy to do two things:
 This suggests a different way forward, in which any events relevant to the task or stimulus are associated with both a digital on/off transition recorded by the sync computer, as well as metadata stored in a CSV file. At the end of the experiment, it is simple to package all of this into a single file (pickle or otherwise), assuming a minimal amount of bookkeeping to keep track of which sync lines are associated with which type of events.
 
 This approach is more "lightweight" and language-agnostic than what is used by camstim, although it will take some work to define consistent conventions that can be used across experiments.
-This proposal is practical as our pipeline sync hardware and wiring boxes already have **XXX** unused and available sync lines that we could essentially turn on in software via Bonsai, as we did during our pilots.
+This proposal is practical as our pipeline sync hardware and wiring boxes have 10 available sync lines with another 6 (for a total of 16) that could be made available with changes to the sync box.  This concept was tested during the piloting efforts (utilized several of the available sync lines to turn on in software via Bonsai)
 
 Storing behavioral critical information as sync lines comes with several benefits: 
   - The sync system is fundamentally our reference temporal system and has the highest temporal precision and reliability. 
@@ -383,13 +383,12 @@ Once this template is finalized, we recommend to build exemplar sub-workflows th
 
 COLIN/QUINN : Describe the missing pieces.
   - External interfacing
-    - Integration with WSE and hardware.
-  - Messaging to and from Bonsai to enable interaction with BehaviorMon, WSE and MouseDirector.
+    - Messaging to and from Bonsai to enable interaction with BehaviorMon, WSE and MouseDirector.
   - Additional Hardware Interfaces
     - Implement DAQ digital input
     - Enhanced encoder
   - Determine output file formats
-  - Bonsai must produce an experimental record (similar to the current pkl file) 
+    - Bonsai must produce an experimental record (similar to the current pkl file) 
 
 
 ### Proposed strategy 
@@ -401,7 +400,6 @@ The purpose and content of this report.
 
 #### **Phase 1 :** Single rig integration
   - Work out the need of running Bonsai during one session. 
-  - Integration with WSE and hardware.
   - Saving data.
   - Add the ability to start a Bonsai stimulus session from the WSE
   - Add messaging from Bonsai so it can return status to the WSE
@@ -428,6 +426,7 @@ The purpose and content of this report.
 ### Timeline
 
 COLIN/QUINN : What is practical for each phase? Maybe propose different scenarii depending on resources and priority? 
+- Answer from Colin:  I think we should be able to go faster than the timeline you proposed earlier (which seemed really long).  We could start of the phase 1 efforts in Q3 if desired.  That's where most of the work would be for us, I think.
 
 #### **Phase 1 :** Single rig integration
   - Proposed timeline
