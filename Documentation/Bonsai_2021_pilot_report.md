@@ -256,7 +256,7 @@ To test this capability, we used the detection of change and passively viewing w
 
 The associated concatenated workflow is [available here](https://github.com/AllenInstitute/bonsai_workflows/blob/master/ConcatenationWorkflow/DetectionOfChange_and_passive.bonsai).  
 
-### Summary metrics across all workflows
+### Summary metrics across all workflows (all units in seconds)
 
 |                                     |   Bonsai rendering period mean |   Bonsai rendering std |   Photodiode driving period mean |   Photodiode driving period std |   Photodiode actual period mean |   Photodiode actual period std |   Photodiode dropped frames |
 |:------------------------------------|-------------------------------:|-----------------------:|---------------------------------:|--------------------------------:|--------------------------------:|-------------------------------:|----------------------------:|
