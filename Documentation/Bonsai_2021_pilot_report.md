@@ -19,7 +19,7 @@ Behavioral task designs are specified as Bonsai workflow files  (.bonsai). These
 ### Areas for evaluation
 
 #### Stimulus and task definition
-We ensure that Bonsai can cover our desired range of use cases with a simple/limited set of test cases: 
+We aimed to ensure that Bonsai can cover our desired range of use cases with a simple/limited set of test cases: 
   - Passively viewing visual stimuli 
     - Static and drifting gratings 
     - Natural images and movies 
