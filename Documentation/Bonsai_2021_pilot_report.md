@@ -11,10 +11,14 @@
 
 ### Goal of this effort
 
-This document details ongoing requirements and efforts related to the piloting and testing of Bonsai as part of the Allen Brain Observatory pipeline. We assess here whether and how Bonsai can replace Camstim for controlling both passive viewing and active behavior experiments. Bonsai would update visual (or other) stimuli in response to lick and running wheel input, and would need to operate in conjunction with existing software packages, such as WSE, Sync, and Videomon. 
+This document details ongoing efforts to assess whether Bonsai can replace Camstim for controlling both passive viewing and active behavior experiments as part of the Allen Brain Observatory pipeline. These efforts include: 1) identifying requirements for stimulus generation, related data collection (e.g., running), and outputs needed by downstream processing modules, 2) producing test scripts that represent the range of needed functionality, and 3) testing and quantifying the performance (e.g., temporal fidelity) of Bonsai. For successful integration into the pipeline, Bonsai would need to operate in conjunction with existing software packages, such as WSE, Sync, and Videomon, and in closed-loop scenarios, Bonsai would also need to update stimuli in response to lick and running wheel input in real time. These efforts will also help us understand the flexibility (or limitations) of Bonsai to meet potential future needs as well as the requirements to maintain Bonsai as a part of our pipeline into the future.
+
+### Key Takeaways
+
+
 
 ### Design principles 
-Behavioral task designs are specified as Bonsai workflow files  (.bonsai). These files will be provided by each internal or external scientific team. Hardware components of the pipeline will be integrated with existing Bonsai modules and (if necessary) with custom Bonsai packages written in C#. Commonly used stimulus types can be saved as reusable workflow elements that can be shared by multiple scientific teams. Each package will have a deployed and testing mode, allowing individual packages to emulate normal functions on the experimental rig when the hardware is not available. 
+Behavioral task designs are specified as Bonsai workflow files (extension: .bonsai). These files will need to be provided by each internal or external scientific team. Hardware components of the pipeline will be integrated with existing Bonsai modules and (if necessary) with custom Bonsai packages written in C#. Commonly used stimulus types can be saved as reusable workflow elements that can be shared by multiple scientific teams; once a core set of stimulus types have been created, it is possible that new experiments (i.e. workflow files) can be created simply by combining existing workflow elements. Each package will have a deployed and testing mode, allowing individual packages to emulate normal functions on the experimental rig when the hardware is not available. 
 
 ### Areas for evaluation
 
@@ -23,6 +27,8 @@ We aimed to ensure that Bonsai can cover our desired range of use cases with a s
   - Passively viewing visual stimuli 
     - Static and drifting gratings 
     - Natural images and movies 
+    - Sparse Noise
+    - Random Dot Kinematograms
   - Active behavior 
     - Run a simple go/no go task with only one natural image associated with go and no go trials, with fixed trial probabilities. 
     - Run a simple detection of change behavior with fixed change probability.  
@@ -39,6 +45,7 @@ We aimed to ensure that Bonsai can cover our desired range of use cases with a s
   - We need to start scripts from WSE/Mouse Director 
   - We need to be able to poll for status (15 or 20 things) 
   - We need Bonsai to publish stats along the way (to accumulator) 
+  - We need outputs to be compatible with downstream processing modules
  
 #### Benchmarking
   - Performance levels (in terms of temporal precision) should be compatible with behavior experiments, including visual stimulus presentation 
@@ -57,29 +64,29 @@ For this effort, we built a testing rig at the Institute allowing scientific tea
 - Sync lines installed and used in this study are shown in the table below with labels
 ![image](https://user-images.githubusercontent.com/2491343/117510054-36f92f00-af40-11eb-80b3-26ce6f71b309.png)
 - As on all physiological rigs, a photodiode was installed in the top-right corner of the stimulus monitor and connected by a photodiode circuit connected to a dedicated sync line. 
-- A subset of sync lines were turn on and off by various experimental worklows (see below). 
+- A subset of sync lines were turn on and off by various experimental workflows (see below). 
 
 ### Description of workflows
 
-Based on requirements to tests multiple test cases, we designed and created multiple complementaries workflows. Each workflow was led by a different scientist so as to gain feedbacks and experience from multiple personal expertise. 
+Based on requirements for multiple use cases, we designed and created multiple complementaries workflows. Each workflow was led by a different scientist so as to gain feedbacks and experience from multiple personal expertise. 
 
-1 - **Passively viewing worflow**.
-This worflow presented windowed drifting gratings of various contrasts as well as a replicated version of the locally sparse noise stimulus. 
+1 - **Passively viewing workflow**.
+This workflow presented windowed drifting gratings of various contrasts as well as a replicated version of the locally sparse noise stimulus. 
 All stimuli were wrapped onto a spherical projection as is currently being implemented in CamStim. 
 This workflow is available [here](https://github.com/AllenInstitute/bonsai_workflows/tree/master/PassiveViewing).
 
 2 - **Go/No Go behavior workflow**.
-This worflow presented 2 natural images, one associated to a GO stimulus and the other to a NO GO stimulus. The GO stimulus triggered an external reward line.
+This workflow presented 2 natural images, one associated to a GO stimulus and the other to a NO GO stimulus. The GO stimulus triggered an external reward line.
 Image presentation was randomly selected from a uniform distribution at run-time. 
 All stimuli were wrapped onto a spherical projection as is currently being implemented in CamStim. 
 This workflow is available [here](https://github.com/AllenInstitute/bonsai_workflows/tree/master/Go-Nogo).
 
 3 - **Detection of change workflow**.
-This worflow presented 8 natural images, following the logic of the visual behavior workflow. Image change was triggered by pulling from a uniform distribution, deciding how many times each image was repeated. Pre-change lick would delay subsequent change by 2 presentations. 
+This workflow presented 8 natural images, following the logic of the visual behavior workflow. Image change was triggered by pulling from a uniform distribution, deciding how many times each image was repeated. Pre-change lick would delay subsequent change by 2 presentations. 
 All stimuli were wrapped onto a spherical projection as is currently being implemented in CamStim. 
 This workflow is available [here](https://github.com/AllenInstitute/bonsai_workflows/tree/master/DetectionOfChange).
 
-4 -  **Performance measurement workflow developed by Goncalo Lopes**. Our intent here was to compare performance metrics of our test rig with published values. This worfklow displayed an increasing large number of drifting gratings in an array pattern to assess performance of Bonsai and BonVision under stress. 
+4 -  **Performance measurement workflow developed by Goncalo Lopes**. Our intent here was to compare performance metrics of our test rig with published values. This workflow displayed an increasing large number of drifting gratings in an array pattern to assess performance of Bonsai and BonVision under stress. 
 This workflow is available [here](https://github.com/AllenInstitute/bonsai_workflows/tree/master/GridGratingDrawing).
 
   - All workflows triggered the photo-diode sync line via BonVision, similarly to how CamStim creates an oscillating stimulus black and white square under the photodiode. 
@@ -92,7 +99,7 @@ This workflow is available [here](https://github.com/AllenInstitute/bonsai_workf
 ### Description of tests
 
 Using the above described platform and workflows, we ran a series of tests and quantifications. Those tests were meant to evaluate the stability and performance of our workflows. 
-We ran each worflow separately. The associated datasets are available [here](https://github.com/AllenInstitute/bonsai_workflows/tree/master/Analysis). 
+We ran each workflow separately. The associated datasets are available [here](https://github.com/AllenInstitute/bonsai_workflows/tree/master/Analysis). 
 Briefly: 
 
 - Test on Bonsai performance script: Workflow that display increasingly large number of gratings, ran and analyzed. 
@@ -170,7 +177,7 @@ Similarly as for the passively viewing task, no dropped frames occurred and the 
 
 *Quantification of photodiode stability while running a go/no go task for an hour with no interactions*
 
-We then tested whether interacting with the worflow would have any impact on performance. In this case, we used key-presses as a proxy for lick detection. 
+We then tested whether interacting with the workflow would have any impact on performance. In this case, we used key-presses as a proxy for lick detection. 
 ![go_no_go_hardware_2021T155621_sync_lines](https://user-images.githubusercontent.com/2491343/119708613-30f4c080-be11-11eb-8137-c87620108684.png)
 
 *Quantification of photodiode stability while running a go/no go task with manual key-press interactions*
