@@ -91,7 +91,7 @@ This workflow is available [here](https://github.com/AllenInstitute/bonsai_workf
 
 ### Description of tests
 
-Using the above described platform and workflows, we ran a series of tests and quantifications. Those tests were meant to evaluate the stability and performance. 
+Using the above described platform and workflows, we ran a series of tests and quantifications. Those tests were meant to evaluate the stability and performance of our workflows. 
 We ran each worflow separately. The associated datasets are available [here](https://github.com/AllenInstitute/bonsai_workflows/tree/master/Analysis). 
 Briefly: 
 
