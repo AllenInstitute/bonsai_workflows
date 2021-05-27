@@ -258,6 +258,8 @@ The associated concatenated workflow is [available here](https://github.com/Alle
 
 ### Summary metrics across all workflows (all units in seconds)
 
+Note that the **rendering period is half of the refresh period** as we measure the period using the rising edge of TTL with a 50% duty cycle. The dropped frames are counted when the period between 2 consecutive photodiode pulses increases by more than 2 refresh period (0.033 ms). 
+
 |                                     |   Bonsai rendering period mean |   Bonsai rendering std |   Photodiode driving period mean |   Photodiode driving period std |   Photodiode actual period mean |   Photodiode actual period std |   Photodiode dropped frames |
 |:------------------------------------|-------------------------------:|-----------------------:|---------------------------------:|--------------------------------:|--------------------------------:|-------------------------------:|----------------------------:|
 | det_change_long_no_licks            |                      0.0333329 |            0.000253716 |                         0.999986 |                     0.000158512 |                        0.999986 |                    1.67488e-05 |                           0 |
