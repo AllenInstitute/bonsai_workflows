@@ -355,6 +355,25 @@ There are three ways that task development in Bonsai can be improved:
 By all measures, Bonsai performed extremely well for displaying visual stimuli. Stimulus rendering intervals were consistently within 2 ms of the median, and measured photodiode flips occurred within 50 microseconds of the expected interval. There was no evidence of dropped frames, except when the rendering loop was pushed to the limit, e.g. with hundreds of simultaneous drifting gratings. Performance did not deteriorate when camera frames were acquired and saved in parallel (although no online video processing was attempted).
 
 It's safe to say that Bonsai's performance is better than Camstim, which often shows dropped frames and irregular stimulus intervals.
+  
+### Discussion on Bonsai programming concepts.
+
+Bonsai is a "visual reactive programming language" which, at its core, is a wrapper around the [ReactiveX](http://reactivex.io/) library with interfaces to many common I/O devices used for behavioral neuroscience experiments. ReactiveX is based on concepts from *functional programming*, which may be unfamiliar to those of us who spend the vast majority of our time writing *procedural* code in languages such as Python. In particular, Labview and Python programmers could be misled to under-appreciate the importance of laying the foundation of these concepts prior to jumping into coding. This can make it difficult to follow the logic behind more complex Bonsai workflows, and can be a major impediment to constructing novel workflows. 
+
+When first learning Bonsai, it is natural to try to translate concepts from procedural languages into our workflows. Indeed, there are many cases where this is neither possible nor desirable. Bonsai (and functional languages in general), surrender certain abilities in order to make it possible to write more performant, maintainable code. [We wrote a guide to highlight those differences](https://github.com/AllenInstitute/bonsai_workflows/blob/master/Documentation/Bonsai_for_Python_Programmers.md). 
+
+Further documentation of Bonsai key aspects would be instrumental and is likely going to be necessary in the coming years. 
+
+### Components to develop and integrate
+
+Based on our experience, the following list contain the component that will need to be developed for Bonsai Integration in the pipeline.  
+  - External interfacing
+    - Messaging to and from Bonsai to enable interaction with BehaviorMon, WSE and MouseDirector.
+  - Additional Hardware Interfaces
+    - Implement DAQ digital input
+    - Enhanced encoder
+  - Determine output file formats
+    - Bonsai must produce an experimental record (similar to the current pkl file) 
 
 ### Data format
 
@@ -378,15 +397,8 @@ Storing behavioral critical information as sync lines comes with several benefit
   - NWB files stores stimulus information in a stimulus **trial** table which uses the same storage scheme: Individual events have a name, a start and end timestamps associated to it. The start and end timestamps are essentially the rising and falling edges of a sync line. 
 See here for more details : https://pynwb.readthedocs.io/en/stable/tutorials/general/file.html#trials
   - This simple storage scheme provides a great deal of flexibility on how behavioral events are recorded. Each scientific team can leverage available sync lines within Bonsai in a way that fits their scientific requirements. 
+
   
-### Discussion on Bonsai programming concepts.
-
-Bonsai is a "visual reactive programming language" which, at its core, is a wrapper around the [ReactiveX](http://reactivex.io/) library with interfaces to many common I/O devices used for behavioral neuroscience experiments. ReactiveX is based on concepts from *functional programming*, which may be unfamiliar to those of us who spend the vast majority of our time writing *procedural* code in languages such as Python. In particular, Labview and Python programmers could be misled to under-appreciate the importance of laying the foundation of these concepts prior to jumping into coding. This can make it difficult to follow the logic behind more complex Bonsai workflows, and can be a major impediment to constructing novel workflows. 
-
-When first learning Bonsai, it is natural to try to translate concepts from procedural languages into our workflows. Indeed, there are many cases where this is neither possible nor desirable. Bonsai (and functional languages in general), surrender certain abilities in order to make it possible to write more performant, maintainable code. [We wrote a guide to highlight those differences](https://github.com/AllenInstitute/bonsai_workflows/blob/master/Documentation/Bonsai_for_Python_Programmers.md). 
-
-Further documentation of Bonsai key aspects would be instrumental and is likely going to be necessary in the coming years. 
-
 ### Workflow templates
 
 To faciliate the development of new behavioral workflow, we propose to first develop an **empty workflow template** which will contain the connected nodes associated with :
@@ -406,21 +418,9 @@ Based on our experience with Bonsai, we assembled a first draft of this workflow
 
 Once this template is finalized, we recommend building exemplar sub-workflows that display drifting gratings, natural images and movies, and running the detection of change task. The modularity of Bonsai will allow us to copy/paste those worflows into the template while developing a new task. 
 
-### Components to develop and integrate
-
-COLIN/QUINN : Describe the missing pieces.
-  - External interfacing
-    - Messaging to and from Bonsai to enable interaction with BehaviorMon, WSE and MouseDirector.
-  - Additional Hardware Interfaces
-    - Implement DAQ digital input
-    - Enhanced encoder
-  - Determine output file formats
-    - Bonsai must produce an experimental record (similar to the current pkl file) 
-
-
 ### Proposed strategy 
 
-COLIN/QUINN : Migrating Bonsai to be used in the Allen Brain Observatory pipelines will be a multi-component process that should be tackled in distinct phases. This will allow us to avoid accelerated integration timelines and an efficient development.
+Migrating Bonsai to be used in the Allen Brain Observatory pipelines will be a multi-component process that should be tackled in distinct phases. This will allow us to avoid accelerated integration timelines and an efficient development. Importantly, our system should be backward compatible: Hardware and software should be functional with both camstim and bonsai-based system.
 
 #### **Phase 0 :** Bonsai pilot + Report + Build plan
 The purpose and content of this report.
@@ -435,20 +435,18 @@ The purpose and content of this report.
     - Session started, encoder count, rewards issued, passes, fails etc.  
   - Generate template workflows for a variety of stimuli.
   - System to manage binary dependencies of stimuli.
+  - Interaction with BehaviorMon.
+  - Finalize faithful replicate of the detection of change task with a bonsai workflow (trial logic, abort logic,...)
 
 #### **Phase 2 :** Cluster integration
-  - Interaction with BehaviorMon.
-    - We should probably make this happen in Phase 1
   - mTrain integration.
     - WSE interacts with mTrain to determine which stimulus should be delivered to each mouse.  Bonsai ‘integration’ with mTrain is required only if automatic determination of script advancement is needed.  In this instance mTrain (or a replacement) must be updated to read and interpret the experiment record produced by Bonsai (Bonsai would not directly interact with mTrain).
   - WaterLog test and integration.
     - No integration required for WaterLog.  Water delivery should be implemented through a Bonsai plugin that interacts with the hardware (this will happen in phase 1)
-  - Hardware backward compatible 
 
 #### **Phase 3 :** Testing integration
   - Testing at scale with mice trained through the pipeline with a previously validated and known behavior. 
   - Catch and fix integration issues
-  - MORE DETAILS HERE
 
 ### Timeline
 
