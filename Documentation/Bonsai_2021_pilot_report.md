@@ -472,7 +472,7 @@ In addition to the many individual labs that use Bonsai, there are several large
 
 ## Conclusion
 
-see Highlights at the top of the document.
+see [Highlights](##Highlights) at the top of the document.
 
 ## References
 
