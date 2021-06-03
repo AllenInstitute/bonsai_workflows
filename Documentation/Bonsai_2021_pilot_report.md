@@ -317,19 +317,6 @@ Note that the **rendering period is half of the refresh period** as we measured 
 | passive_viewing_long                |                      0.0333349 |            0.000478835 |                         0.999986 |                     8.85987e-05 |                        0.999986 |                    1.66179e-05 |                           0 |
 | go_no_go_long_stim_test_1           |                      0.033333  |            0.00028457  |                         0.999986 |                     0.000137444 |                        0.999986 |                    1.60981e-05 |                           0 |
 
-### Bonsai to visual stimulus delay or photodiode delay
-
-Jerome to ADD here quantification of screen delay using more measurements on site. 
-
-### Capabilities available for integration tests
-
-- Describe here the capabilties that are already available 
-- MORE DETAILS HERE
-
-### Capabilities missing for integration tests
-
-- Describe here the capabilties that are needed for integration 
-- MORE DETAILS HERE
 
 ## Discussion
 
