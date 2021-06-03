@@ -30,7 +30,7 @@ plt.ylabel('Period (s)')
 plt.gca().spines['right'].set_visible(False)
 plt.gca().spines['top'].set_visible(False)
 plt.title('Stimulus rendering')
-plt.ylim(0.03, 0.04)
+#plt.ylim(0.03, 0.04)
 
 plt.subplot(4, 1, 2, sharex=ax1)
 plt.plot(times_bonsai_driving_photodiode[1:], np.diff(
@@ -39,7 +39,7 @@ plt.ylabel('Period (s)')
 plt.gca().spines['right'].set_visible(False)
 plt.gca().spines['top'].set_visible(False)
 plt.title('Driving photo diode signal')
-plt.ylim(0.999, 1.001)
+#plt.ylim(0.999, 1.001)
 
 plt.subplot(4, 1, 3, sharex=ax1)
 plt.plot(times_photodiode[1:], np.diff(
@@ -49,7 +49,7 @@ plt.ylabel('Period (s)')
 plt.title('Measured photo diode signal')
 plt.gca().spines['right'].set_visible(False)
 plt.gca().spines['top'].set_visible(False)
-plt.ylim(0.9999, 1.0001)
+#plt.ylim(0.9999, 1.0001)
 plt.xlim(15, 320)
 
 plt.subplot(4, 1, 4)
