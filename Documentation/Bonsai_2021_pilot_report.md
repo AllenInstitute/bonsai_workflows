@@ -181,7 +181,7 @@ To validate our measure of performance and push Bonsai over its limit, we reprod
 
 In this test, Bonvision is tasked to display a very large number of drifting gratings in an array pattern. We replicated the code, utilizing our photodiode circuit to measure the rising time of requested stimuli updates. The associated analysis is [available in this notebook](https://github.com/AllenInstitute/bonsai_workflows/blob/master/Analysis/GridGratingDrawing/2021-05-12-GridGratingDrawing.ipynb). 
 
-Our  figure below is faithful to the original published publication, i.e., approximately 1000 grating elements are necessary before performance (measured in frames per second) start to deteriorate:
+Our  figure below is faithful to the original published publication, i.e., approximately 1000 grating elements are necessary before performance (measured in frames per second [NOTE: Actually frames per second/2]) start to deteriorate:
 
 ![Reproduction of performance](Images/2021-05-12-BonVision_grating_replication.png)
 
