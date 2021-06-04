@@ -391,14 +391,14 @@ See here for more details : https://pynwb.readthedocs.io/en/stable/tutorials/gen
 
 ### Current dependencies associated with output data format
 
-Our proposal to swtich from a pkl files to a more rationalize sync .h5 files + csv files comes with inherent developmental efforts. We should maintain our legacy system as we develop our new capabilities levereaging Bonsai. 
+Our proposal to switch from pkl files to a more general format including sync .h5 files + csv files comes with inherent development efforts. We should maintain our legacy system as we develop our new capabilities leveraging Bonsai. 
 
-Currently There are several dependencies on this data storage scheme: 
-- **Data transfer from the experimental rigs to internal file storage registered by LIMS**. Those systems are maintained by MPE and can already handle various data format produced by the instruments. 
-- **Data conversion from pkl files to LIMS database and the associated interaction with mTRAIN**. mTrain essentially monitor behavior performance by extracting key metrics from pkl files. This interaction will have to be updated. 
-- **Mouse-seeks access to pkl files information**. Mouse-seeks provide immediate analysis of pkl files to monitor basic behavioral metrics. The existing codebase can easily be transitioned to depend on a new file format by adding a few loading and metrics calculation functions. This system was aleady designed to work from a large collection of data storage files. 
-- **Data conversion from pkl files to NWB files**. We discussed above in [Data format](#Data format) how simplifying our storage using event-based sync files will simplify this conversion. These NWB files will act as the primary gateway to data for the OpenScope project. Our goal is to avoid any dependencies with internal storage scheme for external teams.   
-- **Existing codebase accessing pkl files for behavioral and physiology analyss**. Perhaps, this is where we have the largest legacy dependency. When appropriate, this suggests that ongoing projects should continue using our legacy pkl system unless there is a desire to transition these codebase to work solely from NWB files.  
+Currently, there are several dependencies on this data storage scheme: 
+- **Data transfer from the experimental rigs to internal file storage registered by LIMS**. Those systems are maintained by MPE and can already handle various data formats produced by the instruments. 
+- **Data conversion from pkl files to LIMS database and the associated interaction with mTRAIN**. mTrain essentially monitors behavior performance by extracting key metrics from pkl files. This interaction will have to be updated. 
+- **Mouse-seeks access to pkl files information**. Mouse-seeks provide immediate analysis to behavioral data from pkl files to monitor basic metrics. The existing codebase can easily be transitioned to depend on a new file format by adding new loading and metrics calculation functions. This system was designed to work with a large collection of data storage files. 
+- **Data conversion from pkl files to NWB files**. We discussed above in #Data format how simplifying our storage using event-based sync files will simplify this conversion. These NWB files will act as the primary gateway to data for the OpenScope project. Our goal is to avoid any dependencies on internal files/databases for external teams.   
+- **Existing codebase accessing pkl files for behavioral and physiology analyss**. Perhaps this is where we have the largest legacy dependency. When appropriate, this suggests that ongoing projects should continue using our legacy Camstim and pkl system unless there is a desire to transition these codebases to work solely from NWB files.  
 
 ### Workflow templates
 
