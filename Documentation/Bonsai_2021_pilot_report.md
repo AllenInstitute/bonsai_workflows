@@ -366,17 +366,6 @@ When first learning Bonsai, it is natural to try to translate concepts from proc
 
 Further documentation of Bonsai key aspects would be instrumental and is likely going to be necessary in the coming years. 
 
-### Components to develop and integrate
-
-Based on our experience, the following list contain the component that will need to be developed for Bonsai Integration in the pipeline.  
-  - External interfacing
-    - Messaging to and from Bonsai to enable interaction with BehaviorMon, WSE and MouseDirector.
-  - Additional Hardware Interfaces
-    - Implement DAQ digital input
-    - Enhanced encoder
-  - Determine output file formats
-    - Bonsai must produce an experimental record (similar to the current pkl file) 
-
 ### Data format
 
 If we adopt Bonsai, it is critical that its data outputs can interface with our existing analysis pipelines. At the same time, there are a lot of drawbacks to our current system (saving all behavior data + metadata in a pickle file), and switching to Bonsai presents an opportunity to rethink our approach.
@@ -432,14 +421,14 @@ Once this template is finalized, we recommend building exemplar sub-workflows th
 
 ### Proposed strategy 
 
-Migrating Bonsai to be used in the Allen Brain Observatory pipelines will be a multi-component process that should be tackled in distinct phases. This will allow us to avoid accelerated integration timelines and an efficient development. Importantly, our system should be backward compatible: Hardware and software should be functional with both camstim and bonsai-based system.
+Migrating Bonsai to be used in the Allen Brain Observatory pipelines will be a multi-component process that should be tackled in distinct phases. This will allow us to avoid accelerated integration timelines and an efficient development. Importantly, our system should be backward compatible: Hardware and software should be functional with both camstim and bonsai-based system. Based our our pilot, we outline below the required developments and organized them into rationalized deployment phases. 
 
 #### **Phase 0 :** Bonsai pilot + Report + Build plan
 The purpose and content of this report.
 
 #### **Phase 1 :** Single rig integration
-  - Work out the need of running Bonsai during one session. 
-  - Saving data.
+The goal of this phase is to develop all component required to running Bonsai during one session. 
+  - Saving data. We will determine output file formats in agreement with key stakeholders. 
   - Add the ability to start a Bonsai stimulus session from the WSE
   - Add messaging from Bonsai so it can return status to the WSE
     - Ready, displaying stimulus, stimulus completed (with completion codes)
@@ -448,35 +437,39 @@ The purpose and content of this report.
   - Generate template workflows for a variety of stimuli.
   - System to manage binary dependencies of stimuli.
   - Interaction with BehaviorMon.
-  - Finalize faithful replicate of the detection of change task with a bonsai workflow (trial logic, abort logic,...)
+  - Additional Hardware Interfaces:
+    - Implement DAQ digital input
+    - Enhanced encoder
+  - Finalize faithful replicate of the detection of change task with a bonsai workflow (trial logic, abort logic,...): This will be our key test bench workflow. 
 
 #### **Phase 2 :** Cluster integration
+The goal of this phase is to develop all external dependencies and implement full pipeline integration (data processing anda analysis). In particular, this step is meant to handle our legacy dependency on pkl files. 
   - mTrain integration.
     - WSE interacts with mTrain to determine which stimulus should be delivered to each mouse.  Bonsai ‘integration’ with mTrain is required only if automatic determination of script advancement is needed.  In this instance mTrain (or a replacement) must be updated to read and interpret the experiment record produced by Bonsai (Bonsai would not directly interact with mTrain).
-  - WaterLog test and integration.
-    - No integration required for WaterLog.  Water delivery should be implemented through a Bonsai plugin that interacts with the hardware (this will happen in phase 1)
+  - Note on WaterLog test and integration.
+    - In principle, there is no integration required for WaterLog.  Water delivery should be implemented through a Bonsai plugin that interacts with the hardware (this will happen in phase 1)
+  - Conversion of sync+csv to NWB files. 
 
 #### **Phase 3 :** Testing integration
-  - Testing at scale with mice trained through the pipeline with a previously validated and known behavior. 
+  - Testing at scale with mice trained through the pipeline with the detection of change worklow finalized in phase 1. 
   - Catch and fix integration issues
 
 ### Timeline
 
-COLIN/QUINN : What is practical for each phase? Maybe propose different scenarii depending on resources and priority? 
-- Answer from Colin:  I think we should be able to go faster than the timeline you proposed earlier (which seemed really long).  We could start of the phase 1 efforts in Q3 if desired.  That's where most of the work would be for us, I think.
+The goal of the OpenScope project is to have Bonsai integration available for the second proposal cycle (ie. experiments starting Q1 2023). Other teams and projects dependencies could be considered based on the following proposal timeline. 
 
 #### **Phase 1 :** Single rig integration
-  - Proposed timeline
+Phase 1 is primarily a developmental effort by MPE with key involvements of stakeholders (technology, scientifc teams, ...) for finalizing the data storage output of Bonsai. We aim to have a beta release of all of these components by the end of 2021. This effort could entail hiring an additonal staff member for the MPE team using resources provided by the NIH U24 grant. 
 
 #### **Phase 2 :** Cluster integration
-  - Proposed timeline
+We expect this development to occur during Q1 and Q2 of 2022. This timeline could be refined based on progress in Phase 1.
 
 #### **Phase 3 :** Testing integration
-  - Proposed timeline
+We expect this integration test to occur in Q3 and Q4 of 2022. This timeline could be refined based on progress in Phase 2.
   
 ### Community engagement and ecosystem support
 
-Bonsai already has a broad user base and a fair number of extensions written by the community. It is critical that we don't operate in a vacuum, and that we engage with existing users at every step of the way. Once our development plan is more concrete, we should share it with the community (e.g., through the [bonsai-users](https://groups.google.com/g/bonsai-users) forum), to make sure we are not doing anything that's redundant with others.
+Bonsai already has a broad user base and a fair number of extensions written by the community. It is critical that we don't operate in a vacuum, and that we engage with existing users at every step of the way. Once our development plan is more concrete, we should share it with the community (e.g., through the [bonsai-users](https://groups.google.com/g/bonsai-users) forum), to make sure we are not doing anything that's redundant with others. This report was drafted in close collaboration with Goncalo Lopes, the main developer of Bonsai. We expect to continually interact with him as well as the Bonsai community throughout this process. Our deployment effort will be done in full transparency. We hope to release our integration efforts to the community. This report will be part of this documentation. 
 
 ### Potential synergies with AIx2, IBL, SWC
 
