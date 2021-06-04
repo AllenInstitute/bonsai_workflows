@@ -181,7 +181,7 @@ To validate our measure of performance and push Bonsai over its limit, we reprod
 
 In this test, Bonvision is tasked to display a very large number of drifting gratings in an array pattern. We replicated the code, utilizing our photodiode circuit to measure the rising time of requested stimuli updates. The associated analysis is [available in this notebook](https://github.com/AllenInstitute/bonsai_workflows/blob/master/Analysis/GridGratingDrawing/2021-05-12-GridGratingDrawing.ipynb). 
 
-Our  figure below is faithful to the original published publication, i.e., approximately 1000 grating elements are necessary before performance (measured in frames per second [NOTE: Actually frames per second/2]) start to deteriorate:
+Our  figure below is faithful to the original published publication, i.e., approximately 1000 grating elements are necessary before performance  start to deteriorate (Note that our measurement **is half of the published period** as we measured the period using the rising edge of the pulse with a 50% duty cycle.):
 
 ![Reproduction of performance](Images/2021-05-12-BonVision_grating_replication.png)
 
@@ -400,7 +400,17 @@ Storing behavioral critical information as sync lines comes with several benefit
 See here for more details : https://pynwb.readthedocs.io/en/stable/tutorials/general/file.html#trials
   - This simple storage scheme provides a great deal of flexibility on how behavioral events are recorded. Each scientific team can leverage available sync lines within Bonsai in a way that fits their scientific requirements. 
 
-  
+### Current dependencies associated with output data format
+
+Our proposal to swtich from a pkl files to a more rationalize sync .h5 files + csv files comes with inherent developmental efforts. We should maintain our legacy system as we develop our new capabilities levereaging Bonsai. 
+
+Currently There are several dependencies on this data storage scheme: 
+- **Data transfer from the experimental rigs to internal file storage registered by LIMS**. Those systems are maintained by MPE and can already handle various data format produced by the instruments. 
+- **Data conversion from pkl files to LIMS database and the associated interaction with mTRAIN**. mTrain essentially monitor behavior performance by extracting key metrics from pkl files. This interaction will have to be updated. 
+- **Mouse-seeks access to pkl files information**. Mouse-seeks provide immediate analysis of pkl files to monitor basic behavioral metrics. The existing codebase can easily be transitioned to depend on a new file format by adding a few loading and metrics calculation functions. This system was aleady designed to work from a large collection of data storage files. 
+- **Data conversion from pkl files to NWB files**. We discussed above in [Data format](#Data format) how simplifying our storage using event-based sync files will simplify this conversion. These NWB files will act as the primary gateway to data for the OpenScope project. Our goal is to avoid any dependencies with internal storage scheme for external teams.   
+- **Existing codebase accessing pkl files for behavioral and physiology analyss**. Perhaps, this is where we have the largest legacy dependency. When appropriate, this suggests that ongoing projects should continue using our legacy pkl system unless there is a desire to transition these codebase to work solely from NWB files.  
+
 ### Workflow templates
 
 To faciliate the development of new behavioral workflow, we propose to first develop an **empty workflow template** which will contain the connected nodes associated with :
