@@ -65,7 +65,7 @@ The goal of this phase is to develop all external dependencies and implement ful
 
 This document details *phase 1* of the integration of Bonsai into our behavioral pipeline. 
 
-### Details of each required efforts 
+### Details of each required effort for Phase 1
 
 #### Saving data from Bonsai
 
