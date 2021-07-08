@@ -113,10 +113,10 @@ Currently, there are several dependencies on this data storage scheme:
 - **Existing codebases accessing pkl files for behavioral and physiology analyses**. Perhaps this is where we have the largest legacy dependency. When appropriate, this suggests that ongoing projects should continue using our legacy Camstim and pkl system unless there is a desire to transition these codebases to work solely from NWB files.  
 
 #### Add bidirectional messaging and control from Bonsai to WSE (Ross)
-    - Add messaging from Bonsai so it can return status to the WSE
-    - Ready, displaying stimulus, stimulus completed (with completion codes)
-    - Strategy to share control of digital lines between bonsai and MPE code. Water calibration? Flushing the line? 
-    - Add the ability to start a Bonsai stimulus session from the WSE
+- Add messaging from Bonsai so it can return status to the WSE
+- Ready, displaying stimulus, stimulus completed (with completion codes)
+- Strategy to share control of digital lines between bonsai and MPE code. Water calibration? Flushing the line? 
+- Add the ability to start a Bonsai stimulus session from the WSE
 
 To be filled. 
 
