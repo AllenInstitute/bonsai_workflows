@@ -1,4 +1,4 @@
-# Bonsai + Allen : Bonsai Integration plan and report into our behavioral rigs (Phase 1)
+# Bonsai + Allen : Bonsai Integration plan and report (Phase 1)
 
 <img src="Images/bonsai-lettering.svg?token=AATAHT4TLCQWUH54YLGGACDAT3QKU" height="100" />
 <img src="Images/AllenInstitute_Logo_RGB.png?token=AATAHTYYP47RH4KTUQBIBEDAT3QBQ" height="100" />
