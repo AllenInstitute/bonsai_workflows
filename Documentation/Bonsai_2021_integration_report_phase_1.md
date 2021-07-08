@@ -115,21 +115,6 @@ Ready, displaying stimulus, stimulus completed (with completion codes)
 Session started, encoder count, rewards issued, passes, fails etc.  
 
 #### Generate template workflows for a variety of stimuli.
-To be filled.
-
-#### System to manage binary dependencies of stimuli.
-To be filled.
-
-#### Interaction with BehaviorMon.
-To be filled. 
-
-#### Additional Hardware Interfaces:
-- Implement DAQ digital input
-- Enhanced encoder
-    
-#### Finalize faithful replicate of the detection of change task with a bonsai workflow (trial logic, abort logic,...): 
-This will be our key test bench workflow. 
-This will allow to further develop our workflow template:
 
 ##### Workflow templates
 
@@ -151,6 +136,22 @@ Based on our experience with Bonsai, we assembled a first draft of this workflow
 Once this template is finalized, we recommend building exemplar sub-workflows that display drifting gratings, natural images and movies, and running the detection of change task. The modularity of Bonsai will allow us to copy/paste those worflows into the template while developing a new task. 
 
 To be filled 
+
+#### System to manage binary dependencies of stimuli.
+To be filled.
+
+#### Interaction with BehaviorMon.
+To be filled. 
+
+#### Additional Hardware Interfaces:
+- Implement DAQ digital input
+- Enhanced encoder
+    
+#### Finalize faithful replicate of the detection of change task with a bonsai workflow (trial logic, abort logic,...): 
+This will be our key test bench workflow. 
+This will allow to further develop our workflow template:
+
+
 
 ### Description of integration tests for phase 1
 We should describe here which tests we intent to run to validate the system.
