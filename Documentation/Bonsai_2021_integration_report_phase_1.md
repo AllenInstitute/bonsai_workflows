@@ -31,7 +31,7 @@ There are several reasons why Bonsai may be an attractive alternative to Camstim
 Migrating Bonsai to be used in the Allen Brain Observatory pipelines will be a multi-component process that should be tackled in distinct phases. This will allow us to avoid accelerated integration timelines and an efficient development. Importantly, our system should be backward compatible: Hardware and software should be functional with both camstim and bonsai-based system. Based our our pilot, we outline below the required developments and organized them into rationalized deployment phases. 
 
 #### **Phase 0 :** Bonsai pilot + Report + Build plan
-The purpose and content of this report.
+The previous phase. Our report is available here: https://github.com/AllenInstitute/bonsai_workflows/blob/master/Documentation/Bonsai_2021_pilot_report.md
 
 #### **Phase 1 :** Single rig integration
 The goal of this phase is to develop all component required to running Bonsai during one session. 
