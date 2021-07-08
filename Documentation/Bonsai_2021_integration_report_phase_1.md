@@ -35,33 +35,25 @@ The previous phase. Our report is available here: https://github.com/AllenInstit
 
 #### **Phase 1 :** Single rig integration
 The goal of this phase is to develop all component required to running Bonsai during one session. 
-Perhaps break down this phase in chunks. 
-- Hardware abstraction
-- Dependencies. 
-- ONce we have all details on each sub-items. 
-- 
-  - Saving data. We will determine output file formats in agreement with key stakeholders. (Jerome, Doug, Josh, Daniel K, Corbett)
+This phase will be broken down in functional sub-groups once we have more details for each deliverables (for example, hardware abstraction, WSE-bonsai communication, workflows...).
+Main items are listed below: 
+
+  - Saving data format. We will determine output file formats in agreement with key stakeholders. (Jerome, Doug, Josh, Daniel K, Corbett)
 
   - Add bidirectional messaging and control from Bonsai to WSE (Ross)
-    - so it can return status to the WSE
-    - Ready, displaying stimulus, stimulus completed (with completion codes)
-    - Strategy to share control of digital lines between bonsai and MPE code. Water calibration? Flushing the line? 
-    - Add the ability to start a Bonsai stimulus session from the WSE
-  - Add capability to Bonsai so it can push stimulus status messages to the BehaviorMon service (ross)
-    - Session started, encoder count, rewards issued, passes, fails etc.  
+
+  - Add capability to Bonsai so it can push stimulus status messages to the BehaviorMon service (Ross)
+    
   - Generate template workflows for a variety of stimuli. (Jerome, Daniel M.)
-    - Natural movies workflow with different resolution. 
-    - CLosed-loop wheel to stim workflow. 
+
   - System to manage binary dependencies of stimuli. (Martin, Colin, Ross)
     
-  - Implement digital encode for wheel (Quinn, Arielle, Ross)
-
-  - Additional Hardware Interfaces: (Ross, Arielle)
-
-  - Implement DAQ digital input
-    - Enhanced encoder
-  - Finalize faithful replicate of the detection of change task with a bonsai workflow (trial logic, abort logic,...): This will be our key test bench workflow. (Doug, Corbett) 
+  - Hardware Interfaces. (Ross, Arielle, Quinn)
+   
+  - Finalize faithful replicate of the detection of change task with a bonsai workflow (trial logic, abort logic,...) (Doug, Corbett) 
+ 
   - Benchmark to test that a rig is performing (Jerome)
+ 
   - Benchmark to test that a workflow works appriopriately with wrapping and timing. (Jerome)
 
 #### **Phase 2 :** Cluster integration
@@ -82,7 +74,7 @@ This document details *phase 1* of the integration of Bonsai into our behavioral
 
 ### Details of each required effort for Phase 1
 
-#### Saving data from Bonsai
+#### Saving data from Bonsai (Jerome, Doug, Josh, Daniel K, Corbett)
 
 We will determine output file formats in agreement with key stakeholders. 
 
@@ -120,16 +112,25 @@ Currently, there are several dependencies on this data storage scheme:
 - **Data conversion from pkl files to NWB files**. We discussed above in #Data format how simplifying our storage using event-based sync files will simplify this conversion. These NWB files will act as the primary gateway to data for the OpenScope project. Our goal is to avoid any dependencies on internal files/databases for external teams.   
 - **Existing codebases accessing pkl files for behavioral and physiology analyses**. Perhaps this is where we have the largest legacy dependency. When appropriate, this suggests that ongoing projects should continue using our legacy Camstim and pkl system unless there is a desire to transition these codebases to work solely from NWB files.  
 
-#### Add the ability to start a Bonsai stimulus session from the WSE
-To be filled.
+#### Add bidirectional messaging and control from Bonsai to WSE (Ross)
+    - Add messaging from Bonsai so it can return status to the WSE
+    - Ready, displaying stimulus, stimulus completed (with completion codes)
+    - Strategy to share control of digital lines between bonsai and MPE code. Water calibration? Flushing the line? 
+    - Add the ability to start a Bonsai stimulus session from the WSE
 
-#### Add messaging from Bonsai so it can return status to the WSE
-Ready, displaying stimulus, stimulus completed (with completion codes)
-    
-#### Add capability to Bonsai so it can push stimulus status messages to the BehaviorMon service
+To be filled. 
+
+#### Add capability to Bonsai so it can push stimulus status messages to the BehaviorMon service (Ross)
 Session started, encoder count, rewards issued, passes, fails etc.  
 
-#### Generate template workflows for a variety of stimuli.
+To be filled.
+
+#### Generate template workflows for a variety of stimuli (Jerome, Daniel M.)
+- Generate template workflows for a variety of stimuli.
+- Natural movies workflow with different resolution. 
+- Closed-loop wheel to stim workflow. 
+
+To be filled.
 
 ##### Workflow templates
 
@@ -152,27 +153,30 @@ Once this template is finalized, we recommend building exemplar sub-workflows th
 
 To be filled 
 
-#### System to manage binary dependencies of stimuli.
+#### System to manage binary dependencies of stimuli. (Martin, Colin, Ross)
 To be filled.
 
-#### Interaction with BehaviorMon.
-To be filled. 
-
-#### Additional Hardware Interfaces:
+#### Hardware Interfaces. (Ross, Arielle, Quinn)
 - Implement DAQ digital input
 - Enhanced encoder
-    
-#### Finalize faithful replicate of the detection of change task with a bonsai workflow (trial logic, abort logic,...): 
+- Implement digital encode for wheel 
+To be filled.
+
+#### Finalize faithful replicate of the detection of change task with a bonsai workflow (trial logic, abort logic,...) (Doug, Corbett) 
 This will be our key test bench workflow. 
 This will allow to further develop our workflow template:
+ 
+#### Benchmark to test that a rig is performing (Jerome)
+To be filled.
 
-
+#### Benchmark to test that a workflow works appriopriately with wrapping and timing. (Jerome)
+To be filled.
 
 ### Description of integration tests for phase 1
 We should describe here which tests we intent to run to validate the system.
 
 #### Generate a script on one system and run on another
-ABstract out the rig details
+Abstract out the rig details
 
 #### Run a detection of change task with real mouse. 
 WSE works
