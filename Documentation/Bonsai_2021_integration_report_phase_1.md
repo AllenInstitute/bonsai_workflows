@@ -106,6 +106,7 @@ Currently, there are several dependencies on this data storage scheme:
 - **Existing codebases accessing pkl files for behavioral and physiology analyses**. Perhaps this is where we have the largest legacy dependency. When appropriate, this suggests that ongoing projects should continue using our legacy Camstim and pkl system unless there is a desire to transition these codebases to work solely from NWB files.  
 
 #### Add the ability to start a Bonsai stimulus session from the WSE
+To be filled.
 
 #### Add messaging from Bonsai so it can return status to the WSE
 Ready, displaying stimulus, stimulus completed (with completion codes)
@@ -114,13 +115,13 @@ Ready, displaying stimulus, stimulus completed (with completion codes)
 Session started, encoder count, rewards issued, passes, fails etc.  
 
 #### Generate template workflows for a variety of stimuli.
-To be filled 
+To be filled.
 
 #### System to manage binary dependencies of stimuli.
-To be filled 
+To be filled.
 
 #### Interaction with BehaviorMon.
-To be filled 
+To be filled. 
 
 #### Additional Hardware Interfaces:
 - Implement DAQ digital input
@@ -128,7 +129,7 @@ To be filled
     
 #### Finalize faithful replicate of the detection of change task with a bonsai workflow (trial logic, abort logic,...): 
 This will be our key test bench workflow. 
-This will allow to further develop a workflow template:
+This will allow to further develop our workflow template:
 
 ##### Workflow templates
 
@@ -152,7 +153,7 @@ Once this template is finalized, we recommend building exemplar sub-workflows th
 To be filled 
 
 ### Description of integration tests for phase 1
-We should describe here which test we intent to run to validate the system
+We should describe here which tests we intent to run to validate the system.
 
 #### Test 1
 xxx
@@ -162,7 +163,7 @@ XXX
 
 ## Results
 
-We should document here the results of our tests
+We should document here the results of our tests.
 
 ## Discussion
 
