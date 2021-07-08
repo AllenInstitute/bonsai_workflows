@@ -35,19 +35,34 @@ The previous phase. Our report is available here: https://github.com/AllenInstit
 
 #### **Phase 1 :** Single rig integration
 The goal of this phase is to develop all component required to running Bonsai during one session. 
-  - Saving data. We will determine output file formats in agreement with key stakeholders. 
-  - Add the ability to start a Bonsai stimulus session from the WSE
-  - Add messaging from Bonsai so it can return status to the WSE
+Perhaps break down this phase in chunks. 
+- Hardware abstraction
+- Dependencies. 
+- ONce we have all details on each sub-items. 
+- 
+  - Saving data. We will determine output file formats in agreement with key stakeholders. (Jerome, Doug, Josh, Daniel K, Corbett)
+
+  - Add bidirectional messaging and control from Bonsai to WSE (Ross)
+    - so it can return status to the WSE
     - Ready, displaying stimulus, stimulus completed (with completion codes)
-  - Add capability to Bonsai so it can push stimulus status messages to the BehaviorMon service
+    - Strategy to share control of digital lines between bonsai and MPE code. Water calibration? Flushing the line? 
+    - Add the ability to start a Bonsai stimulus session from the WSE
+  - Add capability to Bonsai so it can push stimulus status messages to the BehaviorMon service (ross)
     - Session started, encoder count, rewards issued, passes, fails etc.  
-  - Generate template workflows for a variety of stimuli.
-  - System to manage binary dependencies of stimuli.
-  - Interaction with BehaviorMon.
-  - Additional Hardware Interfaces:
-    - Implement DAQ digital input
+  - Generate template workflows for a variety of stimuli. (Jerome, Daniel M.)
+    - Natural movies workflow with different resolution. 
+    - CLosed-loop wheel to stim workflow. 
+  - System to manage binary dependencies of stimuli. (Martin, Colin, Ross)
+    
+  - Implement digital encode for wheel (Quinn, Arielle, Ross)
+
+  - Additional Hardware Interfaces: (Ross, Arielle)
+
+  - Implement DAQ digital input
     - Enhanced encoder
-  - Finalize faithful replicate of the detection of change task with a bonsai workflow (trial logic, abort logic,...): This will be our key test bench workflow. 
+  - Finalize faithful replicate of the detection of change task with a bonsai workflow (trial logic, abort logic,...): This will be our key test bench workflow. (Doug, Corbett) 
+  - Benchmark to test that a rig is performing (Jerome)
+  - Benchmark to test that a workflow works appriopriately with wrapping and timing. (Jerome)
 
 #### **Phase 2 :** Cluster integration
 The goal of this phase is to develop all external dependencies and implement full pipeline integration (data processing anda analysis). In particular, this step is meant to handle our legacy dependency on pkl files. 
@@ -156,11 +171,18 @@ This will allow to further develop our workflow template:
 ### Description of integration tests for phase 1
 We should describe here which tests we intent to run to validate the system.
 
-#### Test 1
-xxx
+#### Generate a script on one system and run on another
+ABstract out the rig details
 
-#### Test 2
-XXX
+#### Run a detection of change task with real mouse. 
+WSE works
+generate sample behavior performance plots
+
+#### System run with current production hardware
+WSE works
+generate sample behavior performance plots
+
+
 
 ## Results
 
