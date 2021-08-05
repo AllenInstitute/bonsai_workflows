@@ -128,6 +128,7 @@ To be filled.
 #### Generate template workflows for a variety of stimuli (Jerome, Daniel M.)
 - Generate template workflows for a variety of stimuli.
 - Natural movies workflow with different resolution. 
+  - Test dependence of number of dropped frames on resolution (300 x 200 -> 1920 x 1080) with warping performed online versus pre-warped. All movies will have frame rate of 30 Hz.   
 - Closed-loop wheel to stim workflow. 
 
 To be filled.
