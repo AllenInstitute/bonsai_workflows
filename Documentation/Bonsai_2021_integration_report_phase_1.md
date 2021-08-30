@@ -38,7 +38,7 @@ The goal of this phase is to develop all component required to running Bonsai du
 This phase will be broken down in functional sub-groups once we have more details for each deliverables (for example, hardware abstraction, WSE-bonsai communication, workflows...).
 Main items are listed below: 
 
-  - Saving data format. We will determine output file formats in agreement with key stakeholders. (Jerome, Doug, Josh, Daniel K, Corbett)
+  - Saving data format. We will determine output file formats in agreement with key stakeholders. (Jerome, Josh, Daniel K, Corbett)
 
   - Add bidirectional messaging and control from Bonsai to WSE (Ross)
 
@@ -50,7 +50,7 @@ Main items are listed below:
     
   - Hardware Interfaces. (Ross, Arielle, Quinn)
    
-  - Finalize faithful replicate of the detection of change task with a bonsai workflow (trial logic, abort logic,...) (Doug, Corbett) 
+  - Finalize faithful replicate of the detection of change task with a bonsai workflow (trial logic, abort logic,...) (Jerome, Corbett) 
  
   - Benchmark to test that a rig is performing (Jerome)
  
@@ -74,7 +74,7 @@ This document details *phase 1* of the integration of Bonsai into our behavioral
 
 ### Details of each required effort for Phase 1
 
-#### Saving data from Bonsai (Jerome, Doug, Josh, Daniel K, Corbett)
+#### Saving data from Bonsai (Jerome, Josh, Daniel K, Corbett)
 
 We will determine output file formats in agreement with key stakeholders. 
 
@@ -163,7 +163,7 @@ To be filled.
 - Implement digital encode for wheel 
 To be filled.
 
-#### Finalize faithful replicate of the detection of change task with a bonsai workflow (trial logic, abort logic,...) (Doug, Corbett) 
+#### Finalize faithful replicate of the detection of change task with a bonsai workflow (trial logic, abort logic,...) (Jerome, Corbett) 
 This will be our key test bench workflow. 
 This will allow to further develop our workflow template:
  
