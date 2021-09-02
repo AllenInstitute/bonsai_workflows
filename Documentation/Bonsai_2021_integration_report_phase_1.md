@@ -189,9 +189,6 @@ reward line
 extend / retract lickspout
 analog encoder (digital encoder?)
 
-We may potentially want to support phidget server stage movement.  I don't think this should be an initial target. **TO DISCUSS** 
-The DAQ module for bonsai is incomplete for analog signals.  Ross will speak to Goncalo and determine if we need to update this package.
-
 For each signal, the signal will be received and manipulated as a bonsai subworkflow.
 These workflows can then be embedded in experimental workflows of various types and can be prepackaged with bonsai.
 
