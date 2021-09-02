@@ -119,21 +119,14 @@ Ongoing discussion of the format was initiated with this powerpoint: https://git
 - Ready, displaying stimulus, stimulus completed (with completion codes)
 - Strategy to share control of digital lines between bonsai and MPE code. Water calibration? Flushing the line? 
 - Add the ability to start a Bonsai stimulus session from the WSE
+- Add capability to Bonsai so it can push stimulus status messages to the BehaviorMon service (Session started, encoder count, rewards issued, passes, fails etc. )
 
-To be filled. 
+##### mpe packages that need to be written:
 
-#### Add capability to Bonsai so it can push stimulus status messages to the BehaviorMon service (Ross)
-Session started, encoder count, rewards issued, passes, fails etc.  
-
-To be filled.
-
-#### Generate template workflows for a variety of stimuli (Jerome, Daniel M.)
-- Generate template workflows for a variety of stimuli.
-- Natural movies workflow with different resolution. 
-  - Test dependence of number of dropped frames on resolution (300 x 200 -> 1920 x 1080) with warping performed online versus pre-warped. All movies will have frame rate of 30 Hz.   
-- Closed-loop wheel to stim workflow. 
-
-To be filled.
+- Zookeeper / Flatfile configuration source (this allows internal and external usage of configuration)
+- Logging source / sink:  We want to be able to log start and stop messages to the MPE server and provide a mechanism to log from the sub workflows described below.
+- Resource monitoring:  similar to how camstim monitors CPU and memory usage, we want to be able to monitor bonsai workflows and provide logging.
+- ZMQ message publishing:  We want bonsai workflows to be able to announce complete and statuses.  These messages are not yet defined but will be posted here when they are.
 
 ##### Workflow templates
 
@@ -154,26 +147,64 @@ Based on our experience with Bonsai, we assembled a first draft of this workflow
 
 Once this template is finalized, we recommend building exemplar sub-workflows that display drifting gratings, natural images and movies, and running the detection of change task. The modularity of Bonsai will allow us to copy/paste those worflows into the template while developing a new task. 
 
-To be filled 
+We are currently exploring the use of "GroupWorkflow" vs "IncludeWorkflow" to organize that template. 
+One additional consideration relate to giving access to hardware lines within each stimuli sub-template. One way to standardize is to create subscription standards for each hardware lines that sub-module can call without having to declare them. This way the initialization is done at the main levels with no setting up required from external teams. 
+
+We might want to converge to a simpler workflow such as on this image below. 
+
+#### Generate template workflows for a variety of stimuli (Jerome, Daniel M.)
+- Generate template workflows for a variety of stimuli.
+- Natural movies workflow with different resolution. 
+  - Test dependence of number of dropped frames on resolution (300 x 200 -> 1920 x 1080) with warping performed online versus pre-warped. All movies will have frame rate of 30 Hz.   
+- Closed-loop wheel to stim workflow. 
+
+This activity will start once the stimulus template has been established (see above)
 
 #### System to manage binary dependencies of stimuli. (Martin, Colin, Ross)
-To be filled.
+
+We have several goals for this milestone
+
+- Package a portable bonsai + mpe workflows + a set of public packages that are commonly used.
+- Be able to deploy this package via ansible.
+- Allow users to submit workflows to MPE, in much the same way stimulus files are submitted.
+- Push production workflows to the bonsai installations.
 
 #### Hardware Interfaces. (Ross, Arielle, Quinn)
 - Implement DAQ digital input
 - Enhanced encoder
 - Implement digital encode for wheel 
-To be filled.
+
+Currently, we have plans to support hardware that exists on 2 daqs.
+
+- 6321 (stim daq)
+
+stim running signal
+stim frame
+bonsai emitted sync signals
+
+- 6001 (behavior daq)
+
+reward line
+extend / retract lickspout
+analog encoder (digital encoder?)
+
+We may potentially want to support phidget server stage movement.  I don't think this should be an initial target. **TO DISCUSS** 
+The DAQ module for bonsai is incomplete for analog signals.  Ross will speak to Goncalo and determine if we need to update this package.
+
+For each signal, the signal will be received and manipulated as a bonsai subworkflow.
+These workflows can then be embedded in experimental workflows of various types and can be prepackaged with bonsai.
 
 #### Finalize faithful replicate of the detection of change task with a bonsai workflow (trial logic, abort logic,...) (Jerome, Corbett) 
 This will be our key test bench workflow. 
 This will allow to further develop our workflow template:
  
 #### Benchmark to test that a rig is performing (Jerome)
-To be filled.
+
+This activity will start once the stimulus template has been established (see above)
 
 #### Benchmark to test that a workflow works appriopriately with wrapping and timing. (Jerome)
-To be filled.
+
+This activity will start once the stimulus template has been established (see above)
 
 ### Description of integration tests for phase 1
 We should describe here which tests we intent to run to validate the system.
