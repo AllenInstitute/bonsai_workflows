@@ -112,7 +112,9 @@ Currently, there are several dependencies on this data storage scheme:
 - **Data conversion from pkl files to NWB files**. We discussed above in #Data format how simplifying our storage using event-based sync files will simplify this conversion. These NWB files will act as the primary gateway to data for the OpenScope project. Our goal is to avoid any dependencies on internal files/databases for external teams.   
 - **Existing codebases accessing pkl files for behavioral and physiology analyses**. Perhaps this is where we have the largest legacy dependency. When appropriate, this suggests that ongoing projects should continue using our legacy Camstim and pkl system unless there is a desire to transition these codebases to work solely from NWB files.  
 
+<span style="color:blue">
 Ongoing discussion of the format was initiated with this powerpoint: https://github.com/AllenInstitute/bonsai_workflows/blob/master/Documentation/2021-08-30-Bonsai%20output%20format.pptx
+</span>
 
 #### Add bidirectional messaging and control from Bonsai to WSE (Ross)
 - Add messaging from Bonsai so it can return status to the WSE
