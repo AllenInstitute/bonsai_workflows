@@ -151,6 +151,7 @@ We are currently exploring the use of "GroupWorkflow" vs "IncludeWorkflow" to or
 One additional consideration relate to giving access to hardware lines within each stimuli sub-template. One way to standardize is to create subscription standards for each hardware lines that sub-module can call without having to declare them. This way the initialization is done at the main levels with no setting up required from external teams. 
 
 We might want to converge to a simpler workflow such as on this image below. 
+<img src="Images/template_dummy.png?token=AATAHTYYP47RH4KTUQBIBEDAT3QBQ" height="100" />
 
 #### Generate template workflows for a variety of stimuli (Jerome, Daniel M.)
 - Generate template workflows for a variety of stimuli.
