@@ -112,9 +112,7 @@ Currently, there are several dependencies on this data storage scheme:
 - **Data conversion from pkl files to NWB files**. We discussed above in #Data format how simplifying our storage using event-based sync files will simplify this conversion. These NWB files will act as the primary gateway to data for the OpenScope project. Our goal is to avoid any dependencies on internal files/databases for external teams.   
 - **Existing codebases accessing pkl files for behavioral and physiology analyses**. Perhaps this is where we have the largest legacy dependency. When appropriate, this suggests that ongoing projects should continue using our legacy Camstim and pkl system unless there is a desire to transition these codebases to work solely from NWB files.  
 
-<span style="color:blue">
 Ongoing discussion of the format was initiated with this powerpoint: https://github.com/AllenInstitute/bonsai_workflows/blob/master/Documentation/2021-08-30-Bonsai%20output%20format.pptx
-</span>
 
 #### Add bidirectional messaging and control from Bonsai to WSE (Ross)
 - Add messaging from Bonsai so it can return status to the WSE
@@ -209,20 +207,20 @@ This activity will start once the stimulus template has been established (see ab
 This activity will start once the stimulus template has been established (see above)
 
 ### Description of integration tests for phase 1
-We should describe here which tests we intent to run to validate the system.
-
-#### Generate a script on one system and run on another
-Abstract out the rig details
-
-#### Run a detection of change task with real mouse. 
-WSE works
-generate sample behavior performance plots
-
-#### System run with current production hardware
-WSE works
-generate sample behavior performance plots
-
-
+- Be able to start, stop and monitor bonsai workflows from WSE. 
+- Be able to access all hardware and software lines through newly established workflow successfully. Performance should match or exceed Camstim access. 
+- Run the detection of change duplicate to completion with no hardware/software issues. This workflow should faithfully reproduce the logic and hardware behavior of the original camstim task
+- This test will be ran with :
+  * No interaction
+  * Simulated regular lick interactions
+  * Manual interactions on the full integrated rig
+- Run passively viewing stimuli integrated into the template for :
+  * Drifting gratings
+  * Static gratings
+  * Natural movies
+- We will need to pass performance metrics establised during our pilot
+- Run a detection of change task with a real mouse trained on CamStim pipeline. 
+- Check that the system can generalize across rigs: test the infrastrcture in place to script on one system and run on another
 
 ## Results
 
