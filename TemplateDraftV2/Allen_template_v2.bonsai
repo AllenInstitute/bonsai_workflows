@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WorkflowBuilder Version="2.6.0"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xmlns="https://bonsai-rx.org/2018/workflow">
+  <Workflow>
+    <Nodes>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>View</Name>
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Extensions\Allen.DrawPhotodiode.bonsai" />
+      <Expression xsi:type="IncludeWorkflow" Path="Extensions\Allen.InitView.bonsai" />
+      <Expression xsi:type="PublishSubject">
+        <Name>View</Name>
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Extensions\Allen.InitLick.bonsai" />
+      <Expression xsi:type="BehaviorSubject">
+        <Name>Lick</Name>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="BooleanProperty">
+          <Value>false</Value>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="BehaviorSubject">
+        <Name>Reward</Name>
+      </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>Reward</Name>
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Extensions\Allen.OutputReward.bonsai" />
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="BooleanProperty">
+          <Value>true</Value>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="BehaviorSubject">
+        <Name>Sync1</Name>
+      </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>Sync1</Name>
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Extensions\Allen.OutputSync.bonsai" />
+    </Nodes>
+    <Edges>
+      <Edge From="0" To="1" Label="Source1" />
+      <Edge From="2" To="3" Label="Source1" />
+      <Edge From="4" To="5" Label="Source1" />
+      <Edge From="6" To="7" Label="Source1" />
+      <Edge From="8" To="9" Label="Source1" />
+      <Edge From="10" To="11" Label="Source1" />
+      <Edge From="12" To="13" Label="Source1" />
+    </Edges>
+  </Workflow>
+</WorkflowBuilder>
