@@ -323,7 +323,7 @@
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\SparseNoiseBlock.bonsai" />
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\InitializeGlobalVariables.bonsai">
-        <Saving_x0020_Dir>E:\bonsai_data\</Saving_x0020_Dir>
+        <Saving_x0020_Dir>C:\ProgramData\bonsai_workflows\Analysis\passive_viewing_data</Saving_x0020_Dir>
         <InitialSyncState>1</InitialSyncState>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\InitializeWindow.bonsai">
