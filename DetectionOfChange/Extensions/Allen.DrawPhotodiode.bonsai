@@ -36,10 +36,10 @@
         <Name>Source1</Name>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="BonVision:Primitives.DrawQuad.bonsai">
-        <ExtentX>10</ExtentX>
-        <ExtentY>10</ExtentY>
-        <LocationX>45</LocationX>
-        <LocationY>27</LocationY>
+        <ExtentX>7</ExtentX>
+        <ExtentY>7</ExtentY>
+        <LocationX>60</LocationX>
+        <LocationY>28</LocationY>
         <Layer>0</Layer>
         <Angle>0</Angle>
         <ColorR>1</ColorR>

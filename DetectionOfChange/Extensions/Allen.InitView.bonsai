@@ -8,7 +8,7 @@
     <Nodes>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="gl:CreateWindow">
-          <gl:Width>640</gl:Width>
+          <gl:Width>768</gl:Width>
           <gl:Height>480</gl:Height>
           <gl:VSync>On</gl:VSync>
           <gl:SwapSync>false</gl:SwapSync>
@@ -17,7 +17,7 @@
           <gl:CursorVisible>true</gl:CursorVisible>
           <gl:Location xsi:nil="true" />
           <gl:WindowBorder>Resizable</gl:WindowBorder>
-          <gl:WindowState>Fullscreen</gl:WindowState>
+          <gl:WindowState>Normal</gl:WindowState>
           <gl:DisplayDevice>Primary</gl:DisplayDevice>
           <gl:TargetRenderFrequency>0</gl:TargetRenderFrequency>
           <gl:TargetUpdateFrequency xsi:nil="true" />
@@ -63,8 +63,8 @@
         <Height xsi:nil="true" />
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="BonVision:Environment.ViewWindow.bonsai">
-        <Width>20</Width>
-        <Height>15</Height>
+        <Width>51.84</Width>
+        <Height>32.4</Height>
         <Rotation>
           <X>0</X>
           <Y>0</Y>
@@ -73,7 +73,7 @@
         <Translation>
           <X>0</X>
           <Y>0</Y>
-          <Z>-10</Z>
+          <Z>-15</Z>
         </Translation>
       </Expression>
       <Expression xsi:type="Disable">
