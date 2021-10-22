@@ -5,7 +5,6 @@
                  xmlns:num="clr-namespace:Bonsai.Numerics;assembly=Bonsai.Numerics"
                  xmlns:gl="clr-namespace:Bonsai.Shaders;assembly=Bonsai.Shaders"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
-                 xmlns:scr="clr-namespace:Bonsai.Scripting;assembly=Bonsai.Scripting"
                  xmlns:bv="clr-namespace:BonVision;assembly=BonVision"
                  xmlns:p1="clr-namespace:Bonsai.Numerics.Distributions;assembly=Bonsai.Numerics"
                  xmlns="https://bonsai-rx.org/2018/workflow">
@@ -47,7 +46,7 @@
                 <gl:WrapT>Repeat</gl:WrapT>
                 <gl:MinFilter>Linear</gl:MinFilter>
                 <gl:MagFilter>Linear</gl:MagFilter>
-                <gl:FileName>stimuli\images\8068.tiff</gl:FileName>
+                <gl:FileName>stimuli\images\16052.tiff</gl:FileName>
                 <gl:ColorType>Unchanged</gl:ColorType>
                 <gl:FlipMode>Vertical</gl:FlipMode>
               </Combinator>
@@ -162,11 +161,9 @@
             <Expression xsi:type="MemberSelector">
               <Selector>Item2</Selector>
             </Expression>
-            <Expression xsi:type="scr:PythonTransform">
-              <scr:Script>@returns(str)
-def process(value):
-  value = 'StartFlash - '+value
-  return value</scr:Script>
+            <Expression xsi:type="Format">
+              <Format>StartFlash - {0}</Format>
+              <Selector>it</Selector>
             </Expression>
             <Expression xsi:type="PropertyMapping">
               <PropertyMappings>
@@ -174,7 +171,7 @@ def process(value):
               </PropertyMappings>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="BonVision:Logging.LogEvent.bonsai">
-              <Format>StartFlash - stimuli\images\8068.tiff</Format>
+              <Format>StartFlash - stimuli\images\8049.tiff</Format>
               <Selector xsi:nil="true" />
               <Name>Allen.Log</Name>
             </Expression>
