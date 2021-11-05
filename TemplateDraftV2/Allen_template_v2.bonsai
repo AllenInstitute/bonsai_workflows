@@ -91,6 +91,15 @@
         <Selector xsi:nil="true" />
         <Name>Allen.Log</Name>
       </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>View</Name>
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Extensions\Allen.ReadWheel.bonsai" />
+      <Expression xsi:type="IncludeWorkflow" Path="BonVision:Logging.LogEvent.bonsai">
+        <Format>Wheel-{0}</Format>
+        <Selector>it</Selector>
+        <Name>Allen.Log</Name>
+      </Expression>
     </Nodes>
     <Edges>
       <Edge From="0" To="1" Label="Source1" />
@@ -109,6 +118,8 @@
       <Edge From="19" To="20" Label="Source1" />
       <Edge From="21" To="22" Label="Source1" />
       <Edge From="22" To="23" Label="Source1" />
+      <Edge From="24" To="25" Label="Source1" />
+      <Edge From="25" To="26" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
