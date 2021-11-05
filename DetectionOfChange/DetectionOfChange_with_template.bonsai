@@ -46,7 +46,7 @@
                 <gl:WrapT>Repeat</gl:WrapT>
                 <gl:MinFilter>Linear</gl:MinFilter>
                 <gl:MagFilter>Linear</gl:MagFilter>
-                <gl:FileName>stimuli\images\16052.tiff</gl:FileName>
+                <gl:FileName>stimuli\images\35008.tiff</gl:FileName>
                 <gl:ColorType>Unchanged</gl:ColorType>
                 <gl:FlipMode>Vertical</gl:FlipMode>
               </Combinator>
@@ -101,9 +101,7 @@
         <Selector xsi:nil="true" />
         <Name>Allen.Log</Name>
       </Expression>
-      <Expression xsi:type="Disable">
-        <Builder xsi:type="IncludeWorkflow" Path="Extensions\Allen.OutputReward.bonsai" />
-      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Extensions\Allen.OutputReward.bonsai" />
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="num:CreateRandom">
           <num:Seed xsi:nil="true" />
@@ -171,7 +169,7 @@
               </PropertyMappings>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="BonVision:Logging.LogEvent.bonsai">
-              <Format>StartFlash - stimuli\images\8049.tiff</Format>
+              <Format>StartFlash - stimuli\images\35008.tiff</Format>
               <Selector xsi:nil="true" />
               <Name>Allen.Log</Name>
             </Expression>
@@ -955,6 +953,15 @@
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:Repeat" />
       </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>View</Name>
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Extensions\Allen.ReadWheel.bonsai" />
+      <Expression xsi:type="IncludeWorkflow" Path="BonVision:Logging.LogEvent.bonsai">
+        <Format>Wheel-{0}</Format>
+        <Selector>it</Selector>
+        <Name>Allen.Log</Name>
+      </Expression>
     </Nodes>
     <Edges>
       <Edge From="0" To="2" Label="Source2" />
@@ -983,6 +990,8 @@
       <Edge From="30" To="31" Label="Source1" />
       <Edge From="31" To="32" Label="Source1" />
       <Edge From="32" To="33" Label="Source1" />
+      <Edge From="34" To="35" Label="Source1" />
+      <Edge From="35" To="36" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
