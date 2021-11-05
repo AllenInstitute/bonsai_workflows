@@ -15,7 +15,7 @@ processing pipeline in the context of a behavior pipeline. This document is aime
 neuro-scientists as well as external contributors and users of the Allen Institute OpenScope project. External teams can 
 refer to this document to understand underlying data structure necessary to allow generation of NWB files from Bonsai files. 
 We aim to provide sufficients details so that future experiments using the OpenScope pipeline can minimize delays in generating
-standardized NWB files. This document is a living document that will updated as this process is refined to provide the most up-to-date
+standardized NWB files. This document is a living document that will be updated as this process is refined to provide the most up-to-date
 description of the current standard. 
 
 We describe two sets of files here:
