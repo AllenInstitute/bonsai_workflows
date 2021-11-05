@@ -40,19 +40,147 @@ be minor releases (ie. v1.X). When backward compatibility is broken, we will mak
 
 ## Standardized Bonsai worflow files
 
-Bonsai workflows are 
+To support the development of Bonsai worflows compatible with the Allen Institute hardware, we have developed an standardized Bonsai worflow. 
+This template is available on our public bonsai repository (LINK TO BE ADDED).
+Here is screenshow of this template: 
+
+<img src="../Images/bonsai_template.PNG" />
+
+All Allen internal components are labelled Allen.XXX. Those components will be available through an installable Bonsai package. 
+Your behavior should use those components to design its task. The underlying code of those components is visible to you but 
+you are expected NOT to modify these to guarantee a fully functional task. You can essentially connect newer object to them. 
+Bonsai inherent subscription system allows to assemble complex behaviors using those components without having to worry about 
+whether your task will be compatible with the Allen Institute hardware pipeline. 
+
+We describe below a subset of these components. They are also documents within Bonsai. 
+
+<img src="../Images/init_view.PNG" />
+
+* Allen.InitView fully initializes the Allen Institute screen resouces and the associated rig geometry (including warping and gamma 
+calibration). The component outputs a view object that we link to a "BehaviorSubject". This view object can be re-used throughout your workflow 
+to trigger actions each time a frame is rendered.
+
+<img src="../Images/draw_photodiode.PNG" />
+
+* Allen.DrawPhotodiode renders a flickering black and white square on one corner of the screen and is triggered by the previously described
+View object. . This is used to monitor the
+performance of behavior software and hardware integration throughout the experiment. The square flickers at high speed and 
+is used by our data QC system to check for issues. All workflows should have this component. 
+
+<img src="../Images/draw_photodiode.PNG" />
+
+* Allen.DrawPhotodiode renders a flickering black and white square on one corner of the screen and is triggered by the previously described
+View object. . This is used to monitor the
+performance of behavior software and hardware integration throughout the experiment. The square flickers at high speed and 
+is used by our data QC system to check for issues. All workflows should have this component. 
+
+<img src="../Images/set_logger.PNG" />
+
+* This line sets the logging system. Bonsai standardized output file path is set in this components and should not be changed. 
+You are expected to use LogEvent to add any behavioral and stimulation information to this file. 
+
+<img src="../Images/read_lick.PNG" />
+
+* For behaviors that uses licking information, this is available through the Allen.InitLick component. You should also 
+log Licking events to the CSV file as shown here. The Lick object allows to easily broadcast Licking event throughout your workflow.
+
+<img src="../Images/output_reward.PNG" />
+
+* Once your behavior has decided that a reward should be delivered, you can use Allen.OutputReward to send an event to trigger a water 
+reward. We also require that this reward is logged through a connected LogEvent. 
+
+You can find an example of a fully functional detection of change task here (ADD LINK TO REPO).
+As you can see below, this task is using those standardized components without modifications. 
+
+<img src="../Images/detection_change_template.PNG" />
+
 ## Standardized Bonsai output files
 
-Blabla
+### behavior_log.csv
+To support the downsteam processing of Bonsai output files, any deployed workflow needs to output a standardized file called 
+called 'behavior_log.csv'. This file will store all critical events that a behavior workflow should monitor and record
+for analysis purposes. We provide an example of this file below. It contains a list of logged events that occurs during the 
+experiments. Frames are logged along with wheel data and all potential parameters used by the workflow. The file is saved 
+using Bonsai-BonVision Logging event object so it is easy to add new events to this log. We recommend to trigger saving on the 
+rendering View events for regular monitoring as is done for the wheel data. 
 
-## CSV format specification
+See an example content of this file below: 
 
-Blabla
+Frame,Timestamp,Value<br />
+0,0.0007598,Frame<br />
+0,0.0007598,Wheel-0.322677815948929<br />
+1,0.0293275,Frame<br />
+1,0.0293275,Wheel-0.354242268649043<br />
+2,0.0818739,Frame<br />
+2,0.0818739,Wheel-0.354242268649043<br />
+3,0.0845939,Frame<br />
+3,0.0845939,Wheel-0.071852322701296<br />
+4,0.1128293,Frame<br />
+4,0.1128293,Wheel-0.071852322701296<br />
+5,0.118089,Frame<br />
+5,0.118089,Wheel-0.267037062564416<br />
+6,0.1473926,Frame<br />
+6,0.1473926,Wheel-0.625842089590543<br />
+7,0.1515856,Frame<br />
+7,0.1515856,Wheel-0.462221802427537<br />
+8,0.17941,Frame<br />
+8,0.17941,Wheel-0.821026829453663<br />
+9,0.1850928,Frame<br />
+9,0.1850928,Wheel-0.657406542290657<br />
+10,0.2125413,Frame<br />
+10,0.2125413,Wheel-0.0162115693167837<br />
+11,0.2185863,Frame<br />
+11,0.2185863,Wheel-0.211396309179904<br />
+12,0.2462498,Frame<br />
+12,0.2462498,StartFlash - stimuli\images\28075.tiff<br />
+12,0.2462498,Wheel-0.960570815932271<br />
+13,0.3270612,Frame<br />
+13,0.3270612,Wheel-0.960570815932271<br />
+14,0.3300583,Frame<br />
+14,0.3300583,Wheel-0.319375842958398<br />
+15,0.3467705,Frame<br />
+15,0.3467705,Wheel-0.678180869984525<br />
+16,0.3634859,Frame<br />
+16,0.3634859,Wheel-0.514560582821519<br />
+17,0.3802153,Frame<br />
+17,0.3802153,Wheel-0.873365609847645<br />
+18,0.3969941,Frame<br />
+18,0.3969941,Wheel-0.232170636873772<br />
+19,0.4137105,Frame<br />
+19,0.4137105,Wheel-0.0685503497107655<br />
+20,0.4304448,Frame<br />
+20,0.4304448,Wheel-0.427355376736892<br />
+21,0.4471621,Frame<br />
+21,0.4471621,Wheel-0.263735089573886<br />
+22,0.4639271,Frame<br />
+22,0.4639271,Wheel-0.622540116600012<br />
+23,0.4806571,Frame<br />
+23,0.4806571,Wheel-0.817724856463133<br />
+24,0.4973976,Frame<br />
+24,0.4973976,EndFlash<br />
+24,0.4973976,Wheel-0.817724856463133<br />
+25,0.5144507,Frame<br />
+25,0.5144507,Wheel-0.176529883489259<br />
+26,0.5308489,Frame<br />
+26,0.5308489,Wheel-0.535334910515386<br />
+27,0.5475842,Frame<br />
+27,0.5475842,Wheel-0.730519650378506<br />
+28,0.5642998,Frame<br />
+28,0.5642998,Wheel-0.5668993632155<br />
+29,0.5810422,Frame<br />
+29,0.5810422,Wheel-0.925704390241627<br />
+30,0.5977656,Frame<br />
+30,0.5977656,Wheel-0.284509417267753<br />
+
+### stimuli/
+All external dependencies (images, movies, parameters) used by your workflows should be 
+saved under this folder. We will deploy this folder on each individual behavioral computer automatically. 
+If possible, we recommend storing those files on the versioned repository along with the worfklow file.
 
 ## CSV to SYNC conversion
 
-Blabla
+To be added
 
-## Examples
+## Conversion to NWB files
 
-Blabla
+To be added. 
