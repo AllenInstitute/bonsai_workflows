@@ -1,0 +1,375 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WorkflowBuilder Version="2.6.0"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xmlns:gl="clr-namespace:Bonsai.Shaders;assembly=Bonsai.Shaders"
+                 xmlns:gli="clr-namespace:Bonsai.Shaders.Input;assembly=Bonsai.Shaders"
+                 xmlns:p1="clr-namespace:BonVision.Collections;assembly=BonVision"
+                 xmlns:scr="clr-namespace:Bonsai.Scripting;assembly=Bonsai.Scripting"
+                 xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
+                 xmlns="https://bonsai-rx.org/2018/workflow">
+  <Workflow>
+    <Nodes>
+      <Expression xsi:type="IncludeWorkflow" Path="Extensions\Allen.InitView.bonsai" />
+      <Expression xsi:type="PublishSubject">
+        <Name>Draw</Name>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="gl:RenderFrame" />
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="BonVision:Logging.FrameEventLogger.bonsai">
+        <Name>Allen.Log</Name>
+        <Append>false</Append>
+        <Overwrite>true</Overwrite>
+        <Suffix>None</Suffix>
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="BonVision:Logging.LogEvent.bonsai">
+        <Format>Frame</Format>
+        <Selector xsi:nil="true" />
+        <Name>Allen.Log</Name>
+      </Expression>
+      <Expression xsi:type="GroupWorkflow">
+        <Name>ExperimentalWorkflow</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>Draw</Name>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Extensions\Allen.DrawPhotodiode.bonsai" />
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="gli:KeyPress">
+                <gli:KeyChar>115</gli:KeyChar>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="BooleanProperty">
+                <Value>true</Value>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="BehaviorSubject">
+              <Name>Sync1</Name>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="BonVision:Logging.LogEvent.bonsai">
+              <Format>Sync1</Format>
+              <Selector xsi:nil="true" />
+              <Name>Allen.Log</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>Sync1</Name>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="BooleanProperty">
+                <Value>false</Value>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Extensions\Allen.OutputSync.bonsai" />
+            <Expression xsi:type="SubscribeSubject">
+              <Name>Draw</Name>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Extensions\Allen.ReadWheel.bonsai" />
+            <Expression xsi:type="IncludeWorkflow" Path="BonVision:Logging.LogEvent.bonsai">
+              <Format>Wheel-{0}</Format>
+              <Selector>it</Selector>
+              <Name>Allen.Log</Name>
+            </Expression>
+            <Expression xsi:type="WorkflowInput">
+              <Name>Source1</Name>
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="p1:GratingsSpecification">
+                <p1:Trials>
+                  <p1:GratingParameters>
+                    <p1:Delay>1</p1:Delay>
+                    <p1:Duration>2</p1:Duration>
+                    <p1:Diameter>30</p1:Diameter>
+                    <p1:X>0</p1:X>
+                    <p1:Y>0</p1:Y>
+                    <p1:Contrast>1</p1:Contrast>
+                    <p1:SpatialFrequency>0.08</p1:SpatialFrequency>
+                    <p1:TemporalFrequency>2</p1:TemporalFrequency>
+                    <p1:Orientation>0</p1:Orientation>
+                  </p1:GratingParameters>
+                  <p1:GratingParameters>
+                    <p1:Delay>1</p1:Delay>
+                    <p1:Duration>2</p1:Duration>
+                    <p1:Diameter>30</p1:Diameter>
+                    <p1:X>0</p1:X>
+                    <p1:Y>0</p1:Y>
+                    <p1:Contrast>1</p1:Contrast>
+                    <p1:SpatialFrequency>0.08</p1:SpatialFrequency>
+                    <p1:TemporalFrequency>2</p1:TemporalFrequency>
+                    <p1:Orientation>45</p1:Orientation>
+                  </p1:GratingParameters>
+                  <p1:GratingParameters>
+                    <p1:Delay>1</p1:Delay>
+                    <p1:Duration>2</p1:Duration>
+                    <p1:Diameter>30</p1:Diameter>
+                    <p1:X>0</p1:X>
+                    <p1:Y>0</p1:Y>
+                    <p1:Contrast>1</p1:Contrast>
+                    <p1:SpatialFrequency>0.08</p1:SpatialFrequency>
+                    <p1:TemporalFrequency>2</p1:TemporalFrequency>
+                    <p1:Orientation>90</p1:Orientation>
+                  </p1:GratingParameters>
+                  <p1:GratingParameters>
+                    <p1:Delay>1</p1:Delay>
+                    <p1:Duration>2</p1:Duration>
+                    <p1:Diameter>30</p1:Diameter>
+                    <p1:X>0</p1:X>
+                    <p1:Y>0</p1:Y>
+                    <p1:Contrast>1</p1:Contrast>
+                    <p1:SpatialFrequency>0.08</p1:SpatialFrequency>
+                    <p1:TemporalFrequency>2</p1:TemporalFrequency>
+                    <p1:Orientation>135</p1:Orientation>
+                  </p1:GratingParameters>
+                  <p1:GratingParameters>
+                    <p1:Delay>1</p1:Delay>
+                    <p1:Duration>2</p1:Duration>
+                    <p1:Diameter>30</p1:Diameter>
+                    <p1:X>0</p1:X>
+                    <p1:Y>0</p1:Y>
+                    <p1:Contrast>1</p1:Contrast>
+                    <p1:SpatialFrequency>0.08</p1:SpatialFrequency>
+                    <p1:TemporalFrequency>2</p1:TemporalFrequency>
+                    <p1:Orientation>180</p1:Orientation>
+                  </p1:GratingParameters>
+                  <p1:GratingParameters>
+                    <p1:Delay>1</p1:Delay>
+                    <p1:Duration>2</p1:Duration>
+                    <p1:Diameter>30</p1:Diameter>
+                    <p1:X>0</p1:X>
+                    <p1:Y>0</p1:Y>
+                    <p1:Contrast>1</p1:Contrast>
+                    <p1:SpatialFrequency>0.08</p1:SpatialFrequency>
+                    <p1:TemporalFrequency>2</p1:TemporalFrequency>
+                    <p1:Orientation>215</p1:Orientation>
+                  </p1:GratingParameters>
+                  <p1:GratingParameters>
+                    <p1:Delay>1</p1:Delay>
+                    <p1:Duration>2</p1:Duration>
+                    <p1:Diameter>30</p1:Diameter>
+                    <p1:X>0</p1:X>
+                    <p1:Y>0</p1:Y>
+                    <p1:Contrast>1</p1:Contrast>
+                    <p1:SpatialFrequency>0.08</p1:SpatialFrequency>
+                    <p1:TemporalFrequency>2</p1:TemporalFrequency>
+                    <p1:Orientation>270</p1:Orientation>
+                  </p1:GratingParameters>
+                  <p1:GratingParameters>
+                    <p1:Delay>1</p1:Delay>
+                    <p1:Duration>2</p1:Duration>
+                    <p1:Diameter>30</p1:Diameter>
+                    <p1:X>0</p1:X>
+                    <p1:Y>0</p1:Y>
+                    <p1:Contrast>1</p1:Contrast>
+                    <p1:SpatialFrequency>0.08</p1:SpatialFrequency>
+                    <p1:TemporalFrequency>2</p1:TemporalFrequency>
+                    <p1:Orientation>315</p1:Orientation>
+                  </p1:GratingParameters>
+                  <p1:GratingParameters>
+                    <p1:Delay>1</p1:Delay>
+                    <p1:Duration>2</p1:Duration>
+                    <p1:Diameter>30</p1:Diameter>
+                    <p1:X>0</p1:X>
+                    <p1:Y>0</p1:Y>
+                    <p1:Contrast>0</p1:Contrast>
+                    <p1:SpatialFrequency>2</p1:SpatialFrequency>
+                    <p1:TemporalFrequency>2</p1:TemporalFrequency>
+                    <p1:Orientation>0</p1:Orientation>
+                  </p1:GratingParameters>
+                </p1:Trials>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="p1:CreateGratingTrial">
+                <p1:Delay>0</p1:Delay>
+                <p1:Duration>1</p1:Duration>
+                <p1:Diameter>30</p1:Diameter>
+                <p1:X>0</p1:X>
+                <p1:Y>0</p1:Y>
+                <p1:Contrast>1</p1:Contrast>
+                <p1:SpatialFrequency>10</p1:SpatialFrequency>
+                <p1:TemporalFrequency>0</p1:TemporalFrequency>
+                <p1:Orientation>0</p1:Orientation>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Delay">
+                <rx:DueTime>PT5S</rx:DueTime>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="CreateObservable">
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="WorkflowInput">
+                    <Name>Source1</Name>
+                  </Expression>
+                  <Expression xsi:type="AsyncSubject">
+                    <Name>Parameters</Name>
+                  </Expression>
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>Draw</Name>
+                  </Expression>
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>Parameters</Name>
+                  </Expression>
+                  <Expression xsi:type="PropertyMapping">
+                    <PropertyMappings>
+                      <Property Name="LocationX" Selector="X" />
+                      <Property Name="LocationY" Selector="Y" />
+                      <Property Name="Angle" Selector="Orientation" />
+                      <Property Name="SpatialFrequency" Selector="SpatialFrequency" />
+                      <Property Name="TemporalFrequency" Selector="TemporalFrequency" />
+                      <Property Name="Contrast" Selector="Contrast" />
+                      <Property Name="ExtentX" Selector="Diameter" />
+                      <Property Name="ExtentY" Selector="Diameter" />
+                    </PropertyMappings>
+                  </Expression>
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>Parameters</Name>
+                  </Expression>
+                  <Expression xsi:type="IncludeWorkflow" Path="BonVision:Logging.LogEvent.bonsai">
+                    <Format>StartGrating-SF-{0}-TF{1}-Ori-{2}-Contr-{3}</Format>
+                    <Selector>SpatialFrequency,TemporalFrequency,Orientation,Contrast</Selector>
+                    <Name>Allen.Log</Name>
+                  </Expression>
+                  <Expression xsi:type="scr:ExpressionTransform">
+                    <scr:Expression>TimeSpan.FromSeconds(Duration)</scr:Expression>
+                  </Expression>
+                  <Expression xsi:type="PropertyMapping">
+                    <PropertyMappings>
+                      <Property Name="DueTime" />
+                    </PropertyMappings>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="gl:Timer">
+                      <gl:DueTime>PT2S</gl:DueTime>
+                    </Combinator>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="gl:SampleOnRenderFrame" />
+                  </Expression>
+                  <Expression xsi:type="IncludeWorkflow" Path="BonVision:Logging.LogEvent.bonsai">
+                    <Format>EndGrating</Format>
+                    <Selector xsi:nil="true" />
+                    <Name>Allen.Log</Name>
+                  </Expression>
+                  <Expression xsi:type="ExternalizedMapping">
+                    <Property Name="Phase" />
+                    <Property Name="SquareWave" />
+                    <Property Name="Radius" />
+                    <Property Name="Aperture" />
+                    <Property Name="Opacity" />
+                  </Expression>
+                  <Expression xsi:type="IncludeWorkflow" Path="BonVision:Primitives.DrawGratings.bonsai">
+                    <LocationX>0</LocationX>
+                    <LocationY>0</LocationY>
+                    <Layer>0</Layer>
+                    <Angle>180</Angle>
+                    <SpatialFrequency>0.08</SpatialFrequency>
+                    <TemporalFrequency>2</TemporalFrequency>
+                    <Phase>0</Phase>
+                    <SquareWave>false</SquareWave>
+                    <Contrast>1</Contrast>
+                    <DutyCycle xsi:nil="true" />
+                    <Radius>1</Radius>
+                    <Aperture>0</Aperture>
+                    <Opacity>1</Opacity>
+                    <ExtentX>30</ExtentX>
+                    <ExtentY>30</ExtentY>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:TakeUntil" />
+                  </Expression>
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>Parameters</Name>
+                  </Expression>
+                  <Expression xsi:type="scr:ExpressionTransform">
+                    <scr:Expression>TimeSpan.FromSeconds(Delay)</scr:Expression>
+                  </Expression>
+                  <Expression xsi:type="PropertyMapping">
+                    <PropertyMappings>
+                      <Property Name="DueTime" />
+                    </PropertyMappings>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="gl:Timer">
+                      <gl:DueTime>PT1S</gl:DueTime>
+                    </Combinator>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:SubscribeWhen" />
+                  </Expression>
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="2" To="13" Label="Source1" />
+                  <Edge From="3" To="4" Label="Source1" />
+                  <Edge From="4" To="13" Label="Source2" />
+                  <Edge From="5" To="6" Label="Source1" />
+                  <Edge From="6" To="7" Label="Source1" />
+                  <Edge From="7" To="8" Label="Source1" />
+                  <Edge From="8" To="9" Label="Source1" />
+                  <Edge From="9" To="10" Label="Source1" />
+                  <Edge From="10" To="11" Label="Source1" />
+                  <Edge From="11" To="14" Label="Source2" />
+                  <Edge From="12" To="13" Label="Source3" />
+                  <Edge From="13" To="14" Label="Source1" />
+                  <Edge From="14" To="19" Label="Source1" />
+                  <Edge From="15" To="16" Label="Source1" />
+                  <Edge From="16" To="17" Label="Source1" />
+                  <Edge From="17" To="18" Label="Source1" />
+                  <Edge From="18" To="19" Label="Source2" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Concat" />
+            </Expression>
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="1" Label="Source1" />
+            <Edge From="2" To="3" Label="Source1" />
+            <Edge From="3" To="4" Label="Source1" />
+            <Edge From="4" To="5" Label="Source1" />
+            <Edge From="6" To="7" Label="Source1" />
+            <Edge From="7" To="8" Label="Source1" />
+            <Edge From="9" To="10" Label="Source1" />
+            <Edge From="10" To="11" Label="Source1" />
+            <Edge From="12" To="13" Label="Source1" />
+            <Edge From="14" To="15" Label="Source1" />
+            <Edge From="15" To="16" Label="Source1" />
+            <Edge From="16" To="17" Label="Source1" />
+            <Edge From="17" To="18" Label="Source1" />
+          </Edges>
+        </Workflow>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="gl:Timer">
+          <gl:DueTime>PT20S</gl:DueTime>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Extensions\Allen.End.bonsai" />
+      <Expression xsi:type="IncludeWorkflow" Path="BonVision:Logging.LogEvent.bonsai">
+        <Format>EndFrame</Format>
+        <Selector xsi:nil="true" />
+        <Name>Allen.Log</Name>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:TakeUntil" />
+      </Expression>
+      <Expression xsi:type="WorkflowOutput" />
+    </Nodes>
+    <Edges>
+      <Edge From="0" To="1" Label="Source1" />
+      <Edge From="2" To="3" Label="Source1" />
+      <Edge From="3" To="4" Label="Source1" />
+      <Edge From="4" To="5" Label="Source1" />
+      <Edge From="5" To="9" Label="Source1" />
+      <Edge From="6" To="7" Label="Source1" />
+      <Edge From="7" To="8" Label="Source1" />
+      <Edge From="8" To="9" Label="Source2" />
+      <Edge From="9" To="10" Label="Source1" />
+    </Edges>
+  </Workflow>
+</WorkflowBuilder>

@@ -15,7 +15,7 @@ processing pipeline in the context of a behavior pipeline. This document is aime
 neuro-scientists as well as external contributors and users of the Allen Institute OpenScope project. External teams can 
 refer to this document to understand underlying data structure necessary to allow generation of NWB files from Bonsai files. 
 We aim to provide sufficients details so that future experiments using the OpenScope pipeline can minimize delays in generating
-standardized NWB files. This document is a living document that will updated as this process is refined to provide the most up-to-date
+standardized NWB files. This document is a living document that will be updated as this process is refined to provide the most up-to-date
 description of the current standard. 
 
 We describe two sets of files here:
@@ -48,11 +48,11 @@ Here is screenshow of this template:
 
 All Allen internal components are labelled Allen.XXX. Those components will be available through an installable Bonsai package. 
 Your behavior should use those components to design its task. The underlying code of those components is visible to you but 
-you are expected NOT to modify these to guarantee a fully functional task. You can essentially connect newer object to them. 
-Bonsai inherent subscription system allows to assemble complex behaviors using those components without having to worry about 
+you are expected NOT to modify these to guarantee a fully functional task. You can essentially connect newer objects to them. 
+Bonsai's inherent subscription system allows for assembly of complex behaviors using those components without having to worry about 
 whether your task will be compatible with the Allen Institute hardware pipeline. 
 
-We describe below a subset of these components. They are also documents within Bonsai. 
+We describe below a subset of these components. They are also documented within Bonsai. 
 
 <img src="../Images/init_view.PNG" />
 
@@ -67,22 +67,15 @@ View object. . This is used to monitor the
 performance of behavior software and hardware integration throughout the experiment. The square flickers at high speed and 
 is used by our data QC system to check for issues. All workflows should have this component. 
 
-<img src="../Images/draw_photodiode.PNG" />
-
-* Allen.DrawPhotodiode renders a flickering black and white square on one corner of the screen and is triggered by the previously described
-View object. . This is used to monitor the
-performance of behavior software and hardware integration throughout the experiment. The square flickers at high speed and 
-is used by our data QC system to check for issues. All workflows should have this component. 
-
 <img src="../Images/set_logger.PNG" />
 
-* This line sets the logging system. Bonsai standardized output file path is set in this components and should not be changed. 
+* This line sets up the logging system. Bonsai's standardized output file path is set in this component and should not be changed. 
 You are expected to use LogEvent to add any behavioral and stimulation information to this file. 
 
 <img src="../Images/read_lick.PNG" />
 
 * For behaviors that uses licking information, this is available through the Allen.InitLick component. You should also 
-log Licking events to the CSV file as shown here. The Lick object allows to easily broadcast Licking event throughout your workflow.
+log Licking events to the CSV file as shown here. The Lick object allows you to easily broadcast Licking events throughout your workflow.
 
 <img src="../Images/output_reward.PNG" />
 
