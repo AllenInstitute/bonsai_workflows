@@ -44,13 +44,17 @@ To support the development of Bonsai worflows compatible with the Allen Institut
 This template is available on our public bonsai repository (LINK TO BE ADDED).
 Here is screenshow of this template: 
 
-<img src="../Images/bonsai_template.PNG" />
+<img src="../Images/overall_workflow.PNG" />
 
 All Allen internal components are labelled Allen.XXX. Those components will be available through an installable Bonsai package. 
 Your behavior should use those components to design its task. The underlying code of those components is visible to you but 
 you are expected NOT to modify these to guarantee a fully functional task. You can essentially connect newer objects to them. 
 Bonsai's inherent subscription system allows for assembly of complex behaviors using those components without having to worry about 
 whether your task will be compatible with the Allen Institute hardware pipeline. 
+
+The Timer object on the main workflow determines the total duration of your session and will trigger logging an end frame. Modify the value of the Timer to specify this value. You are expected to modify the inside of "ExperimentalWorklow" group. When you open the content of this GroupWorflow, you should see the following in the template file: 
+
+<img src="../Images/behavior_workflow.PNG" />
 
 We describe below a subset of these components. They are also documented within Bonsai. 
 
