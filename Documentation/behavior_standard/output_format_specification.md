@@ -52,7 +52,9 @@ you are expected NOT to modify these to guarantee a fully functional task. You c
 Bonsai's inherent subscription system allows for assembly of complex behaviors using those components without having to worry about 
 whether your task will be compatible with the Allen Institute hardware pipeline. 
 
-The Timer object on the main workflow determines the total duration of your session and will trigger logging an end frame. Modify the value of the Timer to specify this value. You are expected to modify the inside of "ExperimentalWorklow" group. When you open the content of this GroupWorflow, you should see the following in the template file: 
+The Timer object on the main workflow determines the total duration of your session and will trigger logging an end frame. Modify the value of the Timer to specify this value. 
+
+To implement your task logic, you are expected to modify the inside of "ExperimentalWorklow" group. When you open the content of this GroupWorflow, you should see the following in the template file: 
 
 <img src="../Images/behavior_workflow.PNG" />
 
