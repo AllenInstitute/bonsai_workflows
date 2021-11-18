@@ -96,81 +96,70 @@ As you can see below, this task is using those standardized components without m
 
 ## Standardized Bonsai output files
 
-### behavior_log.csv
+### bonsai_event_log.csv
 To support the downsteam processing of Bonsai output files, any deployed workflow needs to output a standardized file called 
-called 'behavior_log.csv'. This file will store all critical events that a behavior workflow should monitor and record
+called 'bonsai_event_log.csv'. This file will store all critical events that a behavior workflow should monitor and record
 for analysis purposes. We provide an example of this file below. It contains a list of logged events that occurs during the 
-experiments. Frames are logged along with wheel data and all potential parameters used by the workflow. The file is saved 
+experiments. Each event is encoded as a local json object to facilitate parsing. 
+Frames should be logged along with wheel data and all potential parameters used by the workflow. The file is saved 
 using Bonsai-BonVision Logging event object so it is easy to add new events to this log. We recommend to trigger saving on the 
 rendering View events for regular monitoring as is done for the wheel data. 
+To output such event, you just need to use the LogEvent object in Bonsai and enter in the Format field a string like so:
+{{"event":"Wheel", "speed":{0} }}
+Notice how the curly brackets are doubled except for objects like {0}. {0}, {1}, {2}... objects are replaced with the value of 
+selected objects in the LogEvent selector. 
 
 See an example content of this file below: 
 
 Frame,Timestamp,Value<br />
-0,0.0007598,Frame<br />
-0,0.0007598,Wheel-0.322677815948929<br />
-1,0.0293275,Frame<br />
-1,0.0293275,Wheel-0.354242268649043<br />
-2,0.0818739,Frame<br />
-2,0.0818739,Wheel-0.354242268649043<br />
-3,0.0845939,Frame<br />
-3,0.0845939,Wheel-0.071852322701296<br />
-4,0.1128293,Frame<br />
-4,0.1128293,Wheel-0.071852322701296<br />
-5,0.118089,Frame<br />
-5,0.118089,Wheel-0.267037062564416<br />
-6,0.1473926,Frame<br />
-6,0.1473926,Wheel-0.625842089590543<br />
-7,0.1515856,Frame<br />
-7,0.1515856,Wheel-0.462221802427537<br />
-8,0.17941,Frame<br />
-8,0.17941,Wheel-0.821026829453663<br />
-9,0.1850928,Frame<br />
-9,0.1850928,Wheel-0.657406542290657<br />
-10,0.2125413,Frame<br />
-10,0.2125413,Wheel-0.0162115693167837<br />
-11,0.2185863,Frame<br />
-11,0.2185863,Wheel-0.211396309179904<br />
-12,0.2462498,Frame<br />
-12,0.2462498,StartFlash - stimuli\images\28075.tiff<br />
-12,0.2462498,Wheel-0.960570815932271<br />
-13,0.3270612,Frame<br />
-13,0.3270612,Wheel-0.960570815932271<br />
-14,0.3300583,Frame<br />
-14,0.3300583,Wheel-0.319375842958398<br />
-15,0.3467705,Frame<br />
-15,0.3467705,Wheel-0.678180869984525<br />
-16,0.3634859,Frame<br />
-16,0.3634859,Wheel-0.514560582821519<br />
-17,0.3802153,Frame<br />
-17,0.3802153,Wheel-0.873365609847645<br />
-18,0.3969941,Frame<br />
-18,0.3969941,Wheel-0.232170636873772<br />
-19,0.4137105,Frame<br />
-19,0.4137105,Wheel-0.0685503497107655<br />
-20,0.4304448,Frame<br />
-20,0.4304448,Wheel-0.427355376736892<br />
-21,0.4471621,Frame<br />
-21,0.4471621,Wheel-0.263735089573886<br />
-22,0.4639271,Frame<br />
-22,0.4639271,Wheel-0.622540116600012<br />
-23,0.4806571,Frame<br />
-23,0.4806571,Wheel-0.817724856463133<br />
-24,0.4973976,Frame<br />
-24,0.4973976,EndFlash<br />
-24,0.4973976,Wheel-0.817724856463133<br />
-25,0.5144507,Frame<br />
-25,0.5144507,Wheel-0.176529883489259<br />
-26,0.5308489,Frame<br />
-26,0.5308489,Wheel-0.535334910515386<br />
-27,0.5475842,Frame<br />
-27,0.5475842,Wheel-0.730519650378506<br />
-28,0.5642998,Frame<br />
-28,0.5642998,Wheel-0.5668993632155<br />
-29,0.5810422,Frame<br />
-29,0.5810422,Wheel-0.925704390241627<br />
-30,0.5977656,Frame<br />
-30,0.5977656,Wheel-0.284509417267753<br />
+0,0.0022177,{"event": "Frame"}<br />
+0,0.0022177,{"event":"Wheel", "speed":0.16560677074157}<br />
+1,0.0518899,{"event": "Frame"}<br />
+1,0.0518899,{"event":"Wheel", "speed":0.16560677074157}<br />
+2,0.0674353,{"event": "Frame"}<br />
+2,0.0674353,{"event":"Wheel", "speed":0.524411797767697}<br />
+3,0.0840284,{"event": "Frame"}<br />
+3,0.0840284,{"event":"Wheel", "speed":0.360791510604691}<br />
+4,0.1007981,{"event": "Frame"}<br />
+4,0.1007981,{"event":"Wheel", "speed":0.719596537630817}<br />
+5,0.1175459,{"event": "Frame"}<br />
+5,0.1175459,{"event":"Wheel", "speed":0.555976250467811}<br />
+6,0.1343701,{"event": "Frame"}<br />
+6,0.1343701,{"event":"Wheel", "speed":0.914781277493938}<br />
+7,0.1512397,{"event": "Frame"}<br />
+7,0.1512397,{"event":"Wheel", "speed":0.109966017357058}<br />
+8,0.1681271,{"event": "Frame"}<br />
+8,0.1681271,{"event":"Wheel", "speed":0.468771044383185}<br />
+9,0.1849281,{"event": "Frame"}<br />
+9,0.1849281,{"event":"Wheel", "speed":0.468771044383185}<br />
+10,0.2017817,{"event": "Frame"}<br />
+10,0.2017817,{"event":"Wheel", "speed":0.663955784246305}<br />
+11,0.2185359,{"event": "Frame"}<br />
+11,0.2185359,{"event":"Wheel", "speed":0.0227608112724315}<br />
+12,0.2353679,{"event": "Frame"}<br />
+12,0.2353679,{"event":"Wheel", "speed":0.859140524109425}<br />
+13,0.2521908,{"event": "Frame"}<br />
+13,0.2521908,{"event":"Wheel", "speed":0.859140524109425}<br />
+14,0.2690172,{"event": "Frame"}<br />
+14,0.2690172,{"event":"Wheel", "speed":0.576750578161679}<br />
+15,0.2858793,{"event": "Frame"}<br />
+15,0.2858793,{"event":"Wheel", "speed":0.413130290998672}<br />
+16,0.3026906,{"event": "Frame"}<br />
+16,0.3026906,{"event":"Wheel", "speed":0.771935318024799}<br />
+17,0.3195676,{"event": "Frame"}<br />
+17,0.3195676,{"event":"Wheel", "speed":0.130740345050926}<br />
+18,0.3364116,{"event": "Frame"}<br />
+18,0.3364116,{"event":"Wheel", "speed":0.325925084914046}<br />
+19,0.3532341,{"event": "Frame"}<br />
+19,0.3532341,{"event":"Wheel", "speed":0.325925084914046}<br />
+20,0.3700864,{"event": "Frame"}<br />
+20,0.3700864,{"event":"Wheel", "speed":0.521109824777166}<br />
+21,0.3869002,{"event": "Frame"}<br />
+21,0.3869002,{"event":"Wheel", "speed":0.521109824777166}<br />
+22,0.4036849,{"event": "Frame"}<br />
+22,0.4036849,{"event":"Wheel", "speed":0.716294564640287}<br />
+23,0.4204596,{"event": "Frame"}<br />
+
 
 ### stimuli/
 All external dependencies (images, movies, parameters) used by your workflows should be 
