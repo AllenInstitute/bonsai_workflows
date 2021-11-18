@@ -40,7 +40,7 @@ be minor releases (ie. v1.X). When backward compatibility is broken, we will mak
 
 ## Standardized Bonsai worflow files
 
-To support the development of Bonsai worflows compatible with the Allen Institute hardware, we have developed an standardized Bonsai worflow. 
+To support the development of Bonsai worflows compatible with the Allen Institute hardware, we have developed a standardized Bonsai worflow. 
 This template is available on our public bonsai repository (LINK TO BE ADDED).
 Here is screenshow of this template: 
 
