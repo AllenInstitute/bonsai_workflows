@@ -18,19 +18,8 @@
           <Property Name="publish_port" />
         </PropertyMappings>
       </Expression>
-      <Expression xsi:type="MemberSelector">
-        <Selector>DetectionOfChange.max_task_duration_ms</Selector>
-      </Expression>
-      <Expression xsi:type="PropertyMapping">
-        <PropertyMappings>
-          <Property Name="DueTime" />
-        </PropertyMappings>
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="rx:Timer">
-          <rx:DueTime>PT0S</rx:DueTime>
-          <rx:Period>PT0S</rx:Period>
-        </Combinator>
+      <Expression xsi:type="WorkflowInput">
+        <Name>Source1</Name>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="BooleanProperty">
@@ -44,28 +33,20 @@
       </Expression>
       <Expression xsi:type="WorkflowOutput" />
       <Expression xsi:type="Combinator">
-        <Combinator xsi:type="mx:DigitalOutput">
-          <mx:Channels>
-            <mx:DigitalOutputChannelConfiguration>
-              <mx:ChannelName />
-              <mx:Grouping>OneChannelForEachLine</mx:Grouping>
-              <mx:Lines>Dev0/port0/line7</mx:Lines>
-            </mx:DigitalOutputChannelConfiguration>
-          </mx:Channels>
-        </Combinator>
-      </Expression>
-      <Expression xsi:type="Combinator">
         <Combinator xsi:type="BooleanProperty">
           <Value>true</Value>
         </Combinator>
       </Expression>
       <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:Merge" />
+      </Expression>
+      <Expression xsi:type="Combinator">
         <Combinator xsi:type="mx:DigitalOutput">
           <mx:Channels>
             <mx:DigitalOutputChannelConfiguration>
               <mx:ChannelName />
               <mx:Grouping>OneChannelForEachLine</mx:Grouping>
-              <mx:Lines>Dev0/port0/line7</mx:Lines>
+              <mx:Lines>Dev1/port1/line7</mx:Lines>
             </mx:DigitalOutputChannelConfiguration>
           </mx:Channels>
         </Combinator>
@@ -73,16 +54,14 @@
     </Nodes>
     <Edges>
       <Edge From="0" To="1" Label="Source1" />
-      <Edge From="0" To="3" Label="Source1" />
       <Edge From="1" To="2" Label="Source1" />
-      <Edge From="2" To="7" Label="Source2" />
+      <Edge From="2" To="5" Label="Source2" />
       <Edge From="3" To="4" Label="Source1" />
       <Edge From="4" To="5" Label="Source1" />
       <Edge From="5" To="6" Label="Source1" />
-      <Edge From="6" To="7" Label="Source1" />
+      <Edge From="5" To="8" Label="Source2" />
       <Edge From="7" To="8" Label="Source1" />
-      <Edge From="7" To="9" Label="Source1" />
-      <Edge From="10" To="11" Label="Source1" />
+      <Edge From="8" To="9" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
