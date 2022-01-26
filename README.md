@@ -1,7 +1,7 @@
 Bonsai Workflows
 ========================
 
-A collection of bonsai workflows (https://bonsai-rx.org) developed at the Allen Institute as well as analysis, data and report documenting the integration of Bonsai with the Allen Institute observatory pipeline. 
+A collection of bonsai workflows (https://bonsai-rx.org) developed at the Allen Institute as well as analysis, data and reports documenting the integration of Bonsai with the Allen Institute observatory pipeline. 
 
 Level of support
 ========================
