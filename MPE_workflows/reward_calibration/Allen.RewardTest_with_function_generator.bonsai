@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WorkflowBuilder Version="2.6.3"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
+                 xmlns:gl="clr-namespace:Bonsai.Shaders;assembly=Bonsai.Shaders"
+                 xmlns:mx="clr-namespace:Bonsai.DAQmx;assembly=Bonsai.DAQmx"
+                 xmlns:res="clr-namespace:Bonsai.Resources;assembly=Bonsai.System"
+                 xmlns:dsp="clr-namespace:Bonsai.Dsp;assembly=Bonsai.Dsp"
+                 xmlns="https://bonsai-rx.org/2018/workflow">
+  <Workflow>
+    <Nodes>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:Timer">
+          <rx:DueTime>PT0S</rx:DueTime>
+          <rx:Period>PT1M40.5S</rx:Period>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="gl:Timer">
+          <gl:DueTime>PT0S</gl:DueTime>
+          <gl:Period>PT1S</gl:Period>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="BooleanProperty">
+          <Value>true</Value>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="Combinator">
+          <Combinator xsi:type="mx:DigitalOutput">
+            <mx:Channels>
+              <mx:DigitalOutputChannelConfiguration>
+                <mx:ChannelName>DigitalOut</mx:ChannelName>
+                <mx:Grouping>OneChannelForEachLine</mx:Grouping>
+                <mx:Lines>Dev0/port0/line7</mx:Lines>
+              </mx:DigitalOutputChannelConfiguration>
+            </mx:Channels>
+          </Combinator>
+        </Builder>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="gl:Delay">
+          <gl:DueTime>PT0.0972697S</gl:DueTime>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:TimeInterval" />
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="BooleanProperty">
+          <Value>false</Value>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="Combinator">
+          <Combinator xsi:type="mx:DigitalOutput">
+            <mx:Channels>
+              <mx:DigitalOutputChannelConfiguration>
+                <mx:ChannelName>DigitalOut</mx:ChannelName>
+                <mx:Grouping>OneChannelForEachLine</mx:Grouping>
+                <mx:Lines>Dev0/port0/line7</mx:Lines>
+              </mx:DigitalOutputChannelConfiguration>
+            </mx:Channels>
+          </Combinator>
+        </Builder>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:OnErrorResumeNext" />
+      </Expression>
+      <Expression xsi:type="WorkflowOutput" />
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:TakeUntil" />
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="gl:CreateWindow">
+          <gl:Width>768</gl:Width>
+          <gl:Height>480</gl:Height>
+          <gl:VSync>On</gl:VSync>
+          <gl:SwapSync>false</gl:SwapSync>
+          <gl:ClearColor>Black</gl:ClearColor>
+          <gl:ClearMask>DepthBufferBit ColorBufferBit</gl:ClearMask>
+          <gl:CursorVisible>true</gl:CursorVisible>
+          <gl:Location xsi:nil="true" />
+          <gl:WindowBorder>Resizable</gl:WindowBorder>
+          <gl:WindowState>Normal</gl:WindowState>
+          <gl:DisplayDevice>Primary</gl:DisplayDevice>
+          <gl:TargetRenderFrequency>30</gl:TargetRenderFrequency>
+          <gl:TargetUpdateFrequency xsi:nil="true" />
+          <gl:RenderState />
+          <gl:GraphicsMode>
+            <gl:ColorFormat>
+              <gl:Red>8</gl:Red>
+              <gl:Green>8</gl:Green>
+              <gl:Blue>8</gl:Blue>
+              <gl:Alpha>8</gl:Alpha>
+            </gl:ColorFormat>
+            <gl:Depth>16</gl:Depth>
+            <gl:Stencil>0</gl:Stencil>
+            <gl:Samples>0</gl:Samples>
+            <gl:AccumulatorFormat>
+              <gl:Red>0</gl:Red>
+              <gl:Green>0</gl:Green>
+              <gl:Blue>0</gl:Blue>
+              <gl:Alpha>0</gl:Alpha>
+            </gl:AccumulatorFormat>
+            <gl:Buffers>2</gl:Buffers>
+            <gl:Stereo>false</gl:Stereo>
+          </gl:GraphicsMode>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="BonVision:Primitives.BonVisionResources.bonsai" />
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="res:LoadResources" />
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="dsp:FunctionGenerator">
+          <dsp:BufferLength>1000</dsp:BufferLength>
+          <dsp:Frequency>5</dsp:Frequency>
+          <dsp:Waveform>Square</dsp:Waveform>
+          <dsp:SampleRate>1000</dsp:SampleRate>
+          <dsp:Amplitude>1</dsp:Amplitude>
+          <dsp:Offset>0.5</dsp:Offset>
+          <dsp:Phase>0</dsp:Phase>
+        </Combinator>
+      </Expression>
+    </Nodes>
+    <Edges>
+      <Edge From="0" To="10" Label="Source2" />
+      <Edge From="1" To="2" Label="Source1" />
+      <Edge From="2" To="3" Label="Source1" />
+      <Edge From="3" To="4" Label="Source1" />
+      <Edge From="4" To="5" Label="Source1" />
+      <Edge From="5" To="6" Label="Source1" />
+      <Edge From="6" To="7" Label="Source1" />
+      <Edge From="7" To="8" Label="Source1" />
+      <Edge From="8" To="9" Label="Source1" />
+      <Edge From="8" To="10" Label="Source1" />
+      <Edge From="11" To="12" Label="Source1" />
+      <Edge From="12" To="13" Label="Source1" />
+    </Edges>
+  </Workflow>
+</WorkflowBuilder>
