@@ -46,7 +46,7 @@
                 <gl:WrapT>Repeat</gl:WrapT>
                 <gl:MinFilter>Linear</gl:MinFilter>
                 <gl:MagFilter>Linear</gl:MagFilter>
-                <gl:FileName>stimuli\images\28083.tiff</gl:FileName>
+                <gl:FileName>stimuli\images\8143.tiff</gl:FileName>
                 <gl:ColorType>Unchanged</gl:ColorType>
                 <gl:FlipMode>Vertical</gl:FlipMode>
               </Combinator>
@@ -105,8 +105,8 @@
         <Flow_x0020_Rate>1</Flow_x0020_Rate>
         <Value>0</Value>
       </Expression>
-      <Expression xsi:type="IncludeWorkflow" Path="..\MPE_workflows\Allen.OutputSync3.bonsai" />
       <Expression xsi:type="IncludeWorkflow" Path="..\MPE_workflows\Allen.OutputSync2.bonsai" />
+      <Expression xsi:type="IncludeWorkflow" Path="..\MPE_workflows\Allen.OutputSync3.bonsai" />
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="num:CreateRandom">
           <num:Seed xsi:nil="true" />
@@ -182,7 +182,7 @@
               </PropertyMappings>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="BonVision:Logging.LogEvent.bonsai">
-              <Format>StartFlash - stimuli\images\35008.tiff</Format>
+              <Format>StartFlash - stimuli\images\28083.tiff</Format>
               <Selector xsi:nil="true" />
               <Name>Allen.Log</Name>
             </Expression>
@@ -990,7 +990,7 @@
       <Edge From="10" To="11" Label="Source1" />
       <Edge From="11" To="12" Label="Source1" />
       <Edge From="12" To="13" Label="Source1" />
-      <Edge From="13" To="14" Label="Source1" />
+      <Edge From="12" To="14" Label="Source1" />
       <Edge From="16" To="17" Label="Source1" />
       <Edge From="18" To="19" Label="Source1" />
       <Edge From="20" To="21" Label="Source1" />

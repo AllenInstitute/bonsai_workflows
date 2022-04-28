@@ -21,7 +21,7 @@
             <mx:DigitalOutputChannelConfiguration>
               <mx:ChannelName>DigitalOut</mx:ChannelName>
               <mx:Grouping>OneChannelForEachLine</mx:Grouping>
-              <mx:Lines> Dev1/port1/line5</mx:Lines>
+              <mx:Lines> Dev1/port1/line7</mx:Lines>
             </mx:DigitalOutputChannelConfiguration>
           </mx:Channels>
         </Combinator>
@@ -55,7 +55,7 @@
             <mx:DigitalOutputChannelConfiguration>
               <mx:ChannelName>DigitalOut</mx:ChannelName>
               <mx:Grouping>OneChannelForEachLine</mx:Grouping>
-              <mx:Lines>Dev1/port1/line5</mx:Lines>
+              <mx:Lines>Dev1/port1/line7</mx:Lines>
             </mx:DigitalOutputChannelConfiguration>
           </mx:Channels>
         </Combinator>
