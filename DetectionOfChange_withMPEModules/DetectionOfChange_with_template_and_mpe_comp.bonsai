@@ -46,7 +46,7 @@
                 <gl:WrapT>Repeat</gl:WrapT>
                 <gl:MinFilter>Linear</gl:MinFilter>
                 <gl:MagFilter>Linear</gl:MagFilter>
-                <gl:FileName>stimuli\images\8068.tiff</gl:FileName>
+                <gl:FileName>stimuli\images\28083.tiff</gl:FileName>
                 <gl:ColorType>Unchanged</gl:ColorType>
                 <gl:FlipMode>Vertical</gl:FlipMode>
               </Combinator>
@@ -179,7 +179,7 @@
               </PropertyMappings>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="BonVision:Logging.LogEvent.bonsai">
-              <Format>StartFlash - stimuli\images\8068.tiff</Format>
+              <Format>StartFlash - stimuli\images\35008.tiff</Format>
               <Selector xsi:nil="true" />
               <Name>Allen.Log</Name>
             </Expression>
