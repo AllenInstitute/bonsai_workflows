@@ -105,6 +105,8 @@
         <Flow_x0020_Rate>1</Flow_x0020_Rate>
         <Value>0</Value>
       </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="..\MPE_workflows\Allen.OutputSync3.bonsai" />
+      <Expression xsi:type="IncludeWorkflow" Path="..\MPE_workflows\Allen.OutputSync2.bonsai" />
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="num:CreateRandom">
           <num:Seed xsi:nil="true" />
@@ -151,6 +153,7 @@
         <Selector xsi:nil="true" />
         <Name>Allen.Log</Name>
       </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="..\MPE_workflows\Allen.OutputSync1.bonsai" />
       <Expression xsi:type="SubscribeSubject">
         <Name>SelectedImages</Name>
       </Expression>
@@ -980,30 +983,33 @@
       <Edge From="3" To="4" Label="Source1" />
       <Edge From="4" To="5" Label="Source1" />
       <Edge From="6" To="7" Label="Source1" />
+      <Edge From="6" To="15" Label="Source1" />
       <Edge From="7" To="9" Label="Source2" />
       <Edge From="8" To="9" Label="Source1" />
       <Edge From="9" To="10" Label="Source1" />
       <Edge From="10" To="11" Label="Source1" />
       <Edge From="11" To="12" Label="Source1" />
       <Edge From="12" To="13" Label="Source1" />
-      <Edge From="14" To="15" Label="Source1" />
+      <Edge From="13" To="14" Label="Source1" />
       <Edge From="16" To="17" Label="Source1" />
       <Edge From="18" To="19" Label="Source1" />
-      <Edge From="20" To="23" Label="Source1" />
-      <Edge From="21" To="22" Label="Source1" />
-      <Edge From="22" To="23" Label="Source2" />
+      <Edge From="20" To="21" Label="Source1" />
+      <Edge From="22" To="25" Label="Source1" />
       <Edge From="23" To="24" Label="Source1" />
+      <Edge From="24" To="25" Label="Source2" />
       <Edge From="25" To="26" Label="Source1" />
-      <Edge From="26" To="27" Label="Source1" />
-      <Edge From="28" To="30" Label="Source1" />
-      <Edge From="29" To="30" Label="Source2" />
-      <Edge From="30" To="31" Label="Source1" />
-      <Edge From="31" To="32" Label="Source1" />
-      <Edge From="32" To="33" Label="Source1" />
+      <Edge From="27" To="28" Label="Source1" />
+      <Edge From="28" To="29" Label="Source1" />
+      <Edge From="29" To="30" Label="Source1" />
+      <Edge From="31" To="33" Label="Source1" />
+      <Edge From="32" To="33" Label="Source2" />
       <Edge From="33" To="34" Label="Source1" />
       <Edge From="34" To="35" Label="Source1" />
+      <Edge From="35" To="36" Label="Source1" />
       <Edge From="36" To="37" Label="Source1" />
       <Edge From="37" To="38" Label="Source1" />
+      <Edge From="39" To="40" Label="Source1" />
+      <Edge From="40" To="41" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
