@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<WorkflowBuilder Version="2.6.0"
+<WorkflowBuilder Version="2.6.3"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:gl="clr-namespace:Bonsai.Shaders;assembly=Bonsai.Shaders"
                  xmlns:res="clr-namespace:Bonsai.Resources;assembly=Bonsai.System"
@@ -20,7 +20,7 @@
           <gl:WindowState>Fullscreen</gl:WindowState>
           <gl:DisplayDevice>Primary</gl:DisplayDevice>
           <gl:TargetRenderFrequency>30</gl:TargetRenderFrequency>
-          <gl:TargetUpdateFrequency xsi:nil="true" />
+          <gl:TargetUpdateFrequency>480</gl:TargetUpdateFrequency>
           <gl:RenderState />
           <gl:GraphicsMode>
             <gl:ColorFormat>
@@ -61,6 +61,9 @@
         <ClearColor>Gray</ClearColor>
         <Width xsi:nil="true" />
         <Height xsi:nil="true" />
+        <RotationZ>0</RotationZ>
+        <RotationY>0</RotationY>
+        <RotationX>0</RotationX>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="BonVision:Environment.ViewWindow.bonsai">
         <Width>20</Width>

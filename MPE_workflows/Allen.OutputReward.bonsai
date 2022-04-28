@@ -1,9 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<WorkflowBuilder Version="2.6.1"
+<WorkflowBuilder Version="2.6.3"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:mx="clr-namespace:Bonsai.DAQmx;assembly=Bonsai.DAQmx"
-                 xmlns:p1="clr-namespace:MPE;assembly=MPEBonsai"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
+                 xmlns:p1="clr-namespace:MPE;assembly=MPEBonsai"
+                 xmlns:gl="clr-namespace:Bonsai.Shaders;assembly=Bonsai.Shaders"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
     <Nodes>
@@ -57,8 +58,8 @@
         </PropertyMappings>
       </Expression>
       <Expression xsi:type="Combinator">
-        <Combinator xsi:type="rx:Delay">
-          <rx:DueTime>PT0S</rx:DueTime>
+        <Combinator xsi:type="gl:Delay">
+          <gl:DueTime>PT0S</gl:DueTime>
         </Combinator>
       </Expression>
       <Expression xsi:type="Combinator">
