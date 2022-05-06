@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<WorkflowBuilder Version="2.6.3"
+<WorkflowBuilder Version="2.6.2"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:io="clr-namespace:Bonsai.IO;assembly=Bonsai.System"
                  xmlns:num="clr-namespace:Bonsai.Numerics;assembly=Bonsai.Numerics"
@@ -46,7 +46,7 @@
                 <gl:WrapT>Repeat</gl:WrapT>
                 <gl:MinFilter>Linear</gl:MinFilter>
                 <gl:MagFilter>Linear</gl:MagFilter>
-                <gl:FileName>stimuli\images\8143.tiff</gl:FileName>
+                <gl:FileName>stimuli\images\2092.tiff</gl:FileName>
                 <gl:ColorType>Unchanged</gl:ColorType>
                 <gl:FlipMode>Vertical</gl:FlipMode>
               </Combinator>
@@ -102,11 +102,12 @@
         <Name>Allen.Log</Name>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="..\MPE_workflows\Allen.OutputReward.bonsai">
-        <Flow_x0020_Rate>1</Flow_x0020_Rate>
-        <Value>0</Value>
+        <Water_x0020_Volume_x0020__x0028_mL_x0029_>0</Water_x0020_Volume_x0020__x0028_mL_x0029_>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="..\MPE_workflows\Allen.OutputSync2.bonsai" />
-      <Expression xsi:type="IncludeWorkflow" Path="..\MPE_workflows\Allen.OutputSync3.bonsai" />
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="IncludeWorkflow" Path="..\MPE_workflows\Allen.OutputSync3.bonsai" />
+      </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="num:CreateRandom">
           <num:Seed xsi:nil="true" />
@@ -137,13 +138,28 @@
         <Append>false</Append>
         <Overwrite>true</Overwrite>
         <Suffix>None</Suffix>
-        <FileName>C:\Users\jeromel\Documents\tmp_bonsai_tests\test.csv</FileName>
+        <FileName>c:\programdata\AIBS_MPE\bonsai_workflows\data\202256134545_bonsai_event_log.csv</FileName>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="BonVision:Logging.LogEvent.bonsai">
         <Format>Frame</Format>
         <Selector xsi:nil="true" />
         <Name>Allen.Log</Name>
       </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="gl:Timer">
+          <gl:DueTime>PT5S</gl:DueTime>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="..\MPE_workflows\Allen.End.bonsai" />
+      <Expression xsi:type="IncludeWorkflow" Path="BonVision:Logging.LogEvent.bonsai">
+        <Format>EndFrame</Format>
+        <Selector xsi:nil="true" />
+        <Name>Allen.Log</Name>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:TakeUntil" />
+      </Expression>
+      <Expression xsi:type="WorkflowOutput" />
       <Expression xsi:type="IncludeWorkflow" Path="..\MPE_workflows\Allen.InitLick.bonsai" />
       <Expression xsi:type="BehaviorSubject">
         <Name>Lick</Name>
@@ -966,13 +982,16 @@
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:Repeat" />
       </Expression>
-      <Expression xsi:type="SubscribeSubject">
-        <Name>View</Name>
-      </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="..\MPE_workflows\Allen.ReadWheel.bonsai" />
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="gl:RenderFrame" />
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:WithLatestFrom" />
+      </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="BonVision:Logging.LogEvent.bonsai">
         <Format>Wheel-{0}</Format>
-        <Selector>it</Selector>
+        <Selector>Item2.count</Selector>
         <Name>Allen.Log</Name>
       </Expression>
     </Nodes>
@@ -998,18 +1017,24 @@
       <Edge From="23" To="24" Label="Source1" />
       <Edge From="24" To="25" Label="Source2" />
       <Edge From="25" To="26" Label="Source1" />
+      <Edge From="26" To="30" Label="Source1" />
       <Edge From="27" To="28" Label="Source1" />
       <Edge From="28" To="29" Label="Source1" />
-      <Edge From="29" To="30" Label="Source1" />
-      <Edge From="31" To="33" Label="Source1" />
-      <Edge From="32" To="33" Label="Source2" />
+      <Edge From="29" To="30" Label="Source2" />
+      <Edge From="30" To="31" Label="Source1" />
+      <Edge From="32" To="33" Label="Source1" />
       <Edge From="33" To="34" Label="Source1" />
       <Edge From="34" To="35" Label="Source1" />
-      <Edge From="35" To="36" Label="Source1" />
-      <Edge From="36" To="37" Label="Source1" />
-      <Edge From="37" To="38" Label="Source1" />
+      <Edge From="36" To="38" Label="Source1" />
+      <Edge From="37" To="38" Label="Source2" />
+      <Edge From="38" To="39" Label="Source1" />
       <Edge From="39" To="40" Label="Source1" />
       <Edge From="40" To="41" Label="Source1" />
+      <Edge From="41" To="42" Label="Source1" />
+      <Edge From="42" To="43" Label="Source1" />
+      <Edge From="44" To="46" Label="Source2" />
+      <Edge From="45" To="46" Label="Source1" />
+      <Edge From="46" To="47" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>

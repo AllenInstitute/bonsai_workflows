@@ -1,19 +1,58 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<WorkflowBuilder Version="2.6.3"
+<WorkflowBuilder Version="2.6.2"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xmlns:p1="clr-namespace:MPE;assembly=MPEBonsai"
                  xmlns:io="clr-namespace:Bonsai.IO;assembly=Bonsai.System"
-                 xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                 xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
     <Nodes>
-      <Expression xsi:type="PropertySource" TypeArguments="io:CsvWriter,sys:String">
-        <MemberName>FileName</MemberName>
-        <Value>C:\Users\jeromel\Documents\tmp_bonsai_tests\test.csv</Value>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="p1:Configuration" />
+      </Expression>
+      <Expression xsi:type="MemberSelector">
+        <Selector>FileSaveLocations.EventLog</Selector>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="io:GetFullPath" />
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="io:GetDirectoryName" />
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="StringProperty">
+          <Value>_bonsai_event_log.csv</Value>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="StringProperty" />
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:Timestamp" />
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:CombineLatest" />
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:CombineLatest" />
+      </Expression>
+      <Expression xsi:type="Format">
+        <Format>{0}\{1}{2}{3}{4}{5}{6}{7}</Format>
+        <Selector>Item1,Item2.Item2.Timestamp.LocalDateTime.Year,Item2.Item2.Timestamp.LocalDateTime.Month,Item2.Item2.Timestamp.LocalDateTime.Day,Item2.Item2.Timestamp.LocalDateTime.Hour,Item2.Item2.Timestamp.LocalDateTime.Minute,Item2.Item2.Timestamp.LocalDateTime.Second,Item2.Item1</Selector>
       </Expression>
       <Expression xsi:type="WorkflowOutput" />
     </Nodes>
     <Edges>
       <Edge From="0" To="1" Label="Source1" />
+      <Edge From="1" To="2" Label="Source1" />
+      <Edge From="2" To="3" Label="Source1" />
+      <Edge From="3" To="8" Label="Source1" />
+      <Edge From="4" To="7" Label="Source1" />
+      <Edge From="5" To="6" Label="Source1" />
+      <Edge From="6" To="7" Label="Source2" />
+      <Edge From="7" To="8" Label="Source2" />
+      <Edge From="8" To="9" Label="Source1" />
+      <Edge From="9" To="10" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
